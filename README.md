@@ -1,36 +1,298 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SalatSync - Islamic Prayer Times App
 
-## Getting Started
+A beautiful and elegant Islamic prayer times application built with Next.js and shadcn/ui, featuring a sophisticated design system inspired by Islamic aesthetics and modern web design principles.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Beautiful Islamic Design**: Warm colors, elegant typography, and Islamic geometric patterns
+- **Professional UI Components**: Built with shadcn/ui for consistent, accessible components
+- **Responsive Design**: Mobile-first approach with adaptive layouts
+- **Dark Mode Support**: Automatic theme switching with Islamic night colors
+- **Typography System**: Playfair Display for elegant text, Amiri for Arabic support
+- **Design System**: Comprehensive component library with consistent styling
+- **Modern Tech Stack**: Built with Next.js 15, TypeScript, Tailwind CSS, and shadcn/ui
+
+## 🎨 Design System + Shadcn/ui
+
+SalatSync combines the best of both worlds:
+
+- **Shadcn/ui Components**: Professional, accessible UI components (Button, Card, Input, Select, Badge)
+- **Islamic Design System**: Beautiful color palette, typography, and cultural aesthetics
+- **Seamless Integration**: Design system classes enhance shadcn/ui components
+- **Consistent Experience**: Professional functionality with Islamic visual identity
+
+### **Component Examples**
+```tsx
+// Enhanced shadcn/ui Button with Islamic styling
+<Button className="btn-primary">Get Prayer Times</Button>
+
+// Islamic Card with shadcn/ui structure
+<Card className="islamic-card">
+  <CardHeader>
+    <CardTitle className="font-elegant text-primary">Prayer Times</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p>Beautiful content with Islamic design</p>
+  </CardContent>
+</Card>
+
+// Form elements with Arabic support
+<Input placeholder="Enter location" className="font-elegant" />
+<Select>
+  <SelectTrigger className="font-arabic">
+    <SelectValue placeholder="اختر وقت الصلاة" />
+  </SelectTrigger>
+</Select>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Quick Start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 18+ 
+- npm or yarn
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/salatsync.git
+   cd salatsync
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Run the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-## Deploy on Vercel
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4
+- **UI Components**: shadcn/ui (Button, Card, Input, Select, Badge)
+- **Fonts**: Google Fonts (Playfair Display, Amiri)
+- **Icons**: Lucide React
+- **Animations**: tw-animate-css
+
+## 📁 Project Structure
+
+```
+salatsync/
+├── app/                    # Next.js app directory
+│   ├── globals.css        # Global styles and design system
+│   ├── layout.tsx         # Root layout with fonts
+│   └── page.tsx           # Home page with shadcn/ui components
+├── components/             # UI components
+│   └── ui/                # shadcn/ui components
+│       ├── button.tsx     # Button component
+│       ├── card.tsx       # Card component
+│       ├── input.tsx      # Input component
+│       ├── select.tsx     # Select component
+│       └── badge.tsx      # Badge component
+├── components.json         # shadcn/ui configuration
+├── DESIGN_SYSTEM.md       # Complete design system reference
+├── COMPONENT_SHOWCASE.md  # shadcn/ui + design system examples
+├── lib/                   # Utility functions
+├── public/                # Static assets
+└── README.md              # This file
+```
+
+## 🎯 Key Design Principles
+
+### Islamic Aesthetics
+- Warm, earthy color palette inspired by Islamic art
+- Geometric patterns and elegant borders
+- Respectful and culturally appropriate design
+
+### Professional UI with shadcn/ui
+- Accessible, semantic components
+- Consistent behavior and interactions
+- Built-in dark mode support
+- Keyboard navigation and screen reader support
+
+### Developer Experience
+- Semantic color tokens and design variables
+- Reusable component classes
+- Comprehensive documentation
+- Consistent naming conventions
+
+## 🧩 Using the Design System with Shadcn/ui
+
+### Basic Components
+
+```tsx
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+// Enhanced buttons
+<Button className="btn-primary">Primary Action</Button>
+<Button variant="secondary" className="btn-secondary">Secondary Action</Button>
+
+// Islamic cards
+<Card className="islamic-card">
+  <CardHeader>
+    <CardTitle className="font-elegant text-responsive-lg">Content Title</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p>Beautiful content with Islamic design</p>
+  </CardContent>
+</Card>
+
+// Prayer-specific styling
+<Card className="prayer-card">
+  <CardContent className="pt-6 text-center">
+    <span className="prayer-name font-arabic">الفجر</span>
+    <span className="prayer-time">5:30 AM</span>
+  </CardContent>
+</Card>
+```
+
+### Form Components
+
+```tsx
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+// Enhanced form elements
+<Input 
+  placeholder="Enter location"
+  className="font-elegant"
+/>
+
+<Select>
+  <SelectTrigger className="font-arabic">
+    <SelectValue placeholder="اختر وقت الصلاة" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="fajr">الفجر - Fajr</SelectItem>
+    <SelectItem value="dhuhr">الظهر - Dhuhr</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+### Colors and Gradients
+
+```tsx
+// Apply gradients
+<div className="hero-gradient">Hero section</div>
+<div className="primary-gradient">Primary section</div>
+
+// Text gradients
+<h2 className="text-gradient-primary">Gradient Text</h2>
+```
+
+## 🌙 Dark Mode
+
+The design system automatically supports dark mode with:
+- Automatic theme detection
+- Islamic night color palette
+- Maintained visual hierarchy
+- Consistent component styling
+- shadcn/ui components inherit dark mode automatically
+
+## 📱 Responsive Design
+
+Built with a mobile-first approach:
+- Responsive typography scales
+- Adaptive component layouts
+- Touch-friendly interactions
+- Optimized for all screen sizes
+- shadcn/ui components are responsive by default
+
+## 🔧 Customization
+
+### Adding New Colors
+
+```css
+:root {
+  --custom-color: hsl(200, 70%, 50%);
+  --custom-color-foreground: hsl(45, 20%, 96%);
+}
+```
+
+### Creating New Components
+
+```css
+@layer components {
+  .custom-component {
+    @apply bg-primary text-primary-foreground rounded-lg;
+    box-shadow: var(--shadow-elegant);
+  }
+}
+```
+
+### Custom Shadcn/ui Variants
+
+```tsx
+// In your button.tsx component
+const buttonVariants = cva(
+  "inline-flex items-center justify-center rounded-lg font-elegant font-medium transition-all",
+  {
+    variants: {
+      variant: {
+        default: "btn-primary",
+        secondary: "btn-secondary",
+        islamic: "islamic-border bg-gradient-to-r from-primary/10 to-secondary/10",
+      },
+    },
+  }
+)
+```
+
+## 📚 Documentation
+
+- **[Design System](./DESIGN_SYSTEM.md)**: Complete design tokens, components, and guidelines
+- **[Component Showcase](./COMPONENT_SHOWCASE.md)**: shadcn/ui + design system examples
+- **[Next.js Documentation](https://nextjs.org/docs)**: Framework documentation
+- **[Tailwind CSS](https://tailwindcss.com/docs)**: Utility-first CSS framework
+- **[Shadcn/ui](https://ui.shadcn.com/)**: Professional UI components
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our contributing guidelines:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+### Development Guidelines
+
+- Follow the established design system
+- Use shadcn/ui components for structure
+- Apply design system classes for aesthetics
+- Maintain consistent typography
+- Test in both light and dark modes
+- Ensure responsive design
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Islamic art and design inspiration
+- Google Fonts for typography
+- Next.js team for the amazing framework
+- Tailwind CSS for the utility-first approach
+- Shadcn/ui for professional UI components
+
+---
+
+**Built with ❤️ for the Islamic community**
+
+*SalatSync combines modern web development with traditional Islamic aesthetics, using professional UI components to create a beautiful and functional prayer times application.*
