@@ -83,6 +83,24 @@
     hsl(158, 64%, 25%, 0.1) 0deg 10deg,
     transparent 10deg 20deg
   );
+  
+  /* Subtle Vertical Stripes Pattern */
+  --pattern-subtle-stripes: repeating-linear-gradient(
+    90deg,
+    hsl(45, 20%, 96%) 0px,
+    hsl(45, 20%, 96%) 1px,
+    hsl(45, 18%, 94%) 1px,
+    hsl(45, 18%, 94%) 2px
+  );
+  
+  /* Alternative subtle pattern with more variation */
+  --pattern-subtle-ribbed: repeating-linear-gradient(
+    90deg,
+    hsl(45, 20%, 96%) 0px,
+    hsl(45, 20%, 96%) 0.5px,
+    hsl(45, 19%, 95%) 0.5px,
+    hsl(45, 19%, 95%) 1px
+  );
 }
 
 .dark {
@@ -255,6 +273,24 @@
   .bg-islamic-pattern {
     background-image: var(--pattern-islamic);
     background-size: 60px 60px;
+  }
+  
+  /* Subtle background patterns for main content */
+  .bg-subtle-stripes {
+    background-image: var(--pattern-subtle-stripes);
+    background-size: 2px 100%;
+  }
+  
+  .bg-subtle-ribbed {
+    background-image: var(--pattern-subtle-ribbed);
+    background-size: 1px 100%;
+  }
+  
+  /* Content area background with subtle pattern */
+  .bg-content-pattern {
+    background-image: var(--pattern-subtle-stripes);
+    background-size: 2px 100%;
+    background-attachment: fixed;
   }
   
   /* Glass Effect */

@@ -28,7 +28,7 @@ export default function Home() {
       </section>
 
       {/* Design System Showcase */}
-      <section className="py-16 px-6">
+      <section className="py-16 px-6 bg-content-pattern">
         <div className="max-w-6xl mx-auto">
           <h2 className="font-elegant text-responsive-lg text-center mb-12 text-gradient-primary">
             Design System Showcase
@@ -281,6 +281,84 @@ export default function Home() {
                 </p>
               </CardContent>
             </Card>
+          </div>
+
+          {/* Background Patterns for Content */}
+          <div className="mb-16">
+            <h3 className="font-elegant text-2xl font-semibold mb-6 text-primary">
+              Content Background Patterns
+            </h3>
+            <div className="grid gap-6">
+              <Card className="islamic-card">
+                <CardHeader>
+                  <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                    Subtle Vertical Stripes
+                  </CardTitle>
+                  <CardDescription>
+                    Perfect for main content areas - elegant and non-distracting
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-subtle-stripes p-8 rounded-lg min-h-[200px] flex items-center justify-center">
+                    <p className="text-foreground/80 text-center">
+                      This area demonstrates the subtle vertical stripes pattern.<br />
+                      It provides texture without interfering with content readability.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="islamic-card">
+                <CardHeader>
+                  <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                    Subtle Ribbed Pattern
+                  </CardTitle>
+                  <CardDescription>
+                    Alternative pattern with finer, more delicate texture
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-subtle-ribbed p-8 rounded-lg min-h-[200px] flex items-center justify-center">
+                    <p className="text-foreground/80 text-center">
+                      This area shows the ribbed pattern variation.<br />
+                      Slightly more refined with 1px spacing.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="islamic-card">
+                <CardHeader>
+                  <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                    Content Area with Pattern
+                  </CardTitle>
+                  <CardDescription>
+                    How to use patterns in main content sections
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-subtle-stripes p-6 rounded-lg">
+                    <h4 className="font-elegant text-lg font-semibold text-primary mb-3">
+                      Main Content Section
+                    </h4>
+                    <p className="text-foreground/80 mb-3">
+                      This demonstrates how the subtle pattern works with actual content.
+                      The pattern adds visual interest without compromising readability.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                      <div className="bg-card/50 p-4 rounded-lg">
+                        <h5 className="font-elegant font-semibold text-primary mb-2">Feature 1</h5>
+                        <p className="text-sm text-foreground/70">Content over pattern background</p>
+                      </div>
+                      <div className="bg-card/50 p-4 rounded-lg">
+                        <h5 className="font-elegant font-semibold text-primary mb-2">Feature 2</h5>
+                        <p className="text-sm text-foreground/70">More content examples</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           {/* Interactive Demo */}

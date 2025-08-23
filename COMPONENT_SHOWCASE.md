@@ -543,3 +543,57 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 ---
 
 *This showcase demonstrates the powerful combination of shadcn/ui components with the SalatSync Islamic design system. Use these examples to build beautiful, accessible, and culturally appropriate prayer time applications.*
+
+### Background Patterns
+
+```tsx
+/* Islamic geometric pattern */
+.bg-islamic-pattern {
+  background-image: var(--pattern-islamic);
+  background-size: 60px 60px;
+}
+
+/* Subtle background patterns for main content */
+.bg-subtle-stripes {
+  background-image: var(--pattern-subtle-stripes);
+  background-size: 2px 100%;
+}
+
+.bg-subtle-ribbed {
+  background-image: var(--pattern-subtle-ribbed);
+  background-size: 1px 100%;
+}
+
+/* Content area background with subtle pattern */
+.bg-content-pattern {
+  background-image: var(--pattern-subtle-stripes);
+  background-size: 2px 100%;
+  background-attachment: fixed;
+}
+```
+
+### Usage Examples
+
+```tsx
+// Main content section with subtle pattern
+<section className="py-16 px-6 bg-content-pattern">
+  <div className="max-w-6xl mx-auto">
+    <h2 className="font-elegant text-2xl font-semibold text-primary">
+      Main Content
+    </h2>
+    <p>Content over elegant subtle background</p>
+  </div>
+</section>
+
+// Individual content areas
+<div className="bg-subtle-stripes p-6 rounded-lg">
+  <h3>Content Title</h3>
+  <p>Content with subtle texture</p>
+</div>
+
+// Alternative pattern
+<div className="bg-subtle-ribbed p-6 rounded-lg">
+  <h3>Alternative Pattern</h3>
+  <p>More refined texture variation</p>
+</div>
+```
