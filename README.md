@@ -2,6 +2,12 @@
 
 A beautiful and elegant Islamic prayer times application built with Next.js and shadcn/ui, featuring a sophisticated design system inspired by Islamic aesthetics and modern web design principles.
 
+## 📜 License Notice
+
+**This project is open source and free to use, modify, and distribute under the MIT License. However, any public use of this software requires visible attribution to the original author and project. See the [LICENSE](LICENSE) file for complete details.**
+
+---
+
 ## ✨ Features
 
 - **Beautiful Islamic Design**: Warm colors, elegant typography, and Islamic geometric patterns
@@ -281,7 +287,32 @@ We welcome contributions! Please see our contributing guidelines:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License with Attribution Requirement** - see the [LICENSE](LICENSE) file for details.
+
+### **License Summary**
+- **Open Source**: Free to use, modify, and distribute
+- **Attribution Required**: Must give credit to the original author and project
+- **Commercial Use**: Allowed with attribution
+- **Modifications**: Allowed with attribution
+
+### **Attribution Requirements**
+When using this software in any public-facing application, website, or product, you must include visible credit that includes:
+- Project name: "SalatSync"
+- Author: "[Your Name]"
+- Link to the original repository (if applicable)
+
+The credit can be displayed in:
+- Application's "About" section or credits page
+- Application's footer or header
+- README or documentation
+- Source code comments
+
+### **Why This License?**
+This license ensures that:
+- Your work remains open and accessible to the community
+- Users can freely use and build upon your design system
+- You receive proper recognition for your contributions
+- The Islamic design community benefits from your work
 
 ## 🙏 Acknowledgments
 

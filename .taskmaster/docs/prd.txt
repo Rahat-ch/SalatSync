@@ -1,0 +1,362 @@
+<context>
+# Overview  
+SalatSync is a comprehensive Islamic prayer times web application designed specifically for busy Muslim professionals who struggle to maintain consistent prayer schedules amidst demanding work commitments. The application automatically calculates accurate prayer times based on user location and seamlessly integrates with Google Calendar, ensuring users receive timely reminders without manual intervention. Built with an elegant Islamic design system that combines modern UI/UX principles with traditional Islamic aesthetics, SalatSync represents a respectful, culturally-aware solution that bridges faith and professional life.
+
+# Core Features  
+
+## Google OAuth Authentication
+- Secure, frictionless login using existing Google accounts
+- Eliminates need for separate account management
+- Provides seamless integration with Google Calendar services
+- Ensures user data privacy and security through OAuth 2.0 standards
+- Single sign-on convenience for busy professionals
+
+## Location-Based Prayer Time Calculation
+- Precise prayer time calculations using astronomical algorithms
+- Support for manual location entry (city, address, coordinates)
+- Automatic location detection with user permission
+- Calculation methods selection (ISNA, Muslim World League, Umm al-Qura, etc.)
+- Adjustable calculation parameters for different madhabs/preferences
+- Accurate calculations for Fajr, Dhuhr, Asr, Maghrib, and Isha
+
+## Google Calendar Integration
+- Automatic creation of daily prayer time events
+- Customizable reminder settings (5, 10, 15 minutes before)
+- Separate calendar creation option for prayer times
+- Event descriptions with prayer names in Arabic and English
+- Color-coding for different prayer times
+- Bulk event creation for future dates
+- Automatic updates when prayer times shift throughout the year
+
+## Dashboard and Prayer Times Display
+- Beautiful, responsive dashboard showing today's prayer times
+- Visual countdown to next prayer
+- Monthly prayer times calendar view
+- Weekly prayer schedule overview
+- Prayer time history tracking
+- Mobile-optimized interface for on-the-go access
+
+## User Preferences Management
+- Save multiple locations (home, work, travel)
+- Quick location switching
+- Preferred calculation method settings
+- Notification preferences
+- Language selection (English/Arabic interface)
+- Theme preferences (light/dark mode with Islamic aesthetics)
+- Time format preferences (12/24 hour)
+
+## Privacy and Data Protection
+- Privacy-first design with minimal data collection
+- User location data stored securely and privately
+- Option to delete all personal data
+- Transparent data usage policies
+- No sharing of personal information with third parties
+- GDPR compliance considerations
+
+# User Experience  
+
+## User Personas
+
+### Primary Persona: The Muslim Professional
+- Age: 25-45 years
+- Occupation: Office worker, consultant, engineer, doctor, teacher
+- Tech-savvy, uses Google Calendar daily for work
+- Values efficiency and automation
+- Struggles with remembering exact prayer times
+- Often in meetings during prayer times
+- Wants discrete, professional reminders
+
+### Secondary Persona: The Muslim Student
+- Age: 18-30 years
+- University student or recent graduate
+- Variable daily schedule
+- Heavy reliance on digital tools for organization
+- May travel between campus, home, and work
+- Needs flexible prayer time management
+
+### Tertiary Persona: The Muslim Parent
+- Age: 30-50 years
+- Managing family and work responsibilities
+- Wants to set good example for children
+- Needs family-friendly features
+- Values simplicity and ease of use
+
+## Key User Flows
+
+### Initial Setup Flow
+1. Landing page with clear value proposition
+2. "Connect with Google" CTA button
+3. Google OAuth consent screen
+4. Location permission request or manual entry
+5. Prayer calculation method selection
+6. Calendar integration preferences
+7. Success confirmation with today's prayer times
+
+### Daily Usage Flow
+1. User receives calendar notification
+2. Optional: Opens app to see prayer details
+3. Views countdown to next prayer
+4. Marks prayer as completed (optional feature)
+5. Reviews prayer history/statistics
+
+### Settings Management Flow
+1. Access settings from dashboard
+2. Modify calculation methods
+3. Update notification preferences
+4. Add/edit locations
+5. Manage calendar integration
+6. Save changes with confirmation
+
+## UI/UX Considerations
+- Islamic design aesthetics without being overwhelming
+- Professional appearance suitable for workplace
+- High contrast for accessibility
+- Clear, readable typography (Playfair Display & Amiri fonts)
+- Intuitive navigation with minimal clicks
+- Responsive design for all devices
+- Loading states and error handling
+- Offline functionality where possible
+- Cultural sensitivity in imagery and language
+</context>
+<PRD>
+# Technical Architecture  
+
+## System Components
+
+### Frontend Application
+- Next.js 15 with App Router for modern React development
+- TypeScript for type safety and better developer experience
+- Tailwind CSS 4 for responsive, utility-first styling
+- Shadcn/ui components for consistent, accessible UI
+- Progressive Web App (PWA) capabilities for offline access
+- Server-side rendering for SEO and performance
+
+### Backend Services
+- Next.js API routes for serverless backend functions
+- Google OAuth integration using NextAuth.js
+- Google Calendar API integration
+- Prayer time calculation service
+- User preferences storage
+- Location services integration
+
+### Data Models
+- User Profile (ID, email, display name, preferences)
+- Location (coordinates, city, country, timezone)
+- Prayer Settings (calculation method, adjustments, madhab)
+- Calendar Settings (calendar ID, reminder times, event colors)
+- Prayer Time Cache (date, location, calculated times)
+- User Session (auth tokens, refresh tokens)
+
+### APIs and Integrations
+- Google OAuth 2.0 for authentication
+- Google Calendar API for event management
+- Geolocation API for automatic location detection
+- Prayer time calculation library (adhan.js or similar)
+- Timezone API for accurate time conversions
+- Optional: Weather API for sunrise/sunset data validation
+
+### Infrastructure Requirements
+- Vercel/Netlify for hosting and deployment
+- PostgreSQL/Supabase for user data persistence
+- Redis for caching prayer calculations
+- Environment variables for API keys
+- SSL certificates for secure connections
+- CDN for static assets
+- Error tracking (Sentry or similar)
+- Analytics (privacy-focused solution)
+
+# Development Roadmap  
+
+## Phase 1: MVP - Core Prayer Time Functionality
+- Basic Next.js application setup with TypeScript
+- Implementation of Islamic design system
+- Google OAuth authentication integration
+- Manual location input interface
+- Prayer time calculation engine integration
+- Display today's prayer times on dashboard
+- Basic responsive design
+- Simple Google Calendar integration (create events)
+- Essential user preferences (location, calculation method)
+
+## Phase 2: Enhanced Calendar Integration
+- Advanced calendar settings (custom reminders, colors)
+- Bulk event creation for month ahead
+- Separate prayer calendar option
+- Event update mechanism for DST changes
+- Calendar sync status indicators
+- Conflict detection with existing events
+- Prayer time event templates
+
+## Phase 3: User Experience Improvements
+- Automatic location detection
+- Multiple location management
+- Quick location switcher
+- Prayer time widgets/cards
+- Countdown timer to next prayer
+- Monthly calendar view
+- Weekly schedule view
+- Improved mobile experience
+- Progressive Web App features
+- Offline mode support
+
+## Phase 4: Advanced Features
+- Prayer completion tracking
+- Statistics and insights dashboard
+- Qibla direction indicator
+- Islamic calendar integration
+- Hijri date display
+- Special Islamic dates/events
+- Prayer time notifications (web push)
+- Dark mode with Islamic aesthetics
+- Multi-language support (Arabic, English)
+- Accessibility improvements
+
+## Phase 5: Community and Social Features
+- Family account linking
+- Mosque finder integration
+- Community prayer times
+- Share prayer times feature
+- Prayer reminders for contacts
+- Islamic content feed
+- Dua/supplication library
+- Ramadan special features
+- Eid prayer times
+
+## Phase 6: Premium Features (Future Consideration)
+- Advanced analytics
+- Custom calculation methods
+- API access for developers
+- White-label options for mosques
+- Advanced family management
+- Travel prayer calculations
+- Smartwatch integration
+- Voice assistant integration
+
+# Logical Dependency Chain
+
+## Foundation Layer (Must Build First)
+1. Next.js project setup with TypeScript
+2. Islamic design system implementation
+3. Basic routing and layout structure
+4. Environment configuration
+
+## Authentication Layer
+1. Google OAuth setup
+2. User session management
+3. Protected route implementation
+4. User profile creation
+
+## Core Functionality Layer
+1. Prayer time calculation engine
+2. Location management system
+3. Basic dashboard UI
+4. Prayer times display component
+
+## Integration Layer
+1. Google Calendar API connection
+2. Event creation logic
+3. Calendar preferences interface
+4. Sync status management
+
+## Enhancement Layer
+1. Multiple locations support
+2. Advanced settings
+3. Mobile optimizations
+4. PWA features
+
+## Polish Layer
+1. Animations and transitions
+2. Error handling improvements
+3. Loading states
+4. Performance optimizations
+
+# Risks and Mitigations  
+
+## Technical Challenges
+
+### Prayer Time Calculation Accuracy
+- Risk: Incorrect calculations leading to wrong prayer times
+- Mitigation: Use established libraries (adhan.js), implement multiple calculation methods, allow user adjustments, validate against known sources
+
+### Google API Rate Limits
+- Risk: Hitting API quotas with many users
+- Mitigation: Implement caching, batch operations, progressive sync, use exponential backoff
+
+### Location Services Reliability
+- Risk: Inaccurate or unavailable location data
+- Mitigation: Manual location entry fallback, location validation, saved locations, IP-based approximation
+
+### Calendar Sync Conflicts
+- Risk: Duplicate events or sync failures
+- Mitigation: Idempotent operations, conflict resolution logic, sync status tracking, manual refresh option
+
+## User Experience Risks
+
+### Complex Onboarding
+- Risk: Users abandoning during setup
+- Mitigation: Progressive disclosure, sensible defaults, skip options, clear value communication
+
+### Cultural Sensitivity
+- Risk: Offending users with inappropriate design/content
+- Mitigation: Community feedback, Islamic design guidelines, multiple calculation methods, customization options
+
+### Privacy Concerns
+- Risk: Users worried about location/calendar data
+- Mitigation: Clear privacy policy, minimal data collection, local storage options, data deletion features
+
+## Development Risks
+
+### Scope Creep
+- Risk: Adding too many features delaying MVP
+- Mitigation: Clear phase definitions, feature flags, user feedback prioritization, MVP focus
+
+### Third-party Dependency
+- Risk: Google API changes or deprecation
+- Mitigation: Abstraction layers, alternative providers research, API version pinning, migration plans
+
+# Appendix  
+
+## Research Findings
+- 1.8 billion Muslims worldwide, many in professional settings
+- Existing apps often lack calendar integration
+- Users want automation over manual checking
+- Privacy is major concern for Muslim users
+- Professional appearance important for workplace use
+- Mobile usage exceeds desktop for prayer apps
+
+## Technical Specifications
+- Browser Support: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- Mobile Support: iOS 14+, Android 8+
+- Accessibility: WCAG 2.1 AA compliance
+- Performance: Lighthouse score 90+
+- Security: HTTPS only, CSP headers, secure cookies
+- API Response Time: <500ms for calculations
+- Uptime Target: 99.9%
+
+## Calculation Methods Supported
+- Islamic Society of North America (ISNA)
+- Muslim World League (MWL)
+- Egyptian General Authority
+- Umm al-Qura University
+- University of Islamic Sciences, Karachi
+- Institute of Geophysics, University of Tehran
+- Shia Ithna-Ashari
+- Custom parameters option
+
+## Supported Languages (Future)
+- English (primary)
+- Arabic
+- Urdu
+- Turkish
+- Indonesian
+- French
+- Spanish
+
+## Islamic Design Guidelines
+- Geometric patterns inspired by Islamic art
+- Warm, earth-tone color palette
+- Respectful imagery (no human/animal representations)
+- Calligraphy-inspired typography
+- Green and gold accents (Islamic colors)
+- Crescent moon imagery where appropriate
+</PRD>

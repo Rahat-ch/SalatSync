@@ -1,0 +1,1029 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Next.js Project Setup with TypeScript",
+        "description": "Configure code quality tools and PWA capabilities for the SalatSync application.",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "details": "1. Set up ESLint with Next.js best practices for code quality\n2. Configure Prettier for consistent code formatting\n3. Set up PWA capabilities with next-pwa\n   - Create manifest.json\n   - Configure service worker\n   - Add necessary PWA icons\n4. Configure environment variables\n5. Set up Git repository with appropriate .gitignore",
+        "testStrategy": "1. Verify ESLint catches code quality issues\n2. Ensure Prettier formats code consistently\n3. Test PWA capabilities with Lighthouse\n4. Verify service worker registration and caching\n5. Test offline functionality\n6. Validate manifest.json configuration",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Configure ESLint with Next.js Best Practices",
+            "description": "Set up ESLint with Next.js recommended configurations to ensure code quality and catch potential issues early in development.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "1. Update ESLint configuration in `.eslintrc.json` to extend Next.js defaults\n2. Add additional rules specific to the project needs:\n   - Import sorting\n   - React hooks rules\n   - Accessibility rules\n3. Configure ESLint to work with TypeScript\n4. Add scripts to package.json for linting: `\"lint\": \"next lint\"`\n5. Set up VS Code integration for real-time linting\n6. Create .eslintignore file for excluding build artifacts and other non-source files",
+            "testStrategy": "Run ESLint against the codebase with `npm run lint` and verify it catches common issues. Test VS Code integration by introducing a linting error and confirming it's highlighted in the editor."
+          },
+          {
+            "id": 2,
+            "title": "Configure Prettier for Consistent Code Formatting",
+            "description": "Set up Prettier with appropriate configurations to ensure consistent code formatting across the entire project.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "1. Install Prettier: `npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier`\n2. Create `.prettierrc` with project formatting rules:\n   ```json\n   {\n     \"semi\": true,\n     \"singleQuote\": true,\n     \"tabWidth\": 2,\n     \"trailingComma\": \"es5\",\n     \"printWidth\": 100\n   }\n   ```\n3. Add Prettier configuration to ESLint to avoid conflicts\n4. Create .prettierignore file\n5. Add scripts to package.json:\n   - `\"format\": \"prettier --write .\"`\n   - `\"format:check\": \"prettier --check .\"`\n6. Set up VS Code integration for auto-formatting on save",
+            "testStrategy": "Run Prettier against the codebase with `npm run format:check` to verify formatting issues are detected. Test auto-formatting by making formatting changes and saving a file to confirm it's automatically formatted."
+          },
+          {
+            "id": 3,
+            "title": "Set Up Git Repository with Proper Configuration",
+            "description": "Initialize a Git repository with appropriate .gitignore settings and pre-commit hooks for code quality checks.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "1. Initialize Git repository if not already done: `git init`\n2. Create comprehensive `.gitignore` file including:\n   - node_modules\n   - .env files\n   - build directories (.next, out)\n   - debug logs\n   - IDE-specific files\n3. Install husky and lint-staged for pre-commit hooks: `npm install --save-dev husky lint-staged`\n4. Configure pre-commit hooks to run ESLint and Prettier\n5. Add .gitattributes file for consistent line endings\n6. Make initial commit with base project structure",
+            "testStrategy": "Verify the .gitignore file correctly excludes appropriate files by checking git status output. Test pre-commit hooks by making changes that violate ESLint or Prettier rules and attempting to commit them."
+          },
+          {
+            "id": 4,
+            "title": "Set Up PWA Capabilities with next-pwa",
+            "description": "Configure Progressive Web App capabilities using next-pwa to enable offline functionality and app-like experience.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "1. Install next-pwa: `npm install next-pwa`\n2. Configure next-pwa in next.config.js:\n   ```js\n   const withPWA = require('next-pwa')({\n     dest: 'public',\n     disable: process.env.NODE_ENV === 'development',\n     register: true,\n     skipWaiting: true\n   })\n   \n   module.exports = withPWA({\n     // existing Next.js config\n   })\n   ```\n3. Create manifest.json in the public directory with app information:\n   ```json\n   {\n     \"name\": \"SalatSync\",\n     \"short_name\": \"SalatSync\",\n     \"description\": \"Islamic prayer time tracking application\",\n     \"start_url\": \"/\",\n     \"display\": \"standalone\",\n     \"background_color\": \"#ffffff\",\n     \"theme_color\": \"#4caf50\",\n     \"icons\": [\n       {\n         \"src\": \"/icons/icon-192x192.png\",\n         \"sizes\": \"192x192\",\n         \"type\": \"image/png\"\n       },\n       {\n         \"src\": \"/icons/icon-512x512.png\",\n         \"sizes\": \"512x512\",\n         \"type\": \"image/png\"\n       }\n     ]\n   }\n   ```\n4. Add necessary PWA icons in various sizes to the public/icons directory\n5. Link the manifest in the app's layout.tsx file\n6. Add service worker registration code\n7. Configure offline fallback pages",
+            "testStrategy": "Build the application with `next build` and verify PWA capabilities using Lighthouse audit. Test offline functionality by enabling offline mode in browser DevTools and navigating through the application. Verify the app can be installed on mobile devices."
+          },
+          {
+            "id": 5,
+            "title": "Configure Environment Variables",
+            "description": "Set up environment variables for different deployment environments and implement validation for required variables.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "1. Create .env.local file for local development variables\n2. Create .env.example as a template for required variables\n3. Install zod for environment variable validation: `npm install zod`\n4. Create a schema for environment variables in src/lib/env.ts\n5. Implement validation logic to ensure all required variables are present\n6. Document environment variables in README.md\n7. Configure environment variables for different environments (development, staging, production)",
+            "testStrategy": "Test environment variable configuration by creating test environments and ensuring variables are correctly loaded. Verify validation logic catches missing or invalid environment variables."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Islamic Design System Implementation",
+        "description": "Create a comprehensive Islamic design system with appropriate color schemes, typography, and UI components that blend modern UI/UX with traditional Islamic aesthetics.",
+        "status": "pending",
+        "dependencies": [
+          1
+        ],
+        "priority": "high",
+        "details": "1. Use the existing defined color palette with Islamic-inspired colors\n2. Set up typography using Playfair Display & Amiri fonts\n3. Create React components that use existing CSS geometric patterns from globals.css\n4. Design UI components with Islamic aesthetics:\n   - Prayer time cards\n   - Countdown timer\n   - Calendar components\n   - Navigation elements\n5. Implement responsive design principles\n6. Create light/dark mode themes\n7. Ensure high contrast for accessibility\n8. Avoid human/animal representations in imagery\n9. Use crescent moon imagery where appropriate",
+        "testStrategy": "1. Review design with Muslim users for cultural sensitivity\n2. Test components across different devices and screen sizes\n3. Verify WCAG 2.1 AA compliance for accessibility\n4. Test color contrast ratios\n5. Validate light/dark mode transitions\n6. Ensure components render correctly in all supported browsers",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set Up Typography System with Existing Color Palette",
+            "description": "Configure the typography system using Playfair Display and Amiri fonts, and implement the existing color palette. Define color variables for both light and dark themes.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "1. Use the existing defined Islamic color palette\n2. Create color variables in a Tailwind CSS config file\n3. Set up light and dark mode color variations\n4. Import and configure Playfair Display and Amiri fonts\n5. Define typography scale (headings, body text, captions)\n6. Create CSS variables for font families, weights, and sizes\n7. Ensure high contrast ratios for accessibility (WCAG AA compliance)\n8. Document color and typography system",
+            "testStrategy": "Test color contrast ratios using WebAIM tools, verify font loading performance, and review with Muslim users for cultural appropriateness"
+          },
+          {
+            "id": 2,
+            "title": "Create Islamic Geometric Pattern React Components",
+            "description": "Create React components that utilize the existing CSS geometric patterns defined in globals.css for backgrounds, accents, and decorative elements throughout the application.",
+            "status": "pending",
+            "dependencies": [
+              1
+            ],
+            "details": "1. Review existing CSS patterns in globals.css\n2. Create React wrapper components for the existing patterns\n3. Implement components with customizable colors and sizes\n4. Create utility components for pattern backgrounds\n5. Develop pattern composition components for complex layouts\n6. Ensure patterns scale properly across different screen sizes\n7. Create documentation for pattern component usage\n8. Implement pattern transitions for interactive elements",
+            "testStrategy": "Test pattern rendering across different browsers and devices, verify component reusability, and ensure patterns maintain cultural authenticity"
+          },
+          {
+            "id": 3,
+            "title": "Develop Core UI Components with Islamic Aesthetics",
+            "description": "Design and implement the core UI components with Islamic design aesthetics, including prayer time cards, countdown timer, calendar components, and navigation elements.",
+            "status": "pending",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "1. Create prayer time card component with time display and status indicators\n2. Implement countdown timer component with Islamic styling\n3. Design calendar components with Hijri date support\n4. Develop navigation elements with Islamic-inspired iconography\n5. Create button and input components with appropriate styling\n6. Implement card and container components with geometric pattern accents\n7. Ensure all components support both light and dark themes\n8. Add appropriate animations and transitions",
+            "testStrategy": "Test components across different devices and screen sizes, verify accessibility compliance, test light/dark mode transitions, and ensure components render correctly in all supported browsers"
+          },
+          {
+            "id": 4,
+            "title": "Implement Responsive Design System",
+            "description": "Ensure the design system is fully responsive across all device sizes and implement responsive design principles throughout all components.",
+            "status": "pending",
+            "dependencies": [
+              3
+            ],
+            "details": "1. Define breakpoint system for mobile, tablet, and desktop\n2. Create responsive utility classes and mixins\n3. Implement mobile-first design approach\n4. Test and adjust all components for different screen sizes\n5. Create responsive layout components (grids, containers)\n6. Implement responsive typography that scales with viewport\n7. Ensure touch-friendly UI elements on mobile devices\n8. Optimize for different device pixel ratios",
+            "testStrategy": "Test on various physical devices and using browser dev tools, verify usability on touch devices, and ensure layouts don't break at any screen size"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Google OAuth Authentication Integration",
+        "description": "Implement secure authentication using Google OAuth 2.0 with NextAuth.js to provide frictionless login and access to Google Calendar services.",
+        "details": "1. Set up NextAuth.js in the Next.js application\n2. Configure Google OAuth provider\n3. Create Google Cloud project and obtain OAuth credentials\n4. Implement sign-in and sign-out functionality\n5. Design login page with clear value proposition\n6. Create protected routes for authenticated users\n7. Set up session management\n8. Store user profile information (ID, email, display name)\n9. Handle authentication errors gracefully\n10. Implement token refresh mechanism\n11. Add security headers and CSP configuration",
+        "testStrategy": "1. Test login flow with valid Google credentials\n2. Verify error handling with invalid credentials\n3. Test session persistence across page refreshes\n4. Validate token refresh mechanism\n5. Ensure protected routes redirect unauthenticated users\n6. Test sign-out functionality\n7. Verify secure cookie settings\n8. Test on different browsers and devices",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up NextAuth.js and Google Cloud Project",
+            "description": "Initialize NextAuth.js in the Next.js application and create a Google Cloud project to obtain OAuth credentials",
+            "dependencies": [],
+            "details": "1. Install NextAuth.js package using npm/yarn\n2. Create a Google Cloud project in Google Cloud Console\n3. Enable Google OAuth API in the Google Cloud project\n4. Configure OAuth consent screen with necessary app information\n5. Create OAuth client ID and secret for web application\n6. Add authorized redirect URIs (http://localhost:3000/api/auth/callback/google for development)\n7. Create NextAuth API route at pages/api/auth/[...nextauth].js\n8. Store credentials securely in environment variables",
+            "status": "pending",
+            "testStrategy": "Verify Google Cloud project setup with correct OAuth configuration and confirm NextAuth.js initialization works without errors"
+          },
+          {
+            "id": 2,
+            "title": "Configure Google OAuth Provider and Session Management",
+            "description": "Set up Google OAuth provider in NextAuth.js and implement session management for user authentication",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "1. Configure Google provider in NextAuth.js with client ID and secret\n2. Request appropriate scopes (profile, email, and calendar if needed)\n3. Set up session callbacks to handle user information\n4. Configure session strategy (JWT recommended)\n5. Implement session persistence with secure cookies\n6. Set up CSRF protection\n7. Configure session lifetime and refresh settings\n8. Add user profile information storage (ID, email, display name)",
+            "status": "pending",
+            "testStrategy": "Test authentication flow with valid Google credentials, verify session persistence across page refreshes, and validate secure cookie settings"
+          },
+          {
+            "id": 3,
+            "title": "Create Login UI and Authentication Flow",
+            "description": "Design and implement the login page with Google sign-in button and authentication flow",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "1. Create a login page component with clear value proposition\n2. Implement Google sign-in button with appropriate styling\n3. Add loading states during authentication\n4. Implement sign-out functionality\n5. Create user feedback for successful login\n6. Design responsive layout for the login page\n7. Add clear instructions for users about the authentication process\n8. Implement client-side authentication state management",
+            "status": "pending",
+            "testStrategy": "Test login and logout flows on different devices, verify UI responsiveness, and validate user feedback during authentication processes"
+          },
+          {
+            "id": 4,
+            "title": "Implement Protected Routes and Authentication Guards",
+            "description": "Create a system to protect routes that require authentication and redirect unauthenticated users",
+            "dependencies": [
+              "3.3"
+            ],
+            "details": "1. Create a higher-order component or middleware for route protection\n2. Implement authentication checks on protected pages\n3. Set up redirect logic for unauthenticated users to the login page\n4. Add return URL functionality to redirect back after login\n5. Create loading states for authentication checks\n6. Implement role-based access control if needed\n7. Add client-side navigation guards\n8. Create a consistent authentication check pattern across the application",
+            "status": "pending",
+            "testStrategy": "Test protected routes with both authenticated and unauthenticated users, verify redirect behavior, and validate that authenticated users can access protected content"
+          },
+          {
+            "id": 5,
+            "title": "Implement Error Handling and Security Enhancements",
+            "description": "Add comprehensive error handling for authentication processes and implement security best practices",
+            "dependencies": [
+              "3.4"
+            ],
+            "details": "1. Create error handling for authentication failures\n2. Implement user-friendly error messages\n3. Add token refresh mechanism for expired sessions\n4. Implement security headers (Content-Security-Policy, X-Frame-Options, etc.)\n5. Set up rate limiting for authentication endpoints\n6. Add logging for authentication events\n7. Implement account linking if needed\n8. Create recovery paths for authentication issues\n9. Add monitoring for suspicious authentication activities",
+            "status": "pending",
+            "testStrategy": "Test error scenarios including invalid credentials, network failures, and expired tokens; verify security headers are properly implemented; validate rate limiting functionality"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Prayer Time Calculation Engine",
+        "description": "Integrate and implement a prayer time calculation service using adhan.js or similar library to provide accurate prayer times based on location and user preferences.",
+        "details": "1. Evaluate and integrate adhan.js library\n2. Implement calculation methods for all supported standards:\n   - ISNA\n   - Muslim World League\n   - Egyptian General Authority\n   - Umm al-Qura University\n   - University of Islamic Sciences, Karachi\n   - Institute of Geophysics, University of Tehran\n   - Shia Ithna-Ashari\n3. Create utility functions for prayer time calculations\n4. Implement timezone handling\n5. Create caching mechanism for calculated prayer times\n6. Support adjustable parameters for different madhabs\n7. Implement DST handling\n8. Create validation against known sources\n9. Support custom parameter options\n10. Implement calculation for all five daily prayers",
+        "testStrategy": "1. Compare calculated times against verified sources\n2. Test calculations for different locations worldwide\n3. Verify correct handling of edge cases (polar regions, date line)\n4. Test DST transitions\n5. Validate timezone conversions\n6. Benchmark performance for calculation speed\n7. Test caching mechanism effectiveness\n8. Verify all calculation methods produce expected results",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Integrate adhan.js Library and Create Core Calculation Service",
+            "description": "Set up the adhan.js library and create a core service that handles the basic prayer time calculations with standard parameters.",
+            "dependencies": [],
+            "details": "Install adhan.js as a dependency. Create a PrayerTimeService class that wraps the library functionality. Implement methods to calculate prayer times based on coordinates, date, and calculation method. Create interfaces for prayer time results and calculation parameters. Export the service as a singleton for use throughout the application.",
+            "status": "pending",
+            "testStrategy": "Compare calculated prayer times against verified sources for multiple locations. Create unit tests with known inputs and expected outputs. Test edge cases like polar regions and date line crossing."
+          },
+          {
+            "id": 2,
+            "title": "Implement Multiple Calculation Methods and Madhab Support",
+            "description": "Extend the prayer time service to support all required calculation methods and madhab variations with appropriate parameter configurations.",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Create enum or constants for all supported calculation methods (ISNA, Muslim World League, Egyptian General Authority, etc.). Implement configuration options for madhab settings (Shafi, Hanafi). Add method selection functionality to the prayer time service. Create utility functions to convert between different calculation method formats. Document the differences between calculation methods.",
+            "status": "pending",
+            "testStrategy": "Test each calculation method against verified sources. Create test cases for different madhab settings. Verify that switching between methods produces expected differences in prayer times."
+          },
+          {
+            "id": 3,
+            "title": "Implement Timezone and DST Handling",
+            "description": "Add robust timezone and Daylight Saving Time handling to ensure prayer times are correctly adjusted for the user's location and current time rules.",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Integrate a timezone library like date-fns-tz or Luxon. Create utility functions to convert prayer times between UTC and local timezones. Implement DST detection and handling logic. Add timezone information to the prayer time results. Create functions to format prayer times according to user preferences. Handle edge cases like locations that don't observe DST or have unusual timezone rules.",
+            "status": "pending",
+            "testStrategy": "Test timezone conversions for various locations worldwide. Verify correct handling of DST transitions (especially for prayers near transition times). Test locations with non-standard timezone offsets. Validate correct time display across different date formats."
+          },
+          {
+            "id": 4,
+            "title": "Create Caching Mechanism for Prayer Times",
+            "description": "Implement an efficient caching system to store calculated prayer times and reduce redundant calculations, improving performance and reducing API load.",
+            "dependencies": [
+              "4.1",
+              "4.2",
+              "4.3"
+            ],
+            "details": "Design a caching strategy for prayer times (in-memory, localStorage, or database). Create cache keys based on location, date, and calculation method. Implement cache invalidation rules based on time and parameter changes. Add methods to pre-calculate and cache prayer times for a date range. Create utilities to check cache freshness and validity. Implement batch calculation for efficient caching of multiple days.",
+            "status": "pending",
+            "testStrategy": "Benchmark performance with and without caching. Test cache hit/miss scenarios. Verify cache invalidation works correctly when parameters change. Test edge cases like date changes and timezone shifts."
+          },
+          {
+            "id": 5,
+            "title": "Implement Custom Adjustments and Validation",
+            "description": "Add support for custom prayer time adjustments and implement validation against known sources to ensure accuracy.",
+            "dependencies": [
+              "4.1",
+              "4.2",
+              "4.3"
+            ],
+            "details": "Create interfaces for custom prayer time adjustments (minutes or degrees). Implement adjustment application logic for each prayer time. Add validation functions to compare calculated times against reference sources. Create a configuration system for user preferences on adjustments. Implement high-latitude adjustment methods for polar regions. Add support for custom Fajr and Isha angles. Create utility functions to apply adjustments consistently across calculation methods.",
+            "status": "pending",
+            "testStrategy": "Test custom adjustments with various parameters. Validate adjusted prayer times against reference sources. Test extreme adjustments to ensure proper handling. Verify high-latitude methods work correctly in polar regions. Test that adjustments are correctly persisted and applied."
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Location Management System",
+        "description": "Develop a system for managing user locations, including manual entry, automatic detection, and multiple saved locations for home, work, and travel.",
+        "details": "1. Create location data model (coordinates, city, country, timezone)\n2. Implement manual location entry form\n3. Integrate browser Geolocation API for automatic detection\n4. Add geocoding service for converting addresses to coordinates\n5. Implement reverse geocoding for human-readable locations\n6. Create location storage in database\n7. Develop location selection UI\n8. Implement quick location switching\n9. Add location validation\n10. Create fallback mechanisms for unavailable location services\n11. Implement IP-based location approximation as backup",
+        "testStrategy": "1. Test manual location entry with various formats\n2. Verify automatic location detection accuracy\n3. Test geocoding and reverse geocoding functions\n4. Validate location storage and retrieval\n5. Test location switching functionality\n6. Verify fallback mechanisms when primary location services fail\n7. Test with VPN to simulate different locations\n8. Validate timezone detection accuracy",
+        "priority": "high",
+        "dependencies": [
+          1,
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Location Data Model and Database Storage",
+            "description": "Design and implement the data model for storing location information including coordinates, city, country, timezone, and location type (home, work, travel). Set up the database schema and create the necessary API endpoints for CRUD operations.",
+            "dependencies": [],
+            "details": "Create a Location model with fields: id, userId, name, type (enum: home, work, travel, other), latitude, longitude, address, city, country, timezone, isDefault, createdAt, updatedAt. Implement database schema using Prisma or similar ORM. Create API endpoints for creating, reading, updating, and deleting locations. Ensure proper indexing for efficient queries by userId.",
+            "status": "pending",
+            "testStrategy": "Write unit tests for the model validation. Test API endpoints with various input combinations. Verify database operations correctly store and retrieve location data. Test edge cases like invalid coordinates or missing fields."
+          },
+          {
+            "id": 2,
+            "title": "Implement Manual Location Entry Form and Validation",
+            "description": "Create a user interface for manually entering location details with form validation. Include fields for location name, address, city, country, and location type. Implement client and server-side validation to ensure data integrity.",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Build a React form component with fields for location details. Use a form library like Formik or React Hook Form for state management. Implement validation rules: required fields, coordinate format validation, character limits. Add autocomplete suggestions for city and country fields. Create error messages for validation failures. Implement submission handler to connect with the API endpoints created in subtask 1.",
+            "status": "pending",
+            "testStrategy": "Test form submission with valid and invalid data. Verify validation error messages appear correctly. Test autocomplete functionality. Ensure the form correctly handles API responses including errors."
+          },
+          {
+            "id": 3,
+            "title": "Integrate Geolocation API and Geocoding Services",
+            "description": "Implement automatic location detection using the browser's Geolocation API. Integrate a geocoding service (like Google Maps or Mapbox) to convert between addresses and coordinates. Implement reverse geocoding to provide human-readable location names from coordinates.",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Create a service to access browser's Geolocation API with proper error handling for permission denials. Integrate a geocoding service API (Google Maps, Mapbox, or OpenStreetMap) with appropriate rate limiting. Implement functions for forward geocoding (address to coordinates) and reverse geocoding (coordinates to address). Create a caching mechanism to reduce API calls. Handle API failures gracefully with user-friendly error messages.",
+            "status": "pending",
+            "testStrategy": "Test geolocation detection in different browsers. Verify geocoding accuracy with various address formats. Test reverse geocoding with different coordinate pairs. Validate error handling when location services are unavailable or denied."
+          },
+          {
+            "id": 4,
+            "title": "Develop Location Selection UI and Quick Switching",
+            "description": "Create a user interface for displaying, selecting, and managing saved locations. Implement a quick location switching feature allowing users to easily toggle between saved locations like home, work, and travel destinations.",
+            "dependencies": [
+              "5.1",
+              "5.2",
+              "5.3"
+            ],
+            "details": "Design and implement a location card component displaying location details. Create a location list view showing all saved locations with search and filter capabilities. Implement a location selector dropdown/component for quick switching between saved locations. Add a default location setting. Create a map view option for visual selection of locations. Ensure the UI updates all dependent components when location changes.",
+            "status": "pending",
+            "testStrategy": "Test the UI on different screen sizes to verify responsive design. Verify location switching correctly updates all dependent components. Test search and filter functionality. Ensure proper handling of empty states when no locations are saved."
+          },
+          {
+            "id": 5,
+            "title": "Implement Fallback Mechanisms and Location Approximation",
+            "description": "Create fallback mechanisms for when primary location services are unavailable. Implement IP-based location approximation as a backup method. Ensure the system gracefully degrades when location services fail.",
+            "dependencies": [
+              "5.3"
+            ],
+            "details": "Integrate an IP-based geolocation service (like ipapi.co or ipinfo.io) as a fallback. Implement a cascading fallback strategy: 1) Browser Geolocation API, 2) IP-based location, 3) Default location. Create a service to detect when primary location methods fail and trigger fallbacks automatically. Add user notifications when falling back to less accurate methods. Store the last known location in local storage as an additional fallback. Implement periodic location refresh for automatic detection methods.",
+            "status": "pending",
+            "testStrategy": "Test the fallback chain by simulating failures in primary location services. Verify IP-based location provides reasonable accuracy. Test behavior when all location services fail. Verify appropriate user notifications appear when fallbacks are used."
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Dashboard and Prayer Times Display",
+        "description": "Create a beautiful, responsive dashboard showing today's prayer times, countdown to next prayer, and prayer schedule overviews.",
+        "details": "1. Design main dashboard layout\n2. Implement today's prayer times display component\n3. Create visual countdown timer to next prayer\n4. Develop weekly prayer schedule view\n5. Implement monthly calendar view for prayer times\n6. Add prayer time history tracking\n7. Create mobile-optimized interface\n8. Implement loading states and error handling\n9. Add animations for transitions\n10. Implement data refresh mechanism\n11. Create responsive layouts for all screen sizes",
+        "testStrategy": "1. Test dashboard rendering on various devices and screen sizes\n2. Verify countdown timer accuracy\n3. Test weekly and monthly views with different date selections\n4. Validate prayer time displays against calculation engine\n5. Test loading states and error handling\n6. Verify animations and transitions\n7. Test data refresh functionality\n8. Validate mobile experience",
+        "priority": "high",
+        "dependencies": [
+          2,
+          4,
+          5
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design and Implement Main Dashboard Layout",
+            "description": "Create the foundational responsive layout for the dashboard that will house all prayer time components. This includes the overall grid structure, navigation elements, and responsive breakpoints.",
+            "dependencies": [],
+            "details": "1. Create a new dashboard page component in the app directory\n2. Design a responsive grid layout using Tailwind CSS with appropriate sections for prayer times, countdown, and schedule views\n3. Implement a header with title and user information\n4. Create placeholder containers for each major component (today's prayers, countdown, weekly view, etc.)\n5. Add responsive breakpoints for mobile, tablet, and desktop views\n6. Implement theme support (light/dark mode) in the layout",
+            "status": "pending",
+            "testStrategy": "Test the layout rendering on various screen sizes (mobile, tablet, desktop). Verify that the grid structure maintains integrity across breakpoints. Confirm theme switching functionality works correctly."
+          },
+          {
+            "id": 2,
+            "title": "Implement Today's Prayer Times Display Component",
+            "description": "Develop a component that shows the five daily prayers for the current day with their calculated times based on user location and preferences.",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "1. Create a PrayerTimesToday component that fetches prayer time data from the calculation engine\n2. Design a visually appealing card layout for each prayer showing name, time, and status (upcoming, current, completed)\n3. Implement status indicators using appropriate colors and icons\n4. Add time formatting based on user preferences (12/24 hour)\n5. Connect to the prayer time calculation engine to retrieve accurate times\n6. Implement loading states while data is being fetched\n7. Add error handling for calculation failures",
+            "status": "pending",
+            "testStrategy": "Verify prayer times match the calculation engine output. Test different time formats display correctly. Validate status indicators update appropriately based on current time. Test loading states and error handling scenarios."
+          },
+          {
+            "id": 3,
+            "title": "Create Visual Countdown Timer to Next Prayer",
+            "description": "Develop an animated countdown component that displays the time remaining until the next prayer with visual indicators of progress.",
+            "dependencies": [
+              "6.2"
+            ],
+            "details": "1. Create a NextPrayerCountdown component that calculates time difference between current time and next prayer\n2. Implement a real-time countdown timer that updates every second\n3. Design a circular or linear progress indicator showing elapsed time\n4. Display prayer name, time, and remaining time in hours:minutes:seconds\n5. Add visual and text indicators when prayer time is very close (e.g., \"Asr in 5 minutes\")\n6. Implement smooth transitions when moving to the next prayer period\n7. Ensure timer accuracy with server-time synchronization",
+            "status": "pending",
+            "testStrategy": "Test countdown accuracy against system clock. Verify smooth transitions between prayer periods. Test edge cases like countdown reaching zero and transitioning to next prayer. Validate visual indicators update correctly as time progresses."
+          },
+          {
+            "id": 4,
+            "title": "Develop Weekly Prayer Schedule View",
+            "description": "Create an interactive weekly view showing prayer times for the next 7 days, allowing users to plan ahead and see patterns in prayer timing changes.",
+            "dependencies": [
+              "6.2"
+            ],
+            "details": "1. Create a WeeklySchedule component that displays a 7-day view of prayer times\n2. Implement a tabular or card-based layout showing each day and its five prayer times\n3. Add date navigation controls to move between weeks\n4. Highlight the current day and upcoming prayers\n5. Include day/date formatting according to user preferences\n6. Implement responsive design for the weekly view that adapts to different screen sizes\n7. Add the ability to expand/collapse details for each day",
+            "status": "pending",
+            "testStrategy": "Test weekly navigation controls function correctly. Verify highlighting of current day works properly. Test responsive layout on different devices. Validate that prayer times for future dates are calculated correctly."
+          },
+          {
+            "id": 5,
+            "title": "Implement Monthly Calendar View for Prayer Times",
+            "description": "Develop a monthly calendar interface that provides an overview of prayer time patterns throughout the month, with the ability to select specific days for detailed information.",
+            "dependencies": [
+              "6.4"
+            ],
+            "details": "1. Create a MonthlyCalendar component with a traditional calendar grid layout\n2. Implement month navigation controls (previous/next month)\n3. Design day cells that show abbreviated prayer time information\n4. Add functionality to select a specific day to view detailed prayer times\n5. Include visual indicators for special days (Fridays, Islamic holidays if available)\n6. Ensure the calendar is responsive and adapts to different screen sizes\n7. Implement efficient data fetching to avoid calculating all monthly prayer times at once",
+            "status": "pending",
+            "testStrategy": "Test month navigation and day selection functionality. Verify prayer time data accuracy for selected days. Test responsive design across different devices. Validate performance with data loading for an entire month of prayer times."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Google Calendar API Integration",
+        "description": "Implement Google Calendar integration to automatically create and manage prayer time events in users' calendars with customizable settings.",
+        "details": "1. Set up Google Calendar API client\n2. Request appropriate scopes during OAuth\n3. Implement calendar creation functionality\n4. Develop prayer event creation logic\n5. Add customizable reminder settings (5, 10, 15 minutes before)\n6. Implement color-coding for different prayer times\n7. Create bulk event creation for future dates\n8. Develop mechanism for updating events when prayer times shift\n9. Implement sync status indicators\n10. Add conflict detection with existing events\n11. Create idempotent operations to prevent duplicates\n12. Implement batch operations to respect API rate limits",
+        "testStrategy": "1. Test calendar creation with various settings\n2. Verify event creation with correct times and details\n3. Test reminder settings functionality\n4. Validate color-coding implementation\n5. Test bulk creation for different time periods\n6. Verify event updates when prayer times change\n7. Test sync status indicators\n8. Validate conflict detection and resolution\n9. Test with API rate limit simulation\n10. Verify events appear correctly in Google Calendar",
+        "priority": "high",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up Google Calendar API client and OAuth integration",
+            "description": "Configure the Google Calendar API client and integrate it with the existing OAuth authentication system to enable calendar access with appropriate scopes.",
+            "dependencies": [],
+            "details": "1. Install necessary Google API client libraries\n2. Create a Calendar API service configuration\n3. Connect to the existing OAuth system (Task 3)\n4. Request and store calendar-specific scopes: 'https://www.googleapis.com/auth/calendar' and 'https://www.googleapis.com/auth/calendar.events'\n5. Implement token management for Calendar API access\n6. Create utility functions for API initialization and authentication verification",
+            "status": "pending",
+            "testStrategy": "Test OAuth flow with Calendar scopes, verify token acquisition and refresh, mock API responses to validate client configuration"
+          },
+          {
+            "id": 2,
+            "title": "Implement prayer calendar creation and management",
+            "description": "Develop functionality to create a dedicated prayer times calendar in the user's Google Calendar account and manage its lifecycle.",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "1. Create a function to check for existing prayer calendars in user's account\n2. Implement calendar creation with appropriate metadata (name, description, timezone)\n3. Store calendar ID in user preferences\n4. Add functionality to update calendar properties\n5. Implement calendar deletion/reset option\n6. Create error handling for calendar operations\n7. Add calendar visibility toggle functionality",
+            "status": "pending",
+            "testStrategy": "Test calendar creation with various user settings, verify error handling for API failures, test calendar update and deletion operations"
+          },
+          {
+            "id": 3,
+            "title": "Develop prayer event creation and customization",
+            "description": "Create functionality to generate prayer time events with customizable settings including reminders, color-coding, and descriptions.",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "1. Design prayer event data structure with all required fields\n2. Implement event creation function with prayer time data\n3. Add customizable reminder settings (5, 10, 15 minutes before)\n4. Implement color-coding for different prayer times (Fajr, Dhuhr, Asr, Maghrib, Isha)\n5. Create event description templates with prayer-specific information\n6. Add user preference storage for event settings\n7. Implement idempotent operations to prevent duplicate events",
+            "status": "pending",
+            "testStrategy": "Test event creation with various prayer times, verify reminder settings are applied correctly, test color-coding for different prayers, validate idempotent operations prevent duplicates"
+          },
+          {
+            "id": 4,
+            "title": "Implement bulk event creation and management",
+            "description": "Develop functionality to create and manage multiple prayer events for future dates, with batch operations to respect API rate limits.",
+            "dependencies": [
+              "7.3"
+            ],
+            "details": "1. Create batch operation utility for respecting API rate limits\n2. Implement bulk event creation for specified date ranges\n3. Add progress tracking for bulk operations\n4. Develop mechanism for updating events when prayer times shift\n5. Implement conflict detection with existing events\n6. Create event cleanup functionality for outdated events\n7. Add error recovery for failed batch operations",
+            "status": "pending",
+            "testStrategy": "Test bulk creation with various date ranges, verify rate limiting works correctly, test update mechanism when prayer times change, validate conflict detection and resolution"
+          },
+          {
+            "id": 5,
+            "title": "Create sync status and user interface integration",
+            "description": "Implement user interface components for calendar sync status, settings configuration, and sync management.",
+            "dependencies": [
+              "7.4"
+            ],
+            "details": "1. Design and implement sync status indicators\n2. Create calendar settings UI with all customization options\n3. Implement sync history and logging\n4. Add manual sync trigger functionality\n5. Create error notification system for sync issues\n6. Implement background sync scheduling\n7. Add calendar preview component to show upcoming synced events\n8. Integrate with the Islamic Design System (Task 2)",
+            "status": "pending",
+            "testStrategy": "Test UI components across different devices, verify sync status updates correctly, test settings changes propagate to events, validate error notifications work properly"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "User Preferences Management",
+        "description": "Develop a comprehensive system for managing user preferences including calculation methods, notification settings, language, theme, and time format.",
+        "details": "1. Create user preferences data model\n2. Design settings interface with intuitive navigation\n3. Implement calculation method selection\n4. Add notification preferences settings\n5. Create language selection (English/Arabic interface)\n6. Implement theme preferences (light/dark mode)\n7. Add time format preferences (12/24 hour)\n8. Develop settings persistence in database\n9. Create settings synchronization across devices\n10. Implement settings validation\n11. Add reset to defaults functionality",
+        "testStrategy": "1. Test settings interface on different devices\n2. Verify each preference type saves and loads correctly\n3. Test calculation method changes affect prayer times\n4. Validate language switching functionality\n5. Test theme switching between light and dark modes\n6. Verify time format changes are applied consistently\n7. Test settings persistence across sessions\n8. Validate settings synchronization between devices",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create User Preferences Data Model and Database Schema",
+            "description": "Design and implement the data model for user preferences including calculation methods, notification settings, language, theme, and time format. Create the database schema to store these preferences.",
+            "dependencies": [],
+            "details": "Create a UserPreferences model with fields for: calculationMethod (enum), notificationSettings (object with toggles for different notifications), language (enum: 'en'/'ar'), theme (enum: 'light'/'dark'), timeFormat (enum: '12h'/'24h'). Implement database schema using Prisma or similar ORM. Include userId as a foreign key to link preferences to specific users. Add created/updated timestamps for tracking changes.",
+            "status": "pending",
+            "testStrategy": "Write unit tests for the model validation. Test database operations (create, read, update) for user preferences. Verify constraints and default values are properly applied."
+          },
+          {
+            "id": 2,
+            "title": "Implement Settings Interface with Navigation",
+            "description": "Design and implement a user-friendly settings interface with intuitive navigation for all preference categories. Ensure the UI is responsive and accessible.",
+            "dependencies": [
+              "8.1"
+            ],
+            "details": "Create a Settings page with tabbed navigation for different preference categories (Calculation, Notifications, Display, etc.). Implement responsive design that works on mobile and desktop. Use appropriate UI components (toggles, dropdowns, radio buttons) for different setting types. Include breadcrumb navigation and clear section headers. Ensure proper accessibility attributes (aria-labels, focus states, keyboard navigation).",
+            "status": "pending",
+            "testStrategy": "Test UI rendering on different screen sizes. Verify navigation between setting categories works correctly. Test keyboard navigation and screen reader compatibility. Conduct usability testing with sample users."
+          },
+          {
+            "id": 3,
+            "title": "Implement Preference Management Logic",
+            "description": "Develop the core functionality to manage user preferences, including saving, loading, validating, and applying preferences throughout the application.",
+            "dependencies": [
+              "8.1",
+              "8.2"
+            ],
+            "details": "Create a PreferencesContext using React Context API to make preferences available throughout the app. Implement hooks (usePreferences) for components to access and update preferences. Create API endpoints for CRUD operations on preferences. Implement validation logic for each preference type. Add logic to apply preferences in real-time (e.g., theme changes, calculation method updates). Include a preferences initialization on app startup.",
+            "status": "pending",
+            "testStrategy": "Test preference loading and saving with various scenarios. Verify validation correctly handles invalid inputs. Test real-time application of preference changes. Verify context properly provides preferences to components."
+          },
+          {
+            "id": 4,
+            "title": "Implement Settings Synchronization Across Devices",
+            "description": "Develop functionality to synchronize user preferences across multiple devices, ensuring a consistent experience regardless of where the user accesses the application.",
+            "dependencies": [
+              "8.3"
+            ],
+            "details": "Implement server-side storage of preferences linked to user accounts. Create API endpoints for fetching and updating preferences. Add client-side logic to detect preference changes and sync with server. Implement conflict resolution for simultaneous updates. Add offline support with local storage fallback. Include synchronization indicators to show sync status. Implement throttling to prevent excessive API calls during rapid changes.",
+            "status": "pending",
+            "testStrategy": "Test synchronization between multiple browser sessions. Verify offline changes are properly synced when connection is restored. Test conflict resolution with simultaneous updates. Measure and optimize synchronization performance."
+          },
+          {
+            "id": 5,
+            "title": "Add Reset to Defaults and Preference Management Utilities",
+            "description": "Implement functionality to reset preferences to default values and add utility features like importing/exporting preferences and bulk updates.",
+            "dependencies": [
+              "8.3"
+            ],
+            "details": "Create a default preferences configuration object. Implement a reset function that restores all or specific preferences to defaults. Add confirmation dialog before resetting. Create utility functions for exporting preferences as JSON. Implement preference import functionality with validation. Add bulk update capability for efficiently changing multiple preferences. Include preference history/versioning to track changes over time.",
+            "status": "pending",
+            "testStrategy": "Test reset functionality for both individual settings and all preferences. Verify export/import correctly preserves all preference values. Test validation of imported preferences. Verify bulk updates are applied correctly. Test performance with large preference sets."
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Database and Persistence Layer",
+        "description": "Implement data persistence using PostgreSQL/Supabase for user data, preferences, and prayer time cache.",
+        "details": "1. Set up PostgreSQL database or Supabase project\n2. Design database schema for:\n   - User profiles\n   - Locations\n   - Prayer settings\n   - Calendar settings\n   - Prayer time cache\n3. Implement database migrations\n4. Create data access layer\n5. Set up connection pooling\n6. Implement caching with Redis for prayer calculations\n7. Create data validation middleware\n8. Implement error handling for database operations\n9. Set up backup and recovery procedures\n10. Add database monitoring",
+        "testStrategy": "1. Test database schema with sample data\n2. Verify CRUD operations for all data models\n3. Test connection pooling under load\n4. Validate caching mechanism effectiveness\n5. Test data validation with valid and invalid inputs\n6. Verify error handling for database failures\n7. Test backup and recovery procedures\n8. Benchmark database performance",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up PostgreSQL/Supabase and design database schema",
+            "description": "Initialize the database infrastructure and design the schema for all required data models including user profiles, locations, prayer settings, and calendar settings.",
+            "dependencies": [],
+            "details": "1. Create a Supabase project or set up a PostgreSQL database\n2. Configure database connection parameters in environment variables\n3. Design tables for user profiles with fields for authentication data, preferences, and profile information\n4. Design tables for locations with coordinates, timezone, and location metadata\n5. Design tables for prayer settings with calculation methods and adjustments\n6. Design tables for calendar settings and preferences\n7. Design tables for prayer time cache with appropriate indexing",
+            "status": "pending",
+            "testStrategy": "Validate schema design with sample data insertion and retrieval. Test relationships between tables with foreign key constraints. Verify indexes are properly set up for query optimization."
+          },
+          {
+            "id": 2,
+            "title": "Implement database migrations and data access layer",
+            "description": "Create database migrations for schema changes and implement a data access layer to interact with the database.",
+            "dependencies": [
+              "9.1"
+            ],
+            "details": "1. Set up Prisma ORM or similar tool for database migrations\n2. Create initial migration files based on the schema design\n3. Implement data models in TypeScript with proper typing\n4. Create repository pattern classes for each entity (UserRepository, LocationRepository, etc.)\n5. Implement CRUD operations for each repository\n6. Add transaction support for operations that span multiple tables\n7. Implement query builders for complex queries",
+            "status": "pending",
+            "testStrategy": "Test migration process in development environment. Verify CRUD operations for all repositories. Test transaction rollback on failure scenarios. Benchmark query performance for optimization."
+          },
+          {
+            "id": 3,
+            "title": "Implement connection pooling and Redis caching",
+            "description": "Set up database connection pooling for efficient resource utilization and implement Redis caching for prayer time calculations.",
+            "dependencies": [
+              "9.2"
+            ],
+            "details": "1. Configure connection pooling in database client\n2. Set up optimal pool size based on expected load\n3. Install and configure Redis client\n4. Implement cache service with methods for storing and retrieving prayer times\n5. Create cache key generation strategy based on location, date, and calculation method\n6. Implement TTL (time-to-live) for cached prayer times\n7. Add cache invalidation mechanisms when prayer settings change",
+            "status": "pending",
+            "testStrategy": "Test connection pool under load with concurrent requests. Verify cache hit/miss rates. Measure performance improvement with caching enabled vs. disabled. Test cache invalidation when underlying data changes."
+          },
+          {
+            "id": 4,
+            "title": "Create data validation middleware and error handling",
+            "description": "Implement data validation for all database operations and comprehensive error handling for database interactions.",
+            "dependencies": [
+              "9.2"
+            ],
+            "details": "1. Implement validation schemas using Zod or similar library\n2. Create validation middleware for API routes\n3. Implement custom validation rules for prayer-specific data\n4. Create error handling middleware for database operations\n5. Implement specific error types (NotFoundError, ValidationError, DatabaseError)\n6. Add logging for database errors with appropriate detail level\n7. Implement retry logic for transient database errors",
+            "status": "pending",
+            "testStrategy": "Test validation with valid and invalid inputs. Verify appropriate error responses for different error scenarios. Test retry mechanism with simulated transient failures. Ensure sensitive information is not exposed in error messages."
+          },
+          {
+            "id": 5,
+            "title": "Set up backup, recovery, and monitoring",
+            "description": "Implement database backup procedures, recovery mechanisms, and monitoring for database health and performance.",
+            "dependencies": [
+              "9.1",
+              "9.2"
+            ],
+            "details": "1. Configure automated database backups on a regular schedule\n2. Implement backup verification process\n3. Create recovery procedures and documentation\n4. Set up database health monitoring with appropriate metrics\n5. Implement query performance monitoring\n6. Create alerts for database issues\n7. Add database connection status checks to application health endpoint\n8. Implement database migration versioning for rollback capability",
+            "status": "pending",
+            "testStrategy": "Test backup and restore process in development environment. Verify monitoring captures key metrics. Test recovery from simulated failure scenarios. Validate alerts trigger appropriately for critical issues."
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Progressive Web App Implementation",
+        "description": "Implement Progressive Web App capabilities to provide offline access, installability, and native-like experience.",
+        "details": "1. Configure service worker using next-pwa\n2. Create manifest.json with app metadata\n3. Design app icons for various sizes\n4. Implement offline fallback pages\n5. Add cache strategies for different resources\n6. Implement background sync for offline actions\n7. Create install prompt and experience\n8. Add splash screens for different devices\n9. Implement push notification infrastructure\n10. Create offline prayer time access\n11. Add update notification for new versions",
+        "testStrategy": "1. Test PWA installation on various devices\n2. Verify offline functionality works as expected\n3. Test service worker update process\n4. Validate cache strategies with network throttling\n5. Test background sync with offline actions\n6. Verify push notifications work correctly\n7. Test offline prayer time access\n8. Validate Lighthouse PWA score (target: 90+)",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          6
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Service Worker Configuration with next-pwa",
+            "description": "Set up and configure service workers using next-pwa to enable core PWA functionality including caching and offline access.",
+            "dependencies": [],
+            "details": "Install next-pwa package using npm or yarn. Create a next.config.js file to configure the PWA settings including cache patterns, disable option for development, and register scope. Set up proper runtime caching strategies for different types of assets (API responses, static assets, images). Configure the service worker to handle fetch events and implement appropriate caching strategies. Ensure the service worker is properly registered in the application.",
+            "status": "pending",
+            "testStrategy": "Verify service worker registration in browser DevTools. Test offline functionality by disabling network in DevTools. Validate caching strategies by checking the Cache Storage in Application tab."
+          },
+          {
+            "id": 2,
+            "title": "Web App Manifest and Icons Implementation",
+            "description": "Create the manifest.json file with app metadata and generate appropriate icons for various device sizes to enable app installation.",
+            "dependencies": [
+              "10.1"
+            ],
+            "details": "Create a manifest.json file in the public directory with essential metadata: name, short_name, description, start_url, display (standalone), theme_color, background_color, and scope. Design app icons in multiple sizes (at least 192x192, 512x512, maskable icon) following Islamic design principles. Generate favicon.ico and other required icons. Reference the manifest in the HTML head using link tags. Ensure icons are properly referenced in the manifest file.",
+            "status": "pending",
+            "testStrategy": "Use Lighthouse audit to verify manifest is properly configured. Test app installation on different devices (Android, iOS). Verify icons display correctly on home screens and in browser tabs."
+          },
+          {
+            "id": 3,
+            "title": "Offline Fallback Pages and Cache Strategies",
+            "description": "Implement offline fallback pages and define cache strategies for different types of resources to ensure a good user experience when offline.",
+            "dependencies": [
+              "10.1",
+              "10.2"
+            ],
+            "details": "Create a custom offline.html page with appropriate messaging and styling. Configure the service worker to serve this page when network requests fail and content isn't cached. Implement different caching strategies: StaleWhileRevalidate for API responses, CacheFirst for static assets, NetworkFirst for dynamic content. Set up cache expiration policies for different resource types. Ensure critical assets are precached during service worker installation. Create a mechanism to purge outdated caches.",
+            "status": "pending",
+            "testStrategy": "Test application behavior when offline by toggling network connection. Verify appropriate fallback pages are shown for uncached routes. Test cache strategies by monitoring network requests in DevTools with throttling enabled."
+          },
+          {
+            "id": 4,
+            "title": "Background Sync and Offline Prayer Time Access",
+            "description": "Implement background sync functionality for offline actions and ensure prayer times are accessible without an internet connection.",
+            "dependencies": [
+              "10.3"
+            ],
+            "details": "Configure the service worker to use Background Sync API for deferred actions when offline. Implement a queue system to store user actions performed offline. Create a mechanism to sync these actions when connectivity is restored. Develop a strategy to store prayer times locally using IndexedDB or localStorage. Ensure the prayer time calculation can work offline using cached location data and calculation methods. Implement a data refresh strategy when online to ensure prayer times stay current.",
+            "status": "pending",
+            "testStrategy": "Test offline prayer time access by disabling network. Verify background sync by performing actions offline and confirming they complete when reconnected. Test with various offline durations to ensure data integrity."
+          },
+          {
+            "id": 5,
+            "title": "Install Experience and Update Notifications",
+            "description": "Create a custom install prompt experience and implement update notifications to inform users when a new version is available.",
+            "dependencies": [
+              "10.2",
+              "10.3"
+            ],
+            "details": "Implement the beforeinstallprompt event handler to create a custom install button. Design an attractive install banner with clear value proposition. Add splash screens for different device sizes to improve perceived loading performance. Implement a service worker update detection mechanism. Create a user-friendly notification system to inform users when updates are available. Add a refresh button/mechanism to apply updates. Implement push notification infrastructure using the Push API and notification permission requests.",
+            "status": "pending",
+            "testStrategy": "Test install prompt on various devices and browsers. Verify update notification appears when deploying new versions. Test push notifications by sending test messages. Ensure splash screens display correctly on different devices."
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Privacy and Data Protection Features",
+        "description": "Implement privacy-first design with minimal data collection, secure storage, and user control over personal data.",
+        "details": "1. Create comprehensive privacy policy\n2. Implement data minimization principles\n3. Add secure storage for location data\n4. Create data deletion functionality\n5. Implement GDPR compliance features\n6. Add consent management\n7. Create data export functionality\n8. Implement privacy-focused analytics\n9. Add transparency features for data usage\n10. Create audit logging for sensitive operations\n11. Implement data retention policies",
+        "testStrategy": "1. Verify data deletion functionality completely removes user data\n2. Test data export produces complete and accurate exports\n3. Validate consent management works as expected\n4. Test privacy-focused analytics doesn't collect PII\n5. Verify audit logging captures appropriate events\n6. Test data retention policies are enforced\n7. Validate GDPR compliance features",
+        "priority": "high",
+        "dependencies": [
+          3,
+          9
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Privacy Policy and Consent Management System",
+            "description": "Develop a comprehensive privacy policy document and implement a consent management system that allows users to control what data is collected and how it's used.",
+            "dependencies": [],
+            "details": "1. Draft a privacy policy document covering data collection practices, user rights, and compliance with regulations\n2. Create a consent management UI with toggles for different data collection categories\n3. Implement a database schema to store user consent preferences\n4. Add API endpoints to update and retrieve consent settings\n5. Ensure consent is obtained before collecting any user data\n6. Create a version control system for the privacy policy to track changes",
+            "status": "pending",
+            "testStrategy": "Test consent toggles functionality, verify consent is properly recorded in the database, and ensure data collection respects user consent settings."
+          },
+          {
+            "id": 2,
+            "title": "Implement Secure Data Storage and Minimization",
+            "description": "Apply data minimization principles and implement secure storage mechanisms for sensitive user data, particularly location information.",
+            "dependencies": [
+              "11.1"
+            ],
+            "details": "1. Audit all data collection points to identify and eliminate unnecessary data collection\n2. Implement encryption for sensitive data at rest using industry-standard algorithms\n3. Create a secure storage service for location data with appropriate access controls\n4. Set up data anonymization processes where full personal data isn't required\n5. Implement database security best practices including parameterized queries and input validation\n6. Create a data access layer that enforces permissions and minimizes exposure of sensitive data",
+            "status": "pending",
+            "testStrategy": "Verify encryption implementation with security testing tools, test data access controls, and validate that only necessary data is being collected and stored."
+          },
+          {
+            "id": 3,
+            "title": "Develop Data Deletion and Export Functionality",
+            "description": "Create features that allow users to export their personal data in a portable format and permanently delete their account and associated data.",
+            "dependencies": [
+              "11.2"
+            ],
+            "details": "1. Implement an account deletion workflow that removes all user data from the system\n2. Create a data export feature that generates a comprehensive JSON or CSV file of user data\n3. Develop a background job system to handle deletion and export requests asynchronously\n4. Add confirmation steps and security verification before processing deletion requests\n5. Implement cascading deletion across all related data tables\n6. Create an audit trail of deletion and export actions",
+            "status": "pending",
+            "testStrategy": "Test the complete deletion process to ensure all user data is removed from all systems, verify export files contain all relevant user data in a readable format, and validate security measures prevent unauthorized deletion or export."
+          },
+          {
+            "id": 4,
+            "title": "Implement GDPR Compliance Features",
+            "description": "Add features required for GDPR compliance including data retention policies, right to be forgotten, and transparency about data usage.",
+            "dependencies": [
+              "11.3"
+            ],
+            "details": "1. Implement configurable data retention periods for different types of user data\n2. Create automated data purging for data that exceeds retention periods\n3. Develop a user-facing dashboard showing what data is stored and how it's used\n4. Add functionality for users to modify their personal information\n5. Implement a system to handle and track GDPR-related user requests\n6. Create documentation of data processing activities for internal compliance",
+            "status": "pending",
+            "testStrategy": "Verify data is automatically purged after retention period, test the user dashboard for accuracy of data representation, and validate that user modification requests are properly processed."
+          },
+          {
+            "id": 5,
+            "title": "Create Privacy-Focused Analytics and Audit Logging",
+            "description": "Implement privacy-respecting analytics that avoid collecting personally identifiable information, and create comprehensive audit logging for sensitive operations.",
+            "dependencies": [
+              "11.2",
+              "11.4"
+            ],
+            "details": "1. Set up anonymous analytics that track usage patterns without identifying users\n2. Implement IP address anonymization in all logging systems\n3. Create a comprehensive audit logging system for sensitive operations (data access, deletion, export)\n4. Develop admin interfaces to review audit logs with appropriate access controls\n5. Implement automated alerts for suspicious activity patterns\n6. Create regular privacy audit reports to identify potential issues",
+            "status": "pending",
+            "testStrategy": "Verify analytics don't collect PII, test audit logging captures all required events with accurate timestamps and context, and validate that admin interfaces properly restrict access to authorized personnel."
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Multi-language Support",
+        "description": "Implement support for English and Arabic interfaces with localization infrastructure for future language additions.",
+        "details": "1. Set up next-intl or similar localization library\n2. Create translation files for English and Arabic\n3. Implement language switching mechanism\n4. Add RTL support for Arabic interface\n5. Create localized date and time formatting\n6. Implement prayer name translations\n7. Add localized error messages\n8. Create language detection based on browser settings\n9. Implement localized routes\n10. Add language preference persistence\n11. Create infrastructure for adding more languages in the future",
+        "testStrategy": "1. Test language switching between English and Arabic\n2. Verify RTL layout works correctly for Arabic\n3. Test localized date and time formatting\n4. Validate prayer name translations\n5. Test localized error messages\n6. Verify language detection works correctly\n7. Test localized routes\n8. Validate language preference is persisted",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          8
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up localization infrastructure",
+            "description": "Integrate and configure next-intl or a similar localization library to provide the foundation for multi-language support in the application.",
+            "dependencies": [],
+            "details": "1. Install next-intl package using npm or yarn\n2. Configure next-intl in the Next.js application by setting up the provider in _app.js or equivalent\n3. Create a messages directory structure for storing translation files\n4. Set up language detection middleware\n5. Configure default and fallback languages\n6. Create a language context to manage the current language state\n7. Implement basic utility functions for translation access",
+            "status": "pending",
+            "testStrategy": "1. Verify that the library is correctly integrated by testing basic text translation\n2. Test fallback language functionality when translations are missing\n3. Validate that the language context correctly maintains state"
+          },
+          {
+            "id": 2,
+            "title": "Create translation files and implement RTL support",
+            "description": "Develop comprehensive translation files for English and Arabic languages, and implement right-to-left (RTL) layout support for Arabic interface.",
+            "dependencies": [
+              "12.1"
+            ],
+            "details": "1. Create JSON translation files for English (en.json) and Arabic (ar.json) with all UI text\n2. Organize translations by feature/component for maintainability\n3. Add prayer name translations for both languages\n4. Implement RTL layout support using CSS direction properties\n5. Configure RTL-specific styling for components that need special handling\n6. Add language-specific font configurations\n7. Test and adjust layouts for both LTR and RTL directions",
+            "status": "pending",
+            "testStrategy": "1. Verify all UI elements display correctly in both languages\n2. Test RTL layout in Arabic mode across all pages\n3. Validate that prayer names are correctly translated\n4. Check for any layout issues in RTL mode, especially with forms and navigation"
+          },
+          {
+            "id": 3,
+            "title": "Implement language switching mechanism and persistence",
+            "description": "Create a user interface for language selection and implement persistence of language preferences across sessions.",
+            "dependencies": [
+              "12.1",
+              "12.2"
+            ],
+            "details": "1. Design and implement a language selector component\n2. Create language switching functionality that updates the application state\n3. Implement language preference storage in localStorage or cookies\n4. Add language preference to user profile in database (if authenticated)\n5. Ensure language preference persists across page refreshes and sessions\n6. Implement automatic language restoration on application startup\n7. Add visual indicators for the currently selected language",
+            "status": "pending",
+            "testStrategy": "1. Test language switching between English and Arabic\n2. Verify language preference persists after page refresh\n3. Test language preference storage in user profiles\n4. Validate that language switching updates all UI elements correctly"
+          },
+          {
+            "id": 4,
+            "title": "Implement localized date, time, and number formatting",
+            "description": "Create utilities for localized formatting of dates, times, numbers, and other locale-specific content based on the selected language.",
+            "dependencies": [
+              "12.1"
+            ],
+            "details": "1. Implement date formatting utilities using Intl.DateTimeFormat\n2. Create time formatting functions with appropriate locale support\n3. Implement number formatting with Intl.NumberFormat\n4. Add support for localized prayer time display\n5. Create utility functions for formatting relative times\n6. Implement localized calendar display (Gregorian/Hijri)\n7. Add support for locale-specific sorting and collation",
+            "status": "pending",
+            "testStrategy": "1. Test date formatting in both English and Arabic locales\n2. Verify prayer times display correctly in both languages\n3. Test number formatting with decimal and thousands separators\n4. Validate Hijri calendar date conversions and display"
+          },
+          {
+            "id": 5,
+            "title": "Add localized routes and error messages",
+            "description": "Implement localized URL routes and comprehensive error message translations to provide a fully localized user experience.",
+            "dependencies": [
+              "12.1",
+              "12.2",
+              "12.3"
+            ],
+            "details": "1. Configure Next.js internationalized routing\n2. Implement locale prefix in URL structure (e.g., /en/prayers, /ar/prayers)\n3. Create redirect rules for language detection\n4. Add comprehensive error message translations for all possible error states\n5. Implement localized meta tags for SEO\n6. Create infrastructure for adding more languages in the future\n7. Document the process for adding new languages",
+            "status": "pending",
+            "testStrategy": "1. Test navigation between localized routes\n2. Verify URL structure changes with language switching\n3. Test error messages display correctly in both languages\n4. Validate SEO meta tags update with language changes\n5. Test browser language detection and appropriate redirects"
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Error Handling and Monitoring",
+        "description": "Implement comprehensive error handling, logging, and monitoring to ensure application reliability and quick issue resolution.",
+        "details": "1. Set up Sentry or similar error tracking service\n2. Implement global error boundary in React\n3. Create custom error pages for different HTTP status codes\n4. Add structured logging\n5. Implement API error handling middleware\n6. Create user-friendly error messages\n7. Add retry mechanisms for transient failures\n8. Implement performance monitoring\n9. Create alerting for critical errors\n10. Add error reporting for users\n11. Implement crash recovery mechanisms",
+        "testStrategy": "1. Test error boundary with simulated component errors\n2. Verify custom error pages display correctly\n3. Test API error handling with various error scenarios\n4. Validate retry mechanisms work as expected\n5. Test performance monitoring captures relevant metrics\n6. Verify alerting works for critical errors\n7. Test error reporting functionality\n8. Validate crash recovery mechanisms",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up Sentry Error Tracking Service",
+            "description": "Integrate Sentry or a similar error tracking service to capture and monitor application errors in both frontend and backend environments.",
+            "dependencies": [],
+            "details": "1. Create a Sentry.io account and set up a new project\n2. Install Sentry SDK packages for both React frontend and backend\n3. Configure Sentry initialization in the application entry points\n4. Set up environment-specific DSN keys\n5. Configure Sentry to capture user context when errors occur\n6. Implement source maps uploading for production builds\n7. Set up error filtering to avoid capturing unnecessary errors",
+            "status": "pending",
+            "testStrategy": "Verify Sentry integration by triggering test errors in development environment and confirming they appear in the Sentry dashboard. Test source map functionality by checking stack traces in production errors."
+          },
+          {
+            "id": 2,
+            "title": "Implement Frontend Error Handling",
+            "description": "Create a comprehensive frontend error handling system including React error boundaries, custom error pages, and user-friendly error messages.",
+            "dependencies": [
+              "13.1"
+            ],
+            "details": "1. Create a global ErrorBoundary component to catch and handle React rendering errors\n2. Implement custom error pages for different HTTP status codes (404, 500, etc.)\n3. Design user-friendly error messages that provide clear guidance\n4. Create a toast notification system for non-critical errors\n5. Implement client-side error logging that sends errors to Sentry\n6. Add crash recovery mechanisms to prevent complete application failure",
+            "status": "pending",
+            "testStrategy": "Test error boundary with simulated component errors. Verify custom error pages display correctly for different status codes. Test user experience during various error scenarios to ensure messages are helpful and non-technical."
+          },
+          {
+            "id": 3,
+            "title": "Implement Backend Error Handling Middleware",
+            "description": "Create robust backend error handling middleware to standardize error responses, implement retry mechanisms, and ensure proper logging.",
+            "dependencies": [
+              "13.1"
+            ],
+            "details": "1. Create a centralized error handling middleware for the API\n2. Implement standardized error response format with status codes, messages, and error IDs\n3. Add retry mechanisms with exponential backoff for transient failures\n4. Implement structured logging for all errors with relevant context\n5. Create custom error classes for different error types\n6. Add validation error handling for API requests\n7. Implement circuit breaker pattern for external service calls",
+            "status": "pending",
+            "testStrategy": "Test API error handling with various error scenarios including validation errors, database errors, and external service failures. Validate retry mechanisms work as expected with simulated transient failures."
+          },
+          {
+            "id": 4,
+            "title": "Set up Performance Monitoring",
+            "description": "Implement performance monitoring to track application metrics, identify bottlenecks, and ensure optimal user experience.",
+            "dependencies": [
+              "13.1"
+            ],
+            "details": "1. Configure Sentry performance monitoring for tracing transactions\n2. Implement custom performance metrics for critical user flows\n3. Set up monitoring for API response times\n4. Add frontend performance tracking (FCP, LCP, CLS, TTI)\n5. Create performance dashboards to visualize metrics\n6. Implement database query performance monitoring\n7. Set up resource utilization monitoring (memory, CPU)\n8. Add custom spans for tracking performance of specific operations",
+            "status": "pending",
+            "testStrategy": "Verify performance metrics are being captured correctly by analyzing dashboard data. Test performance monitoring during load testing to ensure accurate reporting under stress."
+          },
+          {
+            "id": 5,
+            "title": "Implement Alerting and User Error Reporting",
+            "description": "Create an alerting system for critical errors and provide mechanisms for users to report issues they encounter.",
+            "dependencies": [
+              "13.1",
+              "13.2",
+              "13.3",
+              "13.4"
+            ],
+            "details": "1. Configure alerting rules in Sentry for critical errors\n2. Set up notification channels (email, Slack, SMS) for different alert priorities\n3. Implement rate limiting for alerts to prevent alert fatigue\n4. Create a user-facing error reporting form\n5. Implement screenshot capture functionality for error reports\n6. Add context collection to user reports (browser info, steps to reproduce)\n7. Create an admin dashboard for reviewing user-reported issues\n8. Implement feedback collection after error resolution",
+            "status": "pending",
+            "testStrategy": "Test alerting by triggering critical errors and verifying notifications are sent through configured channels. Test user error reporting flow by submitting test reports and verifying they are properly captured with all relevant context."
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Deployment and CI/CD Pipeline",
+        "description": "Set up deployment infrastructure on Vercel/Netlify with continuous integration and delivery pipeline for reliable releases.",
+        "details": "1. Configure Vercel or Netlify project\n2. Set up environment variables for different environments\n3. Create CI/CD pipeline with GitHub Actions\n4. Implement automated testing in pipeline\n5. Add build optimization\n6. Configure CDN for static assets\n7. Set up SSL certificates\n8. Implement preview deployments for pull requests\n9. Add deployment approval process for production\n10. Create rollback mechanism\n11. Implement performance monitoring post-deployment",
+        "testStrategy": "1. Test deployment to development environment\n2. Verify environment variables are correctly applied\n3. Test CI/CD pipeline with code changes\n4. Validate automated testing catches issues\n5. Test preview deployments for pull requests\n6. Verify SSL certificates are correctly configured\n7. Test rollback mechanism\n8. Validate performance after deployment",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Configure Vercel/Netlify Project with Environment Variables",
+            "description": "Set up the deployment platform by creating a new project on Vercel or Netlify, connecting it to the GitHub repository, and configuring environment variables for development, staging, and production environments.",
+            "dependencies": [],
+            "details": "1. Create an account on Vercel or Netlify if not already available\n2. Connect the platform to the GitHub repository\n3. Configure the build settings (build command, output directory, etc.)\n4. Set up environment variables for each environment:\n   - API keys\n   - Authentication secrets\n   - Feature flags\n   - Backend service URLs\n5. Configure domain settings and create a custom domain if needed\n6. Enable HTTPS and verify SSL certificates are properly configured",
+            "status": "pending",
+            "testStrategy": "1. Verify project builds successfully on the platform\n2. Test that environment variables are correctly applied in each environment\n3. Confirm the application loads correctly with the proper configuration\n4. Validate SSL certificates are working properly"
+          },
+          {
+            "id": 2,
+            "title": "Implement GitHub Actions CI Pipeline for Testing",
+            "description": "Create a GitHub Actions workflow that runs automated tests, linting, and type checking on every push and pull request to ensure code quality before deployment.",
+            "dependencies": [
+              "14.1"
+            ],
+            "details": "1. Create a `.github/workflows/ci.yml` file in the repository\n2. Configure the workflow to trigger on push to main branch and pull requests\n3. Set up job steps to:\n   - Check out the code\n   - Install dependencies\n   - Run linting (ESLint)\n   - Run type checking (TypeScript)\n   - Execute unit tests\n   - Run integration tests if applicable\n4. Configure the workflow to fail if any of the checks fail\n5. Add status badges to the README.md file\n6. Set up notifications for failed workflows",
+            "status": "pending",
+            "testStrategy": "1. Create a test PR with passing code to verify the workflow runs successfully\n2. Create a test PR with failing tests to verify the workflow correctly identifies issues\n3. Verify status checks appear correctly on pull requests\n4. Test that the workflow completes in a reasonable time"
+          },
+          {
+            "id": 3,
+            "title": "Configure CD Pipeline with Preview Deployments",
+            "description": "Extend the CI/CD pipeline to automatically deploy code to preview environments for pull requests and to staging/production environments based on branch.",
+            "dependencies": [
+              "14.1",
+              "14.2"
+            ],
+            "details": "1. Configure Vercel/Netlify to create preview deployments for each pull request\n2. Set up branch-based deployments:\n   - `main` branch deploys to staging environment\n   - `production` branch deploys to production environment\n3. Add deployment protection rules requiring successful CI checks before deployment\n4. Configure GitHub environment protection rules for production\n5. Add deployment approval process for production deployments\n6. Set up deployment notifications in Slack or other communication channels\n7. Configure preview URL comments on pull requests",
+            "status": "pending",
+            "testStrategy": "1. Create a test PR and verify a preview deployment is created\n2. Test the approval workflow for production deployments\n3. Verify that failed CI checks prevent deployments\n4. Test that preview URLs are correctly posted to pull requests\n5. Validate the entire workflow from PR to production deployment"
+          },
+          {
+            "id": 4,
+            "title": "Implement Build Optimization and CDN Configuration",
+            "description": "Optimize the build process and configure CDN settings to improve performance, reduce build times, and ensure efficient delivery of static assets.",
+            "dependencies": [
+              "14.3"
+            ],
+            "details": "1. Analyze and optimize the build process:\n   - Enable build caching\n   - Implement code splitting\n   - Configure tree shaking\n   - Optimize image processing\n2. Configure CDN settings in Vercel/Netlify:\n   - Set appropriate cache headers for static assets\n   - Configure edge caching policies\n   - Set up asset compression\n3. Implement cache invalidation strategies\n4. Configure asset preloading for critical resources\n5. Set up HTTP/2 or HTTP/3 if available\n6. Enable Brotli compression if supported",
+            "status": "pending",
+            "testStrategy": "1. Measure and compare build times before and after optimization\n2. Test cache effectiveness using browser developer tools\n3. Verify static assets are served from CDN using network inspection\n4. Run performance tests to validate improvements\n5. Test cache invalidation when deploying updates"
+          },
+          {
+            "id": 5,
+            "title": "Implement Rollback Mechanism and Performance Monitoring",
+            "description": "Create a system for quick rollbacks in case of deployment issues and set up performance monitoring to track application health post-deployment.",
+            "dependencies": [
+              "14.4"
+            ],
+            "details": "1. Configure deployment versioning in Vercel/Netlify\n2. Create a rollback script or process documentation\n3. Set up instant rollback triggers for critical errors\n4. Integrate performance monitoring tools:\n   - Set up Vercel Analytics or Netlify Analytics\n   - Implement Core Web Vitals monitoring\n   - Configure error tracking with Sentry or similar tool\n   - Set up uptime monitoring\n5. Create a dashboard for monitoring deployment health\n6. Configure alerts for performance degradation or increased error rates\n7. Document the incident response process",
+            "status": "pending",
+            "testStrategy": "1. Simulate a failed deployment and test the rollback process\n2. Verify monitoring tools correctly capture performance metrics\n3. Test alert systems by triggering test events\n4. Validate that rollbacks restore the application to a working state\n5. Confirm that monitoring captures real user metrics"
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Documentation and User Guides",
+        "description": "Create comprehensive documentation including API docs, user guides, and developer documentation to support users and future development.",
+        "details": "1. Create user onboarding guide\n2. Develop help center content\n3. Write API documentation\n4. Create developer setup guide\n5. Document database schema\n6. Create architecture diagrams\n7. Write user FAQs\n8. Document known issues and workarounds\n9. Create troubleshooting guides\n10. Write privacy and data usage documentation\n11. Create contribution guidelines for open source",
+        "testStrategy": "1. Review documentation for accuracy and completeness\n2. Test user onboarding guide with new users\n3. Verify API documentation matches implementation\n4. Test developer setup guide with new developer\n5. Validate troubleshooting guides resolve common issues\n6. Test FAQs answer common questions\n7. Review by non-technical users for clarity",
+        "priority": "low",
+        "dependencies": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create User-Facing Documentation",
+            "description": "Develop comprehensive user guides including onboarding documentation, help center content, and FAQs to help users navigate and use the application effectively.",
+            "dependencies": [],
+            "details": "1. Create a user onboarding guide with step-by-step instructions for new users\n2. Develop help center content organized by feature categories\n3. Write user FAQs covering common questions and scenarios\n4. Create troubleshooting guides for common issues\n5. Document privacy and data usage policies\n6. Include screenshots and visual aids throughout documentation\n7. Ensure documentation follows the Islamic design system aesthetics",
+            "status": "pending",
+            "testStrategy": "Review documentation with test users to identify gaps or unclear sections. Validate that FAQs address common questions. Ensure troubleshooting guides effectively resolve known issues."
+          },
+          {
+            "id": 2,
+            "title": "API Documentation",
+            "description": "Create comprehensive API documentation detailing endpoints, request/response formats, authentication requirements, and usage examples.",
+            "dependencies": [
+              "15.1"
+            ],
+            "details": "1. Document all API endpoints with their HTTP methods, URLs, and descriptions\n2. Detail request parameters, headers, and body formats for each endpoint\n3. Document response formats, status codes, and error handling\n4. Provide authentication and authorization requirements\n5. Include code examples in multiple languages (JavaScript, Python, etc.)\n6. Create interactive API documentation using Swagger/OpenAPI\n7. Document rate limiting and usage guidelines",
+            "status": "pending",
+            "testStrategy": "Verify API documentation matches actual implementation. Test code examples to ensure they work as documented. Have developers review for technical accuracy."
+          },
+          {
+            "id": 3,
+            "title": "Developer Setup and Contribution Guidelines",
+            "description": "Create documentation for developers to set up the development environment and contribute to the project, including architecture overview and contribution workflows.",
+            "dependencies": [
+              "15.2"
+            ],
+            "details": "1. Create a detailed developer setup guide with prerequisites and installation steps\n2. Document the development workflow (branching strategy, PR process)\n3. Create contribution guidelines for open source contributors\n4. Document coding standards and best practices\n5. Include troubleshooting for common development issues\n6. Provide information on running tests and quality checks\n7. Document the release process",
+            "status": "pending",
+            "testStrategy": "Test the setup guide with a new developer to ensure they can successfully set up the environment. Review contribution guidelines with existing team members for completeness."
+          },
+          {
+            "id": 4,
+            "title": "Technical Architecture Documentation",
+            "description": "Document the system's technical architecture, including component diagrams, data flow, and integration points to provide a comprehensive overview of the system design.",
+            "dependencies": [
+              "15.3"
+            ],
+            "details": "1. Create high-level architecture diagrams showing system components\n2. Document data flow between components\n3. Detail integration points with external services (Google OAuth, etc.)\n4. Document the application's folder structure and organization\n5. Create sequence diagrams for key user flows\n6. Document security measures and considerations\n7. Include performance considerations and optimizations",
+            "status": "pending",
+            "testStrategy": "Review architecture documentation with the development team to ensure accuracy. Validate that diagrams correctly represent the implemented system."
+          },
+          {
+            "id": 5,
+            "title": "Database and Schema Documentation",
+            "description": "Document the database schema, data models, relationships, and data dictionary to provide a comprehensive reference for the application's data structure.",
+            "dependencies": [
+              "15.4"
+            ],
+            "details": "1. Document database schema with tables/collections and their relationships\n2. Create entity-relationship diagrams\n3. Provide a data dictionary defining each field and its purpose\n4. Document data validation rules and constraints\n5. Detail data migration procedures\n6. Document database performance considerations\n7. Include data backup and recovery procedures\n8. Document data retention policies",
+            "status": "pending",
+            "testStrategy": "Validate schema documentation against the actual database implementation. Review with database administrators and developers to ensure completeness and accuracy."
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-08-23T22:50:54.636Z",
+      "updated": "2025-08-23T22:50:54.636Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
