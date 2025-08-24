@@ -17,13 +17,13 @@ import { useLocation } from './LocationContext';
 interface PrayerTimesContextType {
   prayerTimes: PrayerTimesResult | null;
   nextPrayer: {
-    prayer: Prayer;
+    prayer: (typeof Prayer)[keyof typeof Prayer];
     time: Date;
     name: string;
     arabicName: string;
   } | null;
   currentPrayer: {
-    prayer: Prayer;
+    prayer: (typeof Prayer)[keyof typeof Prayer];
     time: Date;
     name: string;
     arabicName: string;

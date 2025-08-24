@@ -4,6 +4,7 @@ import { Playfair_Display, Amiri } from 'next/font/google';
 import './globals.css';
 import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { CalendarSyncProvider } from '@/contexts/CalendarSyncContext';
 import { LocationProvider } from '@/contexts/LocationContext';
 import { PrayerTimesProvider } from '@/contexts/PrayerTimesContext';
 
@@ -73,7 +74,9 @@ export default function RootLayout({
         <ServiceWorkerRegistration />
         <AuthProvider>
           <LocationProvider>
-            <PrayerTimesProvider>{children}</PrayerTimesProvider>
+            <PrayerTimesProvider>
+              <CalendarSyncProvider>{children}</CalendarSyncProvider>
+            </PrayerTimesProvider>
           </LocationProvider>
         </AuthProvider>
       </body>

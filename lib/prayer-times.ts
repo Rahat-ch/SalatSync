@@ -69,12 +69,15 @@ const calculationMethods: Record<CalculationMethodType, () => CalculationParamet
   other: () => CalculationMethod.Other(),
 };
 
-const madhabMap: Record<MadhabType, Madhab> = {
+const madhabMap: Record<MadhabType, (typeof Madhab)[keyof typeof Madhab]> = {
   shafi: Madhab.Shafi,
   hanafi: Madhab.Hanafi,
 };
 
-const highLatitudeRuleMap: Record<HighLatitudeRuleType, HighLatitudeRule> = {
+const highLatitudeRuleMap: Record<
+  HighLatitudeRuleType,
+  (typeof HighLatitudeRule)[keyof typeof HighLatitudeRule]
+> = {
   middle_of_the_night: HighLatitudeRule.MiddleOfTheNight,
   seventh_of_the_night: HighLatitudeRule.SeventhOfTheNight,
   twilight_angle: HighLatitudeRule.TwilightAngle,
@@ -123,7 +126,7 @@ export function getNextPrayer(
   prayerTimes: PrayerTimesResult,
   currentTime: Date = new Date()
 ): {
-  prayer: Prayer;
+  prayer: (typeof Prayer)[keyof typeof Prayer];
   time: Date;
   name: string;
   arabicName: string;
@@ -160,7 +163,7 @@ export function getCurrentPrayer(
   prayerTimes: PrayerTimesResult,
   currentTime: Date = new Date()
 ): {
-  prayer: Prayer;
+  prayer: (typeof Prayer)[keyof typeof Prayer];
   time: Date;
   name: string;
   arabicName: string;

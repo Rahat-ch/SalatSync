@@ -334,7 +334,9 @@ export default function Home() {
               </p>
               <div className="flex justify-center gap-4">
                 {user ? (
-                  <Button className="btn-primary">View Calendar Integration</Button>
+                  <Link href="/dashboard">
+                    <Button className="btn-primary">View Calendar Integration</Button>
+                  </Link>
                 ) : (
                   <Link href="/auth/signin">
                     <Button className="btn-primary">Sign Up Free</Button>

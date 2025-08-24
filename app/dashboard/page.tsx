@@ -2,7 +2,10 @@
 
 import { Calendar, MapPin, Settings } from 'lucide-react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, Suspense } from 'react';
 
+import { CalendarSync } from '@/components/CalendarSync';
 import { LocationInput } from '@/components/LocationInput';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Button } from '@/components/ui/button';
@@ -10,9 +13,45 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useAuth } from '@/contexts/AuthContext';
 import { useLocation } from '@/contexts/LocationContext';
 
-export default function DashboardPage() {
+function DashboardContent() {
   const { user } = useAuth();
   const { location, requestLocation, setManualLocation } = useLocation();
+  const searchParams = useSearchParams();
+
+  // Handle Google Calendar OAuth callback
+  useEffect(() => {
+    const calendarSuccess = searchParams.get('calendar_success');
+    const calendarError = searchParams.get('calendar_error');
+
+    if (calendarSuccess) {
+      try {
+        const tokenData = JSON.parse(decodeURIComponent(calendarSuccess));
+
+        // Store tokens in localStorage (in production, use secure storage)
+        if (user) {
+          localStorage.setItem(
+            `calendar-auth-${user.id}`,
+            JSON.stringify({
+              accessToken: tokenData.access_token,
+              refreshToken: tokenData.refresh_token,
+              expiresAt: tokenData.expires_at,
+              scope: tokenData.scope,
+            })
+          );
+
+          // Refresh the page to update calendar sync state
+          window.location.replace('/dashboard');
+        }
+      } catch (error) {
+        console.error('Failed to process calendar tokens:', error);
+      }
+    }
+
+    if (calendarError) {
+      console.error('Calendar authorization error:', calendarError);
+      // You could show a toast notification here
+    }
+  }, [searchParams, user]);
 
   return (
     <ProtectedRoute>
@@ -41,19 +80,8 @@ export default function DashboardPage() {
         {/* Dashboard Content */}
         <div className="mx-auto max-w-6xl px-6 py-8">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {/* Quick Actions */}
-            <Card className="islamic-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5" />
-                  Calendar Integration
-                </CardTitle>
-                <CardDescription>Manage your Google Calendar sync settings</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button className="w-full">Setup Calendar Sync</Button>
-              </CardContent>
-            </Card>
+            {/* Calendar Integration */}
+            <CalendarSync />
 
             <Card className="islamic-card">
               <CardHeader>
@@ -128,5 +156,13 @@ export default function DashboardPage() {
         </div>
       </div>
     </ProtectedRoute>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <Suspense fallback={<div>Loading dashboard...</div>}>
+      <DashboardContent />
+    </Suspense>
   );
 }
