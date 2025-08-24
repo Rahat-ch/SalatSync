@@ -39,6 +39,12 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event
 self.addEventListener('fetch', (event) => {
+  // Skip caching for localhost/development
+  if (event.request.url.includes('localhost') || event.request.url.includes('127.0.0.1')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
