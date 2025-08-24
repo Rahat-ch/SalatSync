@@ -208,24 +208,12 @@
     @apply bg-primary text-primary-foreground font-elegant rounded-lg px-6 py-3 font-medium;
     background: var(--gradient-primary);
     box-shadow: var(--shadow-elegant);
-    transition: all 0.3s ease;
-  }
-
-  .btn-primary:hover {
-    @apply -translate-y-1 transform;
-    box-shadow: var(--shadow-prayer);
   }
 
   .btn-secondary {
     @apply bg-secondary text-secondary-foreground font-elegant rounded-lg px-6 py-3 font-medium;
     background: var(--gradient-secondary);
     box-shadow: var(--shadow-prayer);
-    transition: all 0.3s ease;
-  }
-
-  .btn-secondary:hover {
-    @apply -translate-y-1 transform;
-    box-shadow: var(--shadow-elegant);
   }
 
   /* Card Styles */
@@ -233,12 +221,6 @@
     @apply bg-card text-card-foreground rounded-lg p-6;
     box-shadow: var(--shadow-soft);
     border: 1px solid hsl(158, 64%, 25%, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .islamic-card:hover {
-    @apply -translate-y-2 transform;
-    box-shadow: var(--shadow-elegant);
   }
 
   /* Prayer Time Display */
@@ -252,7 +234,7 @@
 
   /* Navigation */
   .nav-link {
-    @apply font-elegant text-foreground/80 hover:text-primary font-medium transition-colors;
+    @apply font-elegant text-foreground/80 font-medium;
   }
 
   .nav-link.active {

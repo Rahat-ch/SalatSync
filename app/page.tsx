@@ -2,43 +2,27 @@
 
 import { MapPin, Calendar, Bell } from 'lucide-react';
 import Link from 'next/link';
-import { useState, useEffect, useMemo } from 'react';
 
+import { LocationInput } from '@/components/LocationInput';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { UserNav } from '@/components/UserNav';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLocation } from '@/contexts/LocationContext';
+import { usePrayerTimes } from '@/contexts/PrayerTimesContext';
+import { formatPrayerTime } from '@/lib/prayer-times';
 
 export default function Home() {
   const { user } = useAuth();
-
-  // Calculate next prayer time (demo - 1 hour from now) - using useMemo to prevent recalculation
-  const nextPrayerTime = useMemo(() => {
-    const date = new Date();
-    date.setHours(date.getHours() + 1);
-    return date;
-  }, []);
-
-  const [timeRemaining, setTimeRemaining] = useState({ hours: 0, minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    const calculateTimeRemaining = () => {
-      const now = new Date();
-      const difference = nextPrayerTime.getTime() - now.getTime();
-
-      if (difference > 0) {
-        const hours = Math.floor(difference / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-        setTimeRemaining({ hours, minutes, seconds });
-      }
-    };
-
-    calculateTimeRemaining();
-    const interval = setInterval(calculateTimeRemaining, 1000);
-    return () => clearInterval(interval);
-  }, [nextPrayerTime]);
+  const {
+    location,
+    requestLocation,
+    setManualLocation,
+    loading: locationLoading,
+    error: locationError,
+  } = useLocation();
+  const { prayerTimes, nextPrayer, timeUntilNext, loading: prayerLoading } = usePrayerTimes();
 
   const formatTime = (value: number) => value.toString().padStart(2, '0');
 
@@ -53,7 +37,14 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-4">
               {user ? (
-                <UserNav />
+                <>
+                  <Link href="/dashboard">
+                    <Button variant="ghost" className="nav-link">
+                      Dashboard
+                    </Button>
+                  </Link>
+                  <UserNav />
+                </>
               ) : (
                 <Link href="/auth/signin">
                   <Button>Sign In</Button>
@@ -95,35 +86,83 @@ export default function Home() {
       {/* Next Prayer Countdown */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="font-elegant text-gradient-primary mb-8 text-center text-3xl">
-            Time Until Dhuhr
-          </h2>
-          <Card className="islamic-card">
-            <CardContent className="pt-8">
-              <div className="flex items-center justify-center gap-4">
-                <div className="text-center">
-                  <div className="font-elegant text-primary text-5xl font-bold md:text-6xl">
-                    {formatTime(timeRemaining.hours)}
+          {!location ? (
+            <div className="space-y-6">
+              <Card className="islamic-card">
+                <CardContent className="pt-8 text-center">
+                  <MapPin className="text-primary mx-auto mb-4 h-16 w-16" />
+                  <h3 className="font-elegant mb-4 text-2xl">Choose Your Location Method</h3>
+                  <p className="text-muted-foreground mb-6">
+                    We need your location to calculate accurate prayer times
+                  </p>
+
+                  <div className="mx-auto flex max-w-sm flex-col gap-4">
+                    <Button
+                      onClick={requestLocation}
+                      disabled={locationLoading}
+                      className="btn-primary w-full"
+                    >
+                      {locationLoading ? 'Getting Location...' : 'Use GPS Location'}
+                    </Button>
+
+                    <div className="flex items-center gap-2">
+                      <div className="bg-border h-px flex-1"></div>
+                      <span className="text-muted-foreground text-sm">or</span>
+                      <div className="bg-border h-px flex-1"></div>
+                    </div>
                   </div>
-                  <p className="text-muted-foreground mt-2 text-sm">Hours</p>
-                </div>
-                <div className="text-primary text-5xl md:text-6xl">:</div>
-                <div className="text-center">
-                  <div className="font-elegant text-primary text-5xl font-bold md:text-6xl">
-                    {formatTime(timeRemaining.minutes)}
+
+                  {locationError && <p className="mt-4 text-sm text-red-600">{locationError}</p>}
+                </CardContent>
+              </Card>
+
+              <LocationInput onLocationSet={setManualLocation} loading={locationLoading} />
+            </div>
+          ) : nextPrayer && timeUntilNext ? (
+            <>
+              <h2 className="font-elegant text-gradient-primary mb-8 text-center text-3xl">
+                Time Until {nextPrayer.name}
+              </h2>
+              <Card className="islamic-card">
+                <CardContent className="pt-8">
+                  <div className="flex items-center justify-center gap-4">
+                    <div className="text-center">
+                      <div className="font-elegant text-primary text-5xl font-bold md:text-6xl">
+                        {formatTime(timeUntilNext.hours)}
+                      </div>
+                      <p className="text-muted-foreground mt-2 text-sm">Hours</p>
+                    </div>
+                    <div className="text-primary text-5xl md:text-6xl">:</div>
+                    <div className="text-center">
+                      <div className="font-elegant text-primary text-5xl font-bold md:text-6xl">
+                        {formatTime(timeUntilNext.minutes)}
+                      </div>
+                      <p className="text-muted-foreground mt-2 text-sm">Minutes</p>
+                    </div>
+                    <div className="text-primary text-5xl md:text-6xl">:</div>
+                    <div className="text-center">
+                      <div className="font-elegant text-primary text-5xl font-bold md:text-6xl">
+                        {formatTime(timeUntilNext.seconds)}
+                      </div>
+                      <p className="text-muted-foreground mt-2 text-sm">Seconds</p>
+                    </div>
                   </div>
-                  <p className="text-muted-foreground mt-2 text-sm">Minutes</p>
-                </div>
-                <div className="text-primary text-5xl md:text-6xl">:</div>
-                <div className="text-center">
-                  <div className="font-elegant text-primary text-5xl font-bold md:text-6xl">
-                    {formatTime(timeRemaining.seconds)}
-                  </div>
-                  <p className="text-muted-foreground mt-2 text-sm">Seconds</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+                  {location.city && (
+                    <p className="text-muted-foreground mt-4 text-center">
+                      📍 {location.city}, {location.country}
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            </>
+          ) : prayerLoading ? (
+            <Card className="islamic-card">
+              <CardContent className="pt-8 text-center">
+                <div className="border-primary mx-auto mb-4 h-16 w-16 animate-spin rounded-full border-b-2"></div>
+                <p className="text-muted-foreground">Calculating prayer times...</p>
+              </CardContent>
+            </Card>
+          ) : null}
         </div>
       </section>
 
@@ -134,65 +173,97 @@ export default function Home() {
             Today&apos;s Prayer Times
           </h2>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="prayer-card transition-transform hover:scale-105">
-              <CardContent className="pt-6 text-center">
-                <div className="prayer-name mb-2">الفجر</div>
-                <h3 className="font-elegant mb-2 text-xl">Fajr</h3>
-                <div className="prayer-time">5:30 AM</div>
-                <p className="text-muted-foreground mt-2 text-sm">Dawn Prayer</p>
-              </CardContent>
-            </Card>
+          {prayerTimes ? (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <Card className="prayer-card">
+                <CardContent className="pt-6 text-center">
+                  <div className="prayer-name mb-2">الفجر</div>
+                  <h3 className="font-elegant mb-2 text-xl">Fajr</h3>
+                  <div className="prayer-time">{formatPrayerTime(prayerTimes.fajr)}</div>
+                  <p className="text-muted-foreground mt-2 text-sm">Dawn Prayer</p>
+                  {nextPrayer?.name === 'Fajr' && (
+                    <Badge variant="secondary" className="mt-2">
+                      Next Prayer
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
 
-            <Card className="prayer-card transition-transform hover:scale-105">
-              <CardContent className="pt-6 text-center">
-                <div className="prayer-name mb-2">الظهر</div>
-                <h3 className="font-elegant mb-2 text-xl">Dhuhr</h3>
-                <div className="prayer-time">12:45 PM</div>
-                <Badge variant="secondary" className="mt-2">
-                  Next Prayer
-                </Badge>
-              </CardContent>
-            </Card>
+              <Card className="prayer-card">
+                <CardContent className="pt-6 text-center">
+                  <div className="prayer-name mb-2">الظهر</div>
+                  <h3 className="font-elegant mb-2 text-xl">Dhuhr</h3>
+                  <div className="prayer-time">{formatPrayerTime(prayerTimes.dhuhr)}</div>
+                  <p className="text-muted-foreground mt-2 text-sm">Noon Prayer</p>
+                  {nextPrayer?.name === 'Dhuhr' && (
+                    <Badge variant="secondary" className="mt-2">
+                      Next Prayer
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
 
-            <Card className="prayer-card transition-transform hover:scale-105">
-              <CardContent className="pt-6 text-center">
-                <div className="prayer-name mb-2">العصر</div>
-                <h3 className="font-elegant mb-2 text-xl">Asr</h3>
-                <div className="prayer-time">3:30 PM</div>
-                <p className="text-muted-foreground mt-2 text-sm">Afternoon Prayer</p>
-              </CardContent>
-            </Card>
+              <Card className="prayer-card">
+                <CardContent className="pt-6 text-center">
+                  <div className="prayer-name mb-2">العصر</div>
+                  <h3 className="font-elegant mb-2 text-xl">Asr</h3>
+                  <div className="prayer-time">{formatPrayerTime(prayerTimes.asr)}</div>
+                  <p className="text-muted-foreground mt-2 text-sm">Afternoon Prayer</p>
+                  {nextPrayer?.name === 'Asr' && (
+                    <Badge variant="secondary" className="mt-2">
+                      Next Prayer
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
 
-            <Card className="prayer-card transition-transform hover:scale-105">
-              <CardContent className="pt-6 text-center">
-                <div className="prayer-name mb-2">المغرب</div>
-                <h3 className="font-elegant mb-2 text-xl">Maghrib</h3>
-                <div className="prayer-time">6:15 PM</div>
-                <p className="text-muted-foreground mt-2 text-sm">Sunset Prayer</p>
-              </CardContent>
-            </Card>
+              <Card className="prayer-card">
+                <CardContent className="pt-6 text-center">
+                  <div className="prayer-name mb-2">المغرب</div>
+                  <h3 className="font-elegant mb-2 text-xl">Maghrib</h3>
+                  <div className="prayer-time">{formatPrayerTime(prayerTimes.maghrib)}</div>
+                  <p className="text-muted-foreground mt-2 text-sm">Sunset Prayer</p>
+                  {nextPrayer?.name === 'Maghrib' && (
+                    <Badge variant="secondary" className="mt-2">
+                      Next Prayer
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
 
-            <Card className="prayer-card transition-transform hover:scale-105">
-              <CardContent className="pt-6 text-center">
-                <div className="prayer-name mb-2">العشاء</div>
-                <h3 className="font-elegant mb-2 text-xl">Isha</h3>
-                <div className="prayer-time">7:45 PM</div>
-                <p className="text-muted-foreground mt-2 text-sm">Night Prayer</p>
-              </CardContent>
-            </Card>
+              <Card className="prayer-card">
+                <CardContent className="pt-6 text-center">
+                  <div className="prayer-name mb-2">العشاء</div>
+                  <h3 className="font-elegant mb-2 text-xl">Isha</h3>
+                  <div className="prayer-time">{formatPrayerTime(prayerTimes.isha)}</div>
+                  <p className="text-muted-foreground mt-2 text-sm">Night Prayer</p>
+                  {nextPrayer?.name === 'Isha' && (
+                    <Badge variant="secondary" className="mt-2">
+                      Next Prayer
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
 
-            <Card className="prayer-card transition-transform hover:scale-105">
-              <CardContent className="pt-6 text-center">
-                <div className="prayer-name mb-2">الجمعة</div>
-                <h3 className="font-elegant mb-2 text-xl">Jummah</h3>
-                <div className="prayer-time">1:00 PM</div>
-                <Badge variant="outline" className="mt-2">
-                  Friday Only
-                </Badge>
-              </CardContent>
-            </Card>
-          </div>
+              <Card className="prayer-card">
+                <CardContent className="pt-6 text-center">
+                  <div className="prayer-name mb-2">الجمعة</div>
+                  <h3 className="font-elegant mb-2 text-xl">Jummah</h3>
+                  <div className="prayer-time">{formatPrayerTime(prayerTimes.dhuhr)}</div>
+                  <Badge variant="outline" className="mt-2">
+                    Friday Only
+                  </Badge>
+                </CardContent>
+              </Card>
+            </div>
+          ) : (
+            <div className="py-12 text-center">
+              <Calendar className="text-muted-foreground mx-auto mb-4 h-16 w-16" />
+              <p className="text-muted-foreground text-lg">
+                Enable location access to see your prayer times
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -204,7 +275,7 @@ export default function Home() {
           </h2>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <Card className="islamic-card transition-shadow hover:shadow-xl">
+            <Card className="islamic-card">
               <CardHeader className="text-center">
                 <div className="bg-primary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
                   <MapPin className="text-primary h-8 w-8" />
@@ -218,7 +289,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="islamic-card transition-shadow hover:shadow-xl">
+            <Card className="islamic-card">
               <CardHeader className="text-center">
                 <div className="bg-secondary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
                   <Calendar className="text-secondary h-8 w-8" />
@@ -232,7 +303,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="islamic-card transition-shadow hover:shadow-xl">
+            <Card className="islamic-card">
               <CardHeader className="text-center">
                 <div className="bg-accent/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
                   <Bell className="text-accent h-8 w-8" />
@@ -269,10 +340,7 @@ export default function Home() {
                     <Button className="btn-primary">Sign Up Free</Button>
                   </Link>
                 )}
-                <Button
-                  variant="outline"
-                  className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
-                >
+                <Button variant="outline" className="border-secondary text-secondary">
                   View Demo
                 </Button>
               </div>

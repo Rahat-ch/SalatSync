@@ -4,6 +4,8 @@ import { Playfair_Display, Amiri } from 'next/font/google';
 import './globals.css';
 import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { LocationProvider } from '@/contexts/LocationContext';
+import { PrayerTimesProvider } from '@/contexts/PrayerTimesContext';
 
 const playfairDisplay = Playfair_Display({
   variable: '--font-playfair-display',
@@ -69,7 +71,11 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <ServiceWorkerRegistration />
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <LocationProvider>
+            <PrayerTimesProvider>{children}</PrayerTimesProvider>
+          </LocationProvider>
+        </AuthProvider>
       </body>
     </html>
   );

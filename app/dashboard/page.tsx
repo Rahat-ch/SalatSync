@@ -1,14 +1,18 @@
 'use client';
 
 import { Calendar, MapPin, Settings } from 'lucide-react';
+import Link from 'next/link';
 
+import { LocationInput } from '@/components/LocationInput';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLocation } from '@/contexts/LocationContext';
 
 export default function DashboardPage() {
   const { user } = useAuth();
+  const { location, requestLocation, setManualLocation } = useLocation();
 
   return (
     <ProtectedRoute>
@@ -16,12 +20,21 @@ export default function DashboardPage() {
         {/* Header */}
         <div className="bg-background border-b">
           <div className="mx-auto max-w-6xl px-6 py-8">
-            <h1 className="font-elegant text-3xl font-bold">
-              Welcome back, {user?.user_metadata?.full_name?.split(' ')[0] || 'User'}
-            </h1>
-            <p className="text-muted-foreground mt-2">
-              Your prayer times and calendar integration dashboard
-            </p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="font-elegant text-3xl font-bold">
+                  Welcome back, {user?.user_metadata?.full_name?.split(' ')[0] || 'User'}
+                </h1>
+                <p className="text-muted-foreground mt-2">
+                  Your prayer times and calendar integration dashboard
+                </p>
+              </div>
+              <Link href="/">
+                <Button variant="ghost" className="nav-link">
+                  Home
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -48,12 +61,36 @@ export default function DashboardPage() {
                   <MapPin className="h-5 w-5" />
                   Location Settings
                 </CardTitle>
-                <CardDescription>Update your location for accurate prayer times</CardDescription>
+                <CardDescription>
+                  {location
+                    ? `Current: ${location.city ? `${location.city}, ${location.country}` : `${location.latitude.toFixed(4)}, ${location.longitude.toFixed(4)}`}`
+                    : 'Set your location for accurate prayer times'}
+                </CardDescription>
               </CardHeader>
-              <CardContent>
-                <Button variant="outline" className="w-full">
-                  Update Location
-                </Button>
+              <CardContent className="space-y-3">
+                {location ? (
+                  <div className="space-y-2">
+                    <Button variant="outline" className="w-full" onClick={requestLocation}>
+                      Update GPS Location
+                    </Button>
+                    <details className="w-full">
+                      <summary className="text-muted-foreground cursor-pointer text-sm">
+                        Or search for a different city
+                      </summary>
+                      <div className="mt-3">
+                        <LocationInput onLocationSet={setManualLocation} />
+                      </div>
+                    </details>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <Button onClick={requestLocation} className="w-full">
+                      Use GPS Location
+                    </Button>
+                    <div className="text-muted-foreground text-center text-sm">or</div>
+                    <LocationInput onLocationSet={setManualLocation} />
+                  </div>
+                )}
               </CardContent>
             </Card>
 
