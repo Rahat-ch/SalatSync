@@ -7,19 +7,8 @@ import { z } from 'zod';
 const server = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
 
-  // NextAuth
-  NEXTAUTH_URL: z.string().url().optional(),
-  NEXTAUTH_SECRET: z.string().min(1).optional(), // Required in production
-
-  // Google OAuth
-  GOOGLE_CLIENT_ID: z.string().min(1).optional(),
-  GOOGLE_CLIENT_SECRET: z.string().min(1).optional(),
-
-  // Database
+  // Database (Supabase provides this)
   DATABASE_URL: z.string().url().optional(),
-
-  // Google Calendar API
-  GOOGLE_CALENDAR_API_KEY: z.string().min(1).optional(),
 
   // Optional: Prayer API
   PRAYER_API_KEY: z.string().optional(),
@@ -34,8 +23,9 @@ const server = z.object({
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 const client = z.object({
-  // Add client-side env vars here if needed
-  // NEXT_PUBLIC_APP_URL: z.string().url().optional(),
+  // Supabase
+  NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1),
 });
 
 /**
@@ -44,15 +34,12 @@ const client = z.object({
  */
 const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
-  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-  NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   DATABASE_URL: process.env.DATABASE_URL,
-  GOOGLE_CALENDAR_API_KEY: process.env.GOOGLE_CALENDAR_API_KEY,
   PRAYER_API_KEY: process.env.PRAYER_API_KEY,
   ANALYTICS_ID: process.env.ANALYTICS_ID,
-} satisfies Record<keyof z.infer<typeof server>, string | undefined>;
+  NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+} satisfies Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | undefined>;
 
 // Don't touch the part below
 // --------------------------
@@ -63,7 +50,7 @@ const merged = server.merge(client);
 /** @typedef {z.infer<typeof merged>} MergedOutput */
 /** @typedef {z.SafeParseReturnType<MergedInput, MergedOutput>} MergedSafeParseReturn */
 
-let env = /** @type {MergedOutput} */ process.env as any;
+let env = /** @type {MergedOutput} */ process.env as unknown;
 
 if (!!process.env.SKIP_ENV_VALIDATION == false) {
   const isServer = typeof window === 'undefined';
@@ -88,7 +75,7 @@ if (!!process.env.SKIP_ENV_VALIDATION == false) {
             ? '❌ Attempted to access a server-side environment variable on the client'
             : `❌ Attempted to access server-side environment variable '${prop}' on the client`
         );
-      return (target as any)[prop];
+      return (target as Record<string, unknown>)[prop];
     },
   });
 }

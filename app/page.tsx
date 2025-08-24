@@ -1,13 +1,18 @@
 'use client';
 
 import { MapPin, Calendar, Bell } from 'lucide-react';
+import Link from 'next/link';
 import { useState, useEffect, useMemo } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { UserNav } from '@/components/UserNav';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function Home() {
+  const { user } = useAuth();
+
   // Calculate next prayer time (demo - 1 hour from now) - using useMemo to prevent recalculation
   const nextPrayerTime = useMemo(() => {
     const date = new Date();
@@ -39,6 +44,26 @@ export default function Home() {
 
   return (
     <main className="bg-background min-h-screen">
+      {/* Navigation Header */}
+      <nav className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 border-b backdrop-blur">
+        <div className="mx-auto max-w-6xl px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <h1 className="font-elegant text-2xl font-bold">SalatSync</h1>
+            </div>
+            <div className="flex items-center space-x-4">
+              {user ? (
+                <UserNav />
+              ) : (
+                <Link href="/auth/signin">
+                  <Button>Sign In</Button>
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <section className="hero-gradient text-primary-foreground px-6 py-24">
         <div className="mx-auto max-w-6xl text-center">
@@ -47,9 +72,19 @@ export default function Home() {
             Never miss a prayer with our beautiful Islamic prayer time tracker
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Button size="lg" className="btn-primary px-8 py-6 text-lg">
-              Get Started
-            </Button>
+            {user ? (
+              <Link href="/dashboard">
+                <Button size="lg" className="btn-primary px-8 py-6 text-lg">
+                  View Dashboard
+                </Button>
+              </Link>
+            ) : (
+              <Link href="/auth/signin">
+                <Button size="lg" className="btn-primary px-8 py-6 text-lg">
+                  Get Started
+                </Button>
+              </Link>
+            )}
             <Button variant="secondary" size="lg" className="btn-secondary px-8 py-6 text-lg">
               Learn More
             </Button>
@@ -227,7 +262,13 @@ export default function Home() {
                 companion that respects tradition while embracing innovation.
               </p>
               <div className="flex justify-center gap-4">
-                <Button className="btn-primary">Sign Up Free</Button>
+                {user ? (
+                  <Button className="btn-primary">View Calendar Integration</Button>
+                ) : (
+                  <Link href="/auth/signin">
+                    <Button className="btn-primary">Sign Up Free</Button>
+                  </Link>
+                )}
                 <Button
                   variant="outline"
                   className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"

@@ -3,6 +3,7 @@ import { Playfair_Display, Amiri } from 'next/font/google';
 
 import './globals.css';
 import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 const playfairDisplay = Playfair_Display({
   variable: '--font-playfair-display',
@@ -63,9 +64,12 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
         <link rel="shortcut icon" href="/favicon-32x32.png" />
       </head>
-      <body className={`${playfairDisplay.variable} ${amiri.variable} antialiased`}>
+      <body
+        className={`${playfairDisplay.variable} ${amiri.variable} antialiased`}
+        suppressHydrationWarning={true}
+      >
         <ServiceWorkerRegistration />
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
