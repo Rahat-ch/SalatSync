@@ -7,6 +7,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { CalendarSyncProvider } from '@/contexts/CalendarSyncContext';
 import { LocationProvider } from '@/contexts/LocationContext';
 import { PrayerTimesProvider } from '@/contexts/PrayerTimesContext';
+import { PreferencesProvider } from '@/contexts/PreferencesContext';
 
 const playfairDisplay = Playfair_Display({
   variable: '--font-playfair-display',
@@ -72,13 +73,15 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <ServiceWorkerRegistration />
-        <AuthProvider>
-          <LocationProvider>
-            <PrayerTimesProvider>
-              <CalendarSyncProvider>{children}</CalendarSyncProvider>
-            </PrayerTimesProvider>
-          </LocationProvider>
-        </AuthProvider>
+        <PreferencesProvider>
+          <AuthProvider>
+            <LocationProvider>
+              <PrayerTimesProvider>
+                <CalendarSyncProvider>{children}</CalendarSyncProvider>
+              </PrayerTimesProvider>
+            </LocationProvider>
+          </AuthProvider>
+        </PreferencesProvider>
       </body>
     </html>
   );

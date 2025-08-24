@@ -13,6 +13,7 @@ import {
 } from '@/lib/prayer-times';
 
 import { useLocation } from './LocationContext';
+import { usePreferences } from './PreferencesContext';
 
 interface PrayerTimesContextType {
   prayerTimes: PrayerTimesResult | null;
@@ -34,7 +35,6 @@ interface PrayerTimesContextType {
     seconds: number;
   } | null;
   settings: PrayerTimeSettings;
-  updateSettings: (newSettings: Partial<PrayerTimeSettings>) => void;
   refreshPrayerTimes: () => void;
   loading: boolean;
 }
@@ -49,33 +49,17 @@ const PrayerTimesContext = createContext<PrayerTimesContextType | undefined>(und
 
 export function PrayerTimesProvider({ children }: { children: React.ReactNode }) {
   const { location } = useLocation();
+  const { preferences } = usePreferences();
   const [prayerTimes, setPrayerTimes] = useState<PrayerTimesResult | null>(null);
   const [nextPrayer, setNextPrayer] = useState<PrayerTimesContextType['nextPrayer']>(null);
   const [currentPrayer, setCurrentPrayer] = useState<PrayerTimesContextType['currentPrayer']>(null);
   const [timeUntilNext, setTimeUntilNext] = useState<PrayerTimesContextType['timeUntilNext']>(null);
-  const [settings, setSettings] = useState<PrayerTimeSettings>(defaultSettings);
   const [loading, setLoading] = useState(false);
 
-  // Load settings from localStorage
-  useEffect(() => {
-    const savedSettings = localStorage.getItem('salatsync-prayer-settings');
-    if (savedSettings) {
-      try {
-        setSettings({ ...defaultSettings, ...JSON.parse(savedSettings) });
-      } catch {
-        localStorage.removeItem('salatsync-prayer-settings');
-      }
-    }
-  }, []);
+  // Use prayer settings from preferences
+  const settings = preferences.prayerSettings;
 
-  // Save settings to localStorage
-  useEffect(() => {
-    localStorage.setItem('salatsync-prayer-settings', JSON.stringify(settings));
-  }, [settings]);
-
-  const updateSettings = (newSettings: Partial<PrayerTimeSettings>) => {
-    setSettings((prev) => ({ ...prev, ...newSettings }));
-  };
+  // Settings are now managed by PreferencesContext, so we remove the old settings management
 
   const refreshPrayerTimes = () => {
     if (!location) return;
@@ -160,7 +144,6 @@ export function PrayerTimesProvider({ children }: { children: React.ReactNode })
         currentPrayer,
         timeUntilNext,
         settings,
-        updateSettings,
         refreshPrayerTimes,
         loading,
       }}

@@ -1,24 +1,31 @@
 'use client';
 
-import { Calendar, MapPin, Settings } from 'lucide-react';
+import { Clock, MapPin, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 
-import { CalendarSync } from '@/components/CalendarSync';
-import { LocationInput } from '@/components/LocationInput';
+import PrayerTimesDisplay from '@/components/PrayerTimesDisplay';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
+import CalendarSettingsTab from '@/components/settings/CalendarSettingsTab';
+import LocationSettingsTab from '@/components/settings/LocationSettingsTab';
+import PrayerSettingsTab from '@/components/settings/PrayerSettingsTab';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { useAuth } from '@/contexts/AuthContext';
-import { useLocation } from '@/contexts/LocationContext';
+import { usePreferences } from '@/contexts/PreferencesContext';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { UserNav } from '@/components/UserNav';
 
 function DashboardContent() {
   const { user } = useAuth();
-  const { location, requestLocation, setManualLocation } = useLocation();
   const searchParams = useSearchParams();
+  const { preferences, loading } = usePreferences();
 
-  // Handle Google Calendar OAuth callback
+  const [activeTab, setActiveTab] = useState('prayer');
+
+  // Handle Google Calendar OAuth callback (moved from dashboard)
   useEffect(() => {
     const calendarSuccess = searchParams.get('calendar_success');
     const calendarError = searchParams.get('calendar_error');
@@ -27,7 +34,6 @@ function DashboardContent() {
       try {
         const tokenData = JSON.parse(decodeURIComponent(calendarSuccess));
 
-        // Store tokens in localStorage (in production, use secure storage)
         if (user) {
           localStorage.setItem(
             `calendar-auth-${user.id}`,
@@ -49,119 +55,118 @@ function DashboardContent() {
 
     if (calendarError) {
       console.error('Calendar authorization error:', calendarError);
-      // You could show a toast notification here
     }
   }, [searchParams, user]);
 
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 to-emerald-50 p-4">
+        <Card className="w-full max-w-md">
+          <CardContent className="flex items-center justify-center p-8">
+            <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-green-600"></div>
+            <span className="ml-3 text-gray-600">Loading...</span>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <ProtectedRoute>
-      <div className="bg-background min-h-screen">
-        {/* Header */}
-        <div className="bg-background border-b">
-          <div className="mx-auto max-w-6xl px-6 py-8">
+      <main className="bg-background min-h-screen">
+        {/* Navigation Header */}
+        <nav className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 border-b backdrop-blur">
+          <div className="mx-auto max-w-6xl px-6 py-4">
             <div className="flex items-center justify-between">
-              <div>
-                <h1 className="font-elegant text-3xl font-bold">
-                  Welcome back, {user?.user_metadata?.full_name?.split(' ')[0] || 'User'}
-                </h1>
-                <p className="text-muted-foreground mt-2">
-                  Your prayer times and calendar integration dashboard
-                </p>
+              <div className="flex items-center space-x-4">
+                <h1 className="font-elegant text-2xl font-bold">SalatSync</h1>
               </div>
-              <Link href="/">
-                <Button variant="ghost" className="nav-link">
-                  Home
-                </Button>
-              </Link>
+              <div className="flex items-center space-x-4">
+                <Link href="/">
+                  <Button variant="ghost" className="nav-link">
+                    Home
+                  </Button>
+                </Link>
+                <UserNav />
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        {/* Hero Header */}
+        <section className="hero-gradient text-primary-foreground px-6 py-16">
+          <div className="mx-auto max-w-6xl">
+            <h1 className="font-elegant mb-4 text-4xl font-bold md:text-5xl">
+              Welcome back, {user?.user_metadata?.full_name?.split(' ')[0] || 'User'}
+            </h1>
+            <p className="text-xl opacity-90 md:text-2xl">Your prayer times dashboard</p>
+          </div>
+        </section>
+
+        {/* Main Content */}
+        <div className="px-6 py-16" style={{ backgroundImage: 'url(/so-white.png)' }}>
+          <div className="mx-auto max-w-6xl">
+            {/* Prayer Times Display */}
+            <div className="mb-8">
+              <PrayerTimesDisplay />
+            </div>
+
+            {/* Settings Content */}
+            <Card className="shadow-xl">
+              <Tabs value={activeTab} onValueChange={setActiveTab}>
+                <div className="px-6 pt-6 pb-2">
+                  <TabsList className="grid w-full grid-cols-3 lg:inline-flex lg:w-auto">
+                    <TabsTrigger value="prayer" className="flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      <span className="hidden sm:inline">Prayer Times</span>
+                    </TabsTrigger>
+                    <TabsTrigger value="location" className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      <span className="hidden sm:inline">Location</span>
+                    </TabsTrigger>
+                    <TabsTrigger value="calendar" className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4" />
+                      <span className="hidden sm:inline">Calendar</span>
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+
+                <div className="px-6 pb-6">
+                  <TabsContent value="prayer">
+                    <PrayerSettingsTab />
+                  </TabsContent>
+
+                  <TabsContent value="location">
+                    <LocationSettingsTab />
+                  </TabsContent>
+
+                  <TabsContent value="calendar">
+                    <CalendarSettingsTab />
+                  </TabsContent>
+                </div>
+              </Tabs>
+            </Card>
+
+            {/* Footer Info */}
+            <div className="mt-6 text-center text-sm text-gray-500">
+              <p>
+                Last updated: {preferences.lastUpdated.toLocaleDateString()} at{' '}
+                {preferences.lastUpdated.toLocaleTimeString()}
+              </p>
+              <p className="mt-1">
+                Version: <Badge variant="secondary">{preferences.version}</Badge>
+              </p>
             </div>
           </div>
         </div>
-
-        {/* Dashboard Content */}
-        <div className="mx-auto max-w-6xl px-6 py-8">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {/* Calendar Integration */}
-            <CalendarSync />
-
-            <Card className="islamic-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MapPin className="h-5 w-5" />
-                  Location Settings
-                </CardTitle>
-                <CardDescription>
-                  {location
-                    ? `Current: ${location.city ? `${location.city}, ${location.country}` : `${location.latitude.toFixed(4)}, ${location.longitude.toFixed(4)}`}`
-                    : 'Set your location for accurate prayer times'}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {location ? (
-                  <div className="space-y-2">
-                    <Button variant="outline" className="w-full" onClick={requestLocation}>
-                      Update GPS Location
-                    </Button>
-                    <details className="w-full">
-                      <summary className="text-muted-foreground cursor-pointer text-sm">
-                        Or search for a different city
-                      </summary>
-                      <div className="mt-3">
-                        <LocationInput onLocationSet={setManualLocation} />
-                      </div>
-                    </details>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    <Button onClick={requestLocation} className="w-full">
-                      Use GPS Location
-                    </Button>
-                    <div className="text-muted-foreground text-center text-sm">or</div>
-                    <LocationInput onLocationSet={setManualLocation} />
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-
-            <Card className="islamic-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Settings className="h-5 w-5" />
-                  Preferences
-                </CardTitle>
-                <CardDescription>
-                  Customize notifications and prayer calculation methods
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button variant="outline" className="w-full">
-                  Configure
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Prayer Times Section */}
-          <div className="mt-8">
-            <h2 className="font-elegant mb-6 text-2xl font-bold">Today&apos;s Prayer Times</h2>
-            <Card className="islamic-card">
-              <CardContent className="p-6">
-                <div className="text-muted-foreground text-center">
-                  <Calendar className="mx-auto mb-4 h-12 w-12" />
-                  <p>Prayer times will be calculated based on your location</p>
-                  <Button className="mt-4">Enable Location Access</Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
+      </main>
     </ProtectedRoute>
   );
 }
 
 export default function DashboardPage() {
   return (
-    <Suspense fallback={<div>Loading dashboard...</div>}>
+    <Suspense fallback={<div>Loading...</div>}>
       <DashboardContent />
     </Suspense>
   );

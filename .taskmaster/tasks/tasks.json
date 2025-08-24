@@ -192,7 +192,7 @@
         "dependencies": [
           1
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -200,7 +200,7 @@
             "description": "Set up the adhan.js library and create a core service that handles the basic prayer time calculations with standard parameters.",
             "dependencies": [],
             "details": "Install adhan.js as a dependency. Create a PrayerTimeService class that wraps the library functionality. Implement methods to calculate prayer times based on coordinates, date, and calculation method. Create interfaces for prayer time results and calculation parameters. Export the service as a singleton for use throughout the application.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Compare calculated prayer times against verified sources for multiple locations. Create unit tests with known inputs and expected outputs. Test edge cases like polar regions and date line crossing."
           },
           {
@@ -211,7 +211,7 @@
               "4.1"
             ],
             "details": "Create enum or constants for all supported calculation methods (ISNA, Muslim World League, Egyptian General Authority, etc.). Implement configuration options for madhab settings (Shafi, Hanafi). Add method selection functionality to the prayer time service. Create utility functions to convert between different calculation method formats. Document the differences between calculation methods.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test each calculation method against verified sources. Create test cases for different madhab settings. Verify that switching between methods produces expected differences in prayer times."
           },
           {
@@ -222,7 +222,7 @@
               "4.1"
             ],
             "details": "Integrate a timezone library like date-fns-tz or Luxon. Create utility functions to convert prayer times between UTC and local timezones. Implement DST detection and handling logic. Add timezone information to the prayer time results. Create functions to format prayer times according to user preferences. Handle edge cases like locations that don't observe DST or have unusual timezone rules.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test timezone conversions for various locations worldwide. Verify correct handling of DST transitions (especially for prayers near transition times). Test locations with non-standard timezone offsets. Validate correct time display across different date formats."
           },
           {
@@ -235,7 +235,7 @@
               "4.3"
             ],
             "details": "Design a caching strategy for prayer times (in-memory, localStorage, or database). Create cache keys based on location, date, and calculation method. Implement cache invalidation rules based on time and parameter changes. Add methods to pre-calculate and cache prayer times for a date range. Create utilities to check cache freshness and validity. Implement batch calculation for efficient caching of multiple days.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Benchmark performance with and without caching. Test cache hit/miss scenarios. Verify cache invalidation works correctly when parameters change. Test edge cases like date changes and timezone shifts."
           },
           {
@@ -248,7 +248,7 @@
               "4.3"
             ],
             "details": "Create interfaces for custom prayer time adjustments (minutes or degrees). Implement adjustment application logic for each prayer time. Add validation functions to compare calculated times against reference sources. Create a configuration system for user preferences on adjustments. Implement high-latitude adjustment methods for polar regions. Add support for custom Fajr and Isha angles. Create utility functions to apply adjustments consistently across calculation methods.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test custom adjustments with various parameters. Validate adjusted prayer times against reference sources. Test extreme adjustments to ensure proper handling. Verify high-latitude methods work correctly in polar regions. Test that adjustments are correctly persisted and applied."
           }
         ]
@@ -264,7 +264,7 @@
           1,
           4
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -272,7 +272,7 @@
             "description": "Design and implement the data model for storing location information including coordinates, city, country, timezone, and location type (home, work, travel). Set up the database schema and create the necessary API endpoints for CRUD operations.",
             "dependencies": [],
             "details": "Create a Location model with fields: id, userId, name, type (enum: home, work, travel, other), latitude, longitude, address, city, country, timezone, isDefault, createdAt, updatedAt. Implement database schema using Prisma or similar ORM. Create API endpoints for creating, reading, updating, and deleting locations. Ensure proper indexing for efficient queries by userId.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Write unit tests for the model validation. Test API endpoints with various input combinations. Verify database operations correctly store and retrieve location data. Test edge cases like invalid coordinates or missing fields."
           },
           {
@@ -283,7 +283,7 @@
               "5.1"
             ],
             "details": "Build a React form component with fields for location details. Use a form library like Formik or React Hook Form for state management. Implement validation rules: required fields, coordinate format validation, character limits. Add autocomplete suggestions for city and country fields. Create error messages for validation failures. Implement submission handler to connect with the API endpoints created in subtask 1.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test form submission with valid and invalid data. Verify validation error messages appear correctly. Test autocomplete functionality. Ensure the form correctly handles API responses including errors."
           },
           {
@@ -294,7 +294,7 @@
               "5.1"
             ],
             "details": "Create a service to access browser's Geolocation API with proper error handling for permission denials. Integrate a geocoding service API (Google Maps, Mapbox, or OpenStreetMap) with appropriate rate limiting. Implement functions for forward geocoding (address to coordinates) and reverse geocoding (coordinates to address). Create a caching mechanism to reduce API calls. Handle API failures gracefully with user-friendly error messages.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test geolocation detection in different browsers. Verify geocoding accuracy with various address formats. Test reverse geocoding with different coordinate pairs. Validate error handling when location services are unavailable or denied."
           },
           {
@@ -307,7 +307,7 @@
               "5.3"
             ],
             "details": "Design and implement a location card component displaying location details. Create a location list view showing all saved locations with search and filter capabilities. Implement a location selector dropdown/component for quick switching between saved locations. Add a default location setting. Create a map view option for visual selection of locations. Ensure the UI updates all dependent components when location changes.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test the UI on different screen sizes to verify responsive design. Verify location switching correctly updates all dependent components. Test search and filter functionality. Ensure proper handling of empty states when no locations are saved."
           },
           {
@@ -318,7 +318,7 @@
               "5.3"
             ],
             "details": "Integrate an IP-based geolocation service (like ipapi.co or ipinfo.io) as a fallback. Implement a cascading fallback strategy: 1) Browser Geolocation API, 2) IP-based location, 3) Default location. Create a service to detect when primary location methods fail and trigger fallbacks automatically. Add user notifications when falling back to less accurate methods. Store the last known location in local storage as an additional fallback. Implement periodic location refresh for automatic detection methods.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test the fallback chain by simulating failures in primary location services. Verify IP-based location provides reasonable accuracy. Test behavior when all location services fail. Verify appropriate user notifications appear when fallbacks are used."
           }
         ]
@@ -335,7 +335,7 @@
           4,
           5
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -343,7 +343,7 @@
             "description": "Create the foundational responsive layout for the dashboard that will house all prayer time components. This includes the overall grid structure, navigation elements, and responsive breakpoints.",
             "dependencies": [],
             "details": "1. Create a new dashboard page component in the app directory\n2. Design a responsive grid layout using Tailwind CSS with appropriate sections for prayer times, countdown, and schedule views\n3. Implement a header with title and user information\n4. Create placeholder containers for each major component (today's prayers, countdown, weekly view, etc.)\n5. Add responsive breakpoints for mobile, tablet, and desktop views\n6. Implement theme support (light/dark mode) in the layout",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test the layout rendering on various screen sizes (mobile, tablet, desktop). Verify that the grid structure maintains integrity across breakpoints. Confirm theme switching functionality works correctly."
           },
           {
@@ -354,7 +354,7 @@
               "6.1"
             ],
             "details": "1. Create a PrayerTimesToday component that fetches prayer time data from the calculation engine\n2. Design a visually appealing card layout for each prayer showing name, time, and status (upcoming, current, completed)\n3. Implement status indicators using appropriate colors and icons\n4. Add time formatting based on user preferences (12/24 hour)\n5. Connect to the prayer time calculation engine to retrieve accurate times\n6. Implement loading states while data is being fetched\n7. Add error handling for calculation failures",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Verify prayer times match the calculation engine output. Test different time formats display correctly. Validate status indicators update appropriately based on current time. Test loading states and error handling scenarios."
           },
           {
@@ -365,7 +365,7 @@
               "6.2"
             ],
             "details": "1. Create a NextPrayerCountdown component that calculates time difference between current time and next prayer\n2. Implement a real-time countdown timer that updates every second\n3. Design a circular or linear progress indicator showing elapsed time\n4. Display prayer name, time, and remaining time in hours:minutes:seconds\n5. Add visual and text indicators when prayer time is very close (e.g., \"Asr in 5 minutes\")\n6. Implement smooth transitions when moving to the next prayer period\n7. Ensure timer accuracy with server-time synchronization",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test countdown accuracy against system clock. Verify smooth transitions between prayer periods. Test edge cases like countdown reaching zero and transitioning to next prayer. Validate visual indicators update correctly as time progresses."
           },
           {
@@ -376,7 +376,7 @@
               "6.2"
             ],
             "details": "1. Create a WeeklySchedule component that displays a 7-day view of prayer times\n2. Implement a tabular or card-based layout showing each day and its five prayer times\n3. Add date navigation controls to move between weeks\n4. Highlight the current day and upcoming prayers\n5. Include day/date formatting according to user preferences\n6. Implement responsive design for the weekly view that adapts to different screen sizes\n7. Add the ability to expand/collapse details for each day",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test weekly navigation controls function correctly. Verify highlighting of current day works properly. Test responsive layout on different devices. Validate that prayer times for future dates are calculated correctly."
           },
           {
@@ -387,7 +387,7 @@
               "6.4"
             ],
             "details": "1. Create a MonthlyCalendar component with a traditional calendar grid layout\n2. Implement month navigation controls (previous/next month)\n3. Design day cells that show abbreviated prayer time information\n4. Add functionality to select a specific day to view detailed prayer times\n5. Include visual indicators for special days (Fridays, Islamic holidays if available)\n6. Ensure the calendar is responsive and adapts to different screen sizes\n7. Implement efficient data fetching to avoid calculating all monthly prayer times at once",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test month navigation and day selection functionality. Verify prayer time data accuracy for selected days. Test responsive design across different devices. Validate performance with data loading for an entire month of prayer times."
           }
         ]
@@ -403,7 +403,7 @@
           3,
           4
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -411,7 +411,7 @@
             "description": "Configure the Google Calendar API client and integrate it with the existing OAuth authentication system to enable calendar access with appropriate scopes.",
             "dependencies": [],
             "details": "1. Install necessary Google API client libraries\n2. Create a Calendar API service configuration\n3. Connect to the existing OAuth system (Task 3)\n4. Request and store calendar-specific scopes: 'https://www.googleapis.com/auth/calendar' and 'https://www.googleapis.com/auth/calendar.events'\n5. Implement token management for Calendar API access\n6. Create utility functions for API initialization and authentication verification",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test OAuth flow with Calendar scopes, verify token acquisition and refresh, mock API responses to validate client configuration"
           },
           {
@@ -422,7 +422,7 @@
               "7.1"
             ],
             "details": "1. Create a function to check for existing prayer calendars in user's account\n2. Implement calendar creation with appropriate metadata (name, description, timezone)\n3. Store calendar ID in user preferences\n4. Add functionality to update calendar properties\n5. Implement calendar deletion/reset option\n6. Create error handling for calendar operations\n7. Add calendar visibility toggle functionality",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test calendar creation with various user settings, verify error handling for API failures, test calendar update and deletion operations"
           },
           {
@@ -433,7 +433,7 @@
               "7.2"
             ],
             "details": "1. Design prayer event data structure with all required fields\n2. Implement event creation function with prayer time data\n3. Add customizable reminder settings (5, 10, 15 minutes before)\n4. Implement color-coding for different prayer times (Fajr, Dhuhr, Asr, Maghrib, Isha)\n5. Create event description templates with prayer-specific information\n6. Add user preference storage for event settings\n7. Implement idempotent operations to prevent duplicate events",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test event creation with various prayer times, verify reminder settings are applied correctly, test color-coding for different prayers, validate idempotent operations prevent duplicates"
           },
           {
@@ -444,7 +444,7 @@
               "7.3"
             ],
             "details": "1. Create batch operation utility for respecting API rate limits\n2. Implement bulk event creation for specified date ranges\n3. Add progress tracking for bulk operations\n4. Develop mechanism for updating events when prayer times shift\n5. Implement conflict detection with existing events\n6. Create event cleanup functionality for outdated events\n7. Add error recovery for failed batch operations",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test bulk creation with various date ranges, verify rate limiting works correctly, test update mechanism when prayer times change, validate conflict detection and resolution"
           },
           {
@@ -455,7 +455,7 @@
               "7.4"
             ],
             "details": "1. Design and implement sync status indicators\n2. Create calendar settings UI with all customization options\n3. Implement sync history and logging\n4. Add manual sync trigger functionality\n5. Create error notification system for sync issues\n6. Implement background sync scheduling\n7. Add calendar preview component to show upcoming synced events\n8. Integrate with the Islamic Design System (Task 2)",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test UI components across different devices, verify sync status updates correctly, test settings changes propagate to events, validate error notifications work properly"
           }
         ]
@@ -471,7 +471,7 @@
           3,
           4
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -479,7 +479,7 @@
             "description": "Design and implement the data model for user preferences including calculation methods, notification settings, language, theme, and time format. Create the database schema to store these preferences.",
             "dependencies": [],
             "details": "Create a UserPreferences model with fields for: calculationMethod (enum), notificationSettings (object with toggles for different notifications), language (enum: 'en'/'ar'), theme (enum: 'light'/'dark'), timeFormat (enum: '12h'/'24h'). Implement database schema using Prisma or similar ORM. Include userId as a foreign key to link preferences to specific users. Add created/updated timestamps for tracking changes.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Write unit tests for the model validation. Test database operations (create, read, update) for user preferences. Verify constraints and default values are properly applied."
           },
           {
@@ -490,7 +490,7 @@
               "8.1"
             ],
             "details": "Create a Settings page with tabbed navigation for different preference categories (Calculation, Notifications, Display, etc.). Implement responsive design that works on mobile and desktop. Use appropriate UI components (toggles, dropdowns, radio buttons) for different setting types. Include breadcrumb navigation and clear section headers. Ensure proper accessibility attributes (aria-labels, focus states, keyboard navigation).",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test UI rendering on different screen sizes. Verify navigation between setting categories works correctly. Test keyboard navigation and screen reader compatibility. Conduct usability testing with sample users."
           },
           {
@@ -502,7 +502,7 @@
               "8.2"
             ],
             "details": "Create a PreferencesContext using React Context API to make preferences available throughout the app. Implement hooks (usePreferences) for components to access and update preferences. Create API endpoints for CRUD operations on preferences. Implement validation logic for each preference type. Add logic to apply preferences in real-time (e.g., theme changes, calculation method updates). Include a preferences initialization on app startup.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test preference loading and saving with various scenarios. Verify validation correctly handles invalid inputs. Test real-time application of preference changes. Verify context properly provides preferences to components."
           },
           {
@@ -513,7 +513,7 @@
               "8.3"
             ],
             "details": "Implement server-side storage of preferences linked to user accounts. Create API endpoints for fetching and updating preferences. Add client-side logic to detect preference changes and sync with server. Implement conflict resolution for simultaneous updates. Add offline support with local storage fallback. Include synchronization indicators to show sync status. Implement throttling to prevent excessive API calls during rapid changes.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test synchronization between multiple browser sessions. Verify offline changes are properly synced when connection is restored. Test conflict resolution with simultaneous updates. Measure and optimize synchronization performance."
           },
           {
@@ -524,7 +524,7 @@
               "8.3"
             ],
             "details": "Create a default preferences configuration object. Implement a reset function that restores all or specific preferences to defaults. Add confirmation dialog before resetting. Create utility functions for exporting preferences as JSON. Implement preference import functionality with validation. Add bulk update capability for efficiently changing multiple preferences. Include preference history/versioning to track changes over time.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test reset functionality for both individual settings and all preferences. Verify export/import correctly preserves all preference values. Test validation of imported preferences. Verify bulk updates are applied correctly. Test performance with large preference sets."
           }
         ]
@@ -1022,7 +1022,7 @@
     ],
     "metadata": {
       "created": "2025-08-23T22:50:54.636Z",
-      "updated": "2025-08-24T01:09:55.605Z",
+      "updated": "2025-08-24T14:16:51.234Z",
       "description": "Tasks for master context"
     }
   }

@@ -84,7 +84,7 @@ export default function Home() {
       </section>
 
       {/* Next Prayer Countdown */}
-      <section className="px-6 py-16">
+      <section className="px-6 py-16" style={{ backgroundImage: 'url(/so-white.png)' }}>
         <div className="mx-auto max-w-4xl">
           {!location ? (
             <div className="space-y-6">
