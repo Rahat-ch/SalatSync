@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -21,18 +21,18 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  
+
   /* Typography */
   --font-elegant: var(--font-playfair-display);
   --font-arabic: var(--font-amiri);
-  
+
   /* Design Tokens */
   --radius: 0.5rem;
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 4px);
   --radius-xl: calc(var(--radius) + 8px);
-  
+
   /* Shadows */
   --shadow-elegant: 0 10px 30px -10px hsl(158, 64%, 25%, 30%);
   --shadow-prayer: 0 8px 25px -8px hsl(45, 95%, 50%, 20%);
@@ -41,28 +41,28 @@
 
 :root {
   /* Islamic Color Palette - HSL Values */
-  --primary: hsl(158, 64%, 25%);           /* Deep Emerald Green */
+  --primary: hsl(158, 64%, 25%); /* Deep Emerald Green */
   --primary-foreground: hsl(45, 20%, 96%); /* Warm Cream */
-  --secondary: hsl(45, 95%, 50%);          /* Rich Gold */
+  --secondary: hsl(45, 95%, 50%); /* Rich Gold */
   --secondary-foreground: hsl(25, 15%, 15%); /* Dark Brown Text */
-  --accent: hsl(220, 70%, 25%);            /* Midnight Blue */
+  --accent: hsl(220, 70%, 25%); /* Midnight Blue */
   --accent-foreground: hsl(45, 20%, 96%); /* Warm Cream */
-  
+
   /* Background & Text Colors */
-  --background: hsl(45, 20%, 96%);         /* Warm Cream Background */
-  --foreground: hsl(25, 15%, 15%);         /* Dark Brown Text */
-  --card: hsl(45, 20%, 96%);               /* Warm Cream */
-  --card-foreground: hsl(25, 15%, 15%);    /* Dark Brown Text */
-  
+  --background: hsl(45, 20%, 96%); /* Warm Cream Background */
+  --foreground: hsl(25, 15%, 15%); /* Dark Brown Text */
+  --card: hsl(45, 20%, 96%); /* Warm Cream */
+  --card-foreground: hsl(25, 15%, 15%); /* Dark Brown Text */
+
   /* Muted Colors */
-  --muted: hsl(45, 10%, 90%);              /* Light Muted */
-  --muted-foreground: hsl(25, 10%, 45%);   /* Medium Muted */
-  
+  --muted: hsl(45, 10%, 90%); /* Light Muted */
+  --muted-foreground: hsl(25, 10%, 45%); /* Medium Muted */
+
   /* Border & Input Colors */
-  --border: hsl(25, 10%, 85%);             /* Light Border */
-  --input: hsl(45, 20%, 96%);              /* Warm Cream */
-  --ring: hsl(158, 64%, 25%);              /* Deep Emerald Green */
-  
+  --border: hsl(25, 10%, 85%); /* Light Border */
+  --input: hsl(45, 20%, 96%); /* Warm Cream */
+  --ring: hsl(158, 64%, 25%); /* Deep Emerald Green */
+
   /* Additional Islamic Colors */
   --emerald-light: hsl(158, 64%, 35%);
   --emerald-lighter: hsl(158, 64%, 45%);
@@ -70,20 +70,20 @@
   --gold-lighter: hsl(45, 95%, 70%);
   --midnight-light: hsl(220, 70%, 35%);
   --midnight-lighter: hsl(220, 70%, 45%);
-  
+
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, hsl(158, 64%, 25%), hsl(158, 64%, 35%));
   --gradient-secondary: linear-gradient(135deg, hsl(45, 95%, 50%), hsl(45, 95%, 60%));
   --gradient-hero: linear-gradient(135deg, hsl(158, 64%, 25%), hsl(220, 70%, 25%));
   --gradient-prayer: linear-gradient(145deg, hsl(45, 20%, 96%), hsl(45, 10%, 90%));
-  
+
   /* Islamic Geometric Pattern */
   --pattern-islamic: repeating-conic-gradient(
     from 0deg at 50% 50%,
     hsl(158, 64%, 25%, 0.1) 0deg 10deg,
     transparent 10deg 20deg
   );
-  
+
   /* Subtle Vertical Stripes Pattern */
   --pattern-subtle-stripes: repeating-linear-gradient(
     90deg,
@@ -92,7 +92,7 @@
     hsl(45, 18%, 94%) 1px,
     hsl(45, 18%, 94%) 2px
   );
-  
+
   /* Alternative subtle pattern with more variation */
   --pattern-subtle-ribbed: repeating-linear-gradient(
     90deg,
@@ -105,28 +105,28 @@
 
 .dark {
   /* Dark Theme - Islamic Night Colors */
-  --primary: hsl(158, 64%, 35%);           /* Lighter Emerald for dark mode */
+  --primary: hsl(158, 64%, 35%); /* Lighter Emerald for dark mode */
   --primary-foreground: hsl(45, 20%, 96%); /* Warm Cream */
-  --secondary: hsl(45, 95%, 60%);          /* Lighter Gold for dark mode */
+  --secondary: hsl(45, 95%, 60%); /* Lighter Gold for dark mode */
   --secondary-foreground: hsl(25, 15%, 15%); /* Dark Brown Text */
-  --accent: hsl(220, 70%, 35%);            /* Lighter Midnight Blue */
+  --accent: hsl(220, 70%, 35%); /* Lighter Midnight Blue */
   --accent-foreground: hsl(45, 20%, 96%); /* Warm Cream */
-  
+
   /* Dark Background & Text */
-  --background: hsl(25, 15%, 8%);          /* Very Dark Brown */
-  --foreground: hsl(45, 20%, 96%);         /* Warm Cream */
-  --card: hsl(25, 15%, 12%);               /* Dark Brown Card */
-  --card-foreground: hsl(45, 20%, 96%);    /* Warm Cream */
-  
+  --background: hsl(25, 15%, 8%); /* Very Dark Brown */
+  --foreground: hsl(45, 20%, 96%); /* Warm Cream */
+  --card: hsl(25, 15%, 12%); /* Dark Brown Card */
+  --card-foreground: hsl(45, 20%, 96%); /* Warm Cream */
+
   /* Dark Muted Colors */
-  --muted: hsl(25, 15%, 15%);              /* Dark Muted */
-  --muted-foreground: hsl(45, 10%, 70%);   /* Light Muted */
-  
+  --muted: hsl(25, 15%, 15%); /* Dark Muted */
+  --muted-foreground: hsl(45, 10%, 70%); /* Light Muted */
+
   /* Dark Border & Input */
-  --border: hsl(25, 15%, 20%);             /* Dark Border */
-  --input: hsl(25, 15%, 12%);              /* Dark Input */
-  --ring: hsl(158, 64%, 35%);              /* Lighter Emerald */
-  
+  --border: hsl(25, 15%, 20%); /* Dark Border */
+  --input: hsl(25, 15%, 12%); /* Dark Input */
+  --ring: hsl(158, 64%, 35%); /* Lighter Emerald */
+
   /* Dark Gradients */
   --gradient-primary: linear-gradient(135deg, hsl(158, 64%, 35%), hsl(158, 64%, 45%));
   --gradient-secondary: linear-gradient(135deg, hsl(45, 95%, 60%), hsl(45, 95%, 70%));
@@ -138,58 +138,65 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
     background-image: var(--pattern-islamic);
     background-size: 60px 60px;
     background-attachment: fixed;
   }
-  
+
   /* Typography Classes */
   .font-elegant {
     font-family: var(--font-playfair-display);
   }
-  
+
   .font-arabic {
     font-family: var(--font-amiri);
   }
-  
+
   /* Heading Styles */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-elegant font-semibold;
   }
-  
+
   /* Arabic Text */
   .arabic-text {
     @apply font-arabic text-right;
     direction: rtl;
   }
-  
+
   /* Islamic Design Elements */
   .islamic-border {
-    @apply border-2 border-primary/20 rounded-lg;
+    @apply border-primary/20 rounded-lg border-2;
     background: linear-gradient(135deg, hsl(158, 64%, 25%, 0.05), hsl(45, 95%, 50%, 0.05));
   }
-  
+
   .prayer-card {
-    @apply bg-gradient-to-br from-card to-muted rounded-lg shadow-prayer;
+    @apply from-card to-muted shadow-prayer rounded-lg bg-gradient-to-br;
     background: var(--gradient-prayer);
   }
-  
+
   .hero-gradient {
     background: var(--gradient-hero);
   }
-  
+
   .primary-gradient {
     background: var(--gradient-primary);
   }
-  
+
   .secondary-gradient {
     background: var(--gradient-secondary);
   }
@@ -198,29 +205,29 @@
 @layer components {
   /* Button Styles */
   .btn-primary {
-    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-elegant font-medium;
+    @apply bg-primary text-primary-foreground font-elegant rounded-lg px-6 py-3 font-medium;
     background: var(--gradient-primary);
     box-shadow: var(--shadow-elegant);
     transition: all 0.3s ease;
   }
-  
+
   .btn-primary:hover {
-    @apply transform -translate-y-1;
+    @apply -translate-y-1 transform;
     box-shadow: var(--shadow-prayer);
   }
-  
+
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-elegant font-medium;
+    @apply bg-secondary text-secondary-foreground font-elegant rounded-lg px-6 py-3 font-medium;
     background: var(--gradient-secondary);
     box-shadow: var(--shadow-prayer);
     transition: all 0.3s ease;
   }
-  
+
   .btn-secondary:hover {
-    @apply transform -translate-y-1;
+    @apply -translate-y-1 transform;
     box-shadow: var(--shadow-elegant);
   }
-  
+
   /* Card Styles */
   .islamic-card {
     @apply bg-card text-card-foreground rounded-lg p-6;
@@ -228,26 +235,26 @@
     border: 1px solid hsl(158, 64%, 25%, 0.1);
     transition: all 0.3s ease;
   }
-  
+
   .islamic-card:hover {
-    @apply transform -translate-y-2;
+    @apply -translate-y-2 transform;
     box-shadow: var(--shadow-elegant);
   }
-  
+
   /* Prayer Time Display */
   .prayer-time {
-    @apply font-elegant text-2xl font-semibold text-primary;
+    @apply font-elegant text-primary text-2xl font-semibold;
   }
-  
+
   .prayer-name {
-    @apply font-arabic text-xl text-secondary-foreground;
+    @apply font-arabic text-secondary-foreground text-xl;
   }
-  
+
   /* Navigation */
   .nav-link {
-    @apply font-elegant font-medium text-foreground/80 hover:text-primary transition-colors;
+    @apply font-elegant text-foreground/80 hover:text-primary font-medium transition-colors;
   }
-  
+
   .nav-link.active {
     @apply text-primary;
   }
@@ -261,52 +268,52 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   .text-gradient-secondary {
     background: var(--gradient-secondary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   /* Background Patterns */
   .bg-islamic-pattern {
     background-image: var(--pattern-islamic);
     background-size: 60px 60px;
   }
-  
+
   /* Subtle background patterns for main content */
   .bg-subtle-stripes {
     background-image: var(--pattern-subtle-stripes);
     background-size: 2px 100%;
   }
-  
+
   .bg-subtle-ribbed {
     background-image: var(--pattern-subtle-ribbed);
     background-size: 1px 100%;
   }
-  
+
   /* Content area background with subtle pattern */
   .bg-content-pattern {
     background-image: var(--pattern-subtle-stripes);
     background-size: 2px 100%;
     background-attachment: fixed;
   }
-  
+
   /* Glass Effect */
   .glass-effect {
-    @apply backdrop-blur-sm bg-white/10 border border-white/20;
+    @apply border border-white/20 bg-white/10 backdrop-blur-sm;
   }
-  
+
   /* Responsive Typography */
   .text-responsive-xl {
     @apply text-2xl md:text-3xl lg:text-4xl;
   }
-  
+
   .text-responsive-lg {
     @apply text-xl md:text-2xl lg:text-3xl;
   }
-  
+
   .text-responsive-md {
     @apply text-lg md:text-xl lg:text-2xl;
   }

@@ -1,26 +1,30 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="hero-gradient text-primary-foreground py-20 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="font-elegant text-responsive-xl font-bold mb-6">
-            SalatSync
-          </h1>
+      <section className="hero-gradient text-primary-foreground px-6 py-20">
+        <div className="mx-auto max-w-6xl text-center">
+          <h1 className="font-elegant text-responsive-xl mb-6 font-bold">SalatSync</h1>
           <p className="text-responsive-lg mb-8 opacity-90">
             Beautiful Islamic Prayer Times with Elegant Design
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="btn-primary text-lg px-8 py-6">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <Button size="lg" className="btn-primary px-8 py-6 text-lg">
               Get Prayer Times
             </Button>
-            <Button variant="secondary" size="lg" className="btn-secondary text-lg px-8 py-6">
+            <Button variant="secondary" size="lg" className="btn-secondary px-8 py-6 text-lg">
               Learn More
             </Button>
           </div>
@@ -28,17 +32,15 @@ export default function Home() {
       </section>
 
       {/* Design System Showcase */}
-      <section className="py-16 px-6 bg-content-pattern">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="font-elegant text-responsive-lg text-center mb-12 text-gradient-primary">
+      <section className="bg-content-pattern px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="font-elegant text-responsive-lg text-gradient-primary mb-12 text-center">
             Design System Showcase
           </h2>
 
           {/* Typography Section */}
           <div className="mb-16">
-            <h3 className="font-elegant text-2xl font-semibold mb-6 text-primary">
-              Typography
-            </h3>
+            <h3 className="font-elegant text-primary mb-6 text-2xl font-semibold">Typography</h3>
             <div className="grid gap-6">
               <Card className="islamic-card">
                 <CardHeader>
@@ -48,22 +50,22 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-responsive-md text-foreground/80">
-                    This elegant serif font is perfect for headings and titles, 
-                    providing a sophisticated and timeless appearance.
+                    This elegant serif font is perfect for headings and titles, providing a
+                    sophisticated and timeless appearance.
                   </p>
                 </CardContent>
               </Card>
-              
+
               <Card className="islamic-card">
                 <CardHeader>
-                  <CardTitle className="font-arabic text-2xl text-secondary-foreground text-right">
+                  <CardTitle className="font-arabic text-secondary-foreground text-right text-2xl">
                     خط أميري - الخط العربي
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-responsive-md text-foreground/80">
-                    The Amiri font beautifully displays Arabic text with proper 
-                    ligatures and traditional Islamic calligraphy aesthetics.
+                    The Amiri font beautifully displays Arabic text with proper ligatures and
+                    traditional Islamic calligraphy aesthetics.
                   </p>
                 </CardContent>
               </Card>
@@ -72,43 +74,33 @@ export default function Home() {
 
           {/* Color Palette Section */}
           <div className="mb-16">
-            <h3 className="font-elegant text-2xl font-semibold mb-6 text-primary">
-              Color Palette
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <h3 className="font-elegant text-primary mb-6 text-2xl font-semibold">Color Palette</h3>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               <Card className="islamic-card text-center">
                 <CardContent className="pt-6">
-                  <div className="w-20 h-20 bg-primary rounded-lg mx-auto mb-4"></div>
-                  <h4 className="font-elegant font-semibold text-primary mb-2">
-                    Deep Emerald
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    hsl(158, 64%, 25%)
-                  </p>
+                  <div className="bg-primary mx-auto mb-4 h-20 w-20 rounded-lg"></div>
+                  <h4 className="font-elegant text-primary mb-2 font-semibold">Deep Emerald</h4>
+                  <p className="text-muted-foreground text-sm">hsl(158, 64%, 25%)</p>
                 </CardContent>
               </Card>
-              
+
               <Card className="islamic-card text-center">
                 <CardContent className="pt-6">
-                  <div className="w-20 h-20 bg-secondary rounded-lg mx-auto mb-4"></div>
-                  <h4 className="font-elegant font-semibold text-secondary-foreground mb-2">
+                  <div className="bg-secondary mx-auto mb-4 h-20 w-20 rounded-lg"></div>
+                  <h4 className="font-elegant text-secondary-foreground mb-2 font-semibold">
                     Rich Gold
                   </h4>
-                  <p className="text-sm text-muted-foreground">
-                    hsl(45, 95%, 50%)
-                  </p>
+                  <p className="text-muted-foreground text-sm">hsl(45, 95%, 50%)</p>
                 </CardContent>
               </Card>
-              
+
               <Card className="islamic-card text-center">
                 <CardContent className="pt-6">
-                  <div className="w-20 h-20 bg-accent rounded-lg mx-auto mb-4"></div>
-                  <h4 className="font-elegant font-semibold text-accent-foreground mb-2">
+                  <div className="bg-accent mx-auto mb-4 h-20 w-20 rounded-lg"></div>
+                  <h4 className="font-elegant text-accent-foreground mb-2 font-semibold">
                     Midnight Blue
                   </h4>
-                  <p className="text-sm text-muted-foreground">
-                    hsl(220, 70%, 25%)
-                  </p>
+                  <p className="text-muted-foreground text-sm">hsl(220, 70%, 25%)</p>
                 </CardContent>
               </Card>
             </div>
@@ -116,22 +108,25 @@ export default function Home() {
 
           {/* Component Examples */}
           <div className="mb-16">
-            <h3 className="font-elegant text-2xl font-semibold mb-6 text-primary">
-              Components
-            </h3>
+            <h3 className="font-elegant text-primary mb-6 text-2xl font-semibold">Components</h3>
             <div className="grid gap-6">
               {/* Buttons */}
               <Card className="islamic-card">
                 <CardHeader>
-                  <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                  <CardTitle className="font-elegant text-primary text-xl font-semibold">
                     Buttons
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-4">
                     <Button className="btn-primary">Primary Button</Button>
-                    <Button variant="secondary" className="btn-secondary">Secondary Button</Button>
-                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                    <Button variant="secondary" className="btn-secondary">
+                      Secondary Button
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                    >
                       Outline Button
                     </Button>
                   </div>
@@ -141,17 +136,19 @@ export default function Home() {
               {/* Prayer Cards */}
               <Card className="islamic-card">
                 <CardHeader>
-                  <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                  <CardTitle className="font-elegant text-primary text-xl font-semibold">
                     Prayer Time Cards
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <Card className="prayer-card">
                       <CardContent className="pt-6 text-center">
                         <div className="prayer-name mb-2">الفجر</div>
                         <div className="prayer-time">5:30 AM</div>
-                        <Badge variant="secondary" className="mt-2">Next Prayer</Badge>
+                        <Badge variant="secondary" className="mt-2">
+                          Next Prayer
+                        </Badge>
                       </CardContent>
                     </Card>
                     <Card className="prayer-card">
@@ -167,22 +164,19 @@ export default function Home() {
               {/* Form Elements */}
               <Card className="islamic-card">
                 <CardHeader>
-                  <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                  <CardTitle className="font-elegant text-primary text-xl font-semibold">
                     Form Elements
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <label className="block font-elegant font-medium text-foreground mb-2">
+                    <label className="font-elegant text-foreground mb-2 block font-medium">
                       Location
                     </label>
-                    <Input 
-                      placeholder="Enter your city or location"
-                      className="font-elegant"
-                    />
+                    <Input placeholder="Enter your city or location" className="font-elegant" />
                   </div>
                   <div>
-                    <label className="block font-elegant font-medium text-foreground mb-2">
+                    <label className="font-elegant text-foreground mb-2 block font-medium">
                       Prayer Time
                     </label>
                     <Select>
@@ -198,16 +192,14 @@ export default function Home() {
                       </SelectContent>
                     </Select>
                   </div>
-                  <Button className="btn-primary w-full">
-                    Get Prayer Times
-                  </Button>
+                  <Button className="btn-primary w-full">Get Prayer Times</Button>
                 </CardContent>
               </Card>
 
               {/* Islamic Borders */}
               <Card className="islamic-card">
                 <CardHeader>
-                  <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                  <CardTitle className="font-elegant text-primary text-xl font-semibold">
                     Islamic Borders
                   </CardTitle>
                 </CardHeader>
@@ -224,36 +216,26 @@ export default function Home() {
 
           {/* Gradients Section */}
           <div className="mb-16">
-            <h3 className="font-elegant text-2xl font-semibold mb-6 text-primary">
-              Gradients
-            </h3>
+            <h3 className="font-elegant text-primary mb-6 text-2xl font-semibold">Gradients</h3>
             <div className="grid gap-6">
               <Card className="hero-gradient border-0">
-                <CardContent className="pt-6 text-center text-primary-foreground">
-                  <h4 className="font-elegant text-2xl font-semibold mb-2">
-                    Hero Gradient
-                  </h4>
-                  <p className="text-lg opacity-90">
-                    Emerald to Midnight Blue transition
-                  </p>
+                <CardContent className="text-primary-foreground pt-6 text-center">
+                  <h4 className="font-elegant mb-2 text-2xl font-semibold">Hero Gradient</h4>
+                  <p className="text-lg opacity-90">Emerald to Midnight Blue transition</p>
                 </CardContent>
               </Card>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <Card className="primary-gradient border-0">
-                  <CardContent className="pt-6 text-center text-primary-foreground">
-                    <h4 className="font-elegant text-xl font-semibold mb-2">
-                      Primary Gradient
-                    </h4>
+                  <CardContent className="text-primary-foreground pt-6 text-center">
+                    <h4 className="font-elegant mb-2 text-xl font-semibold">Primary Gradient</h4>
                     <p>Emerald variations</p>
                   </CardContent>
                 </Card>
-                
+
                 <Card className="secondary-gradient border-0">
-                  <CardContent className="pt-6 text-center text-secondary-foreground">
-                    <h4 className="font-elegant text-xl font-semibold mb-2">
-                      Secondary Gradient
-                    </h4>
+                  <CardContent className="text-secondary-foreground pt-6 text-center">
+                    <h4 className="font-elegant mb-2 text-xl font-semibold">Secondary Gradient</h4>
                     <p>Gold variations</p>
                   </CardContent>
                 </Card>
@@ -263,7 +245,7 @@ export default function Home() {
 
           {/* Responsive Design */}
           <div className="mb-16">
-            <h3 className="font-elegant text-2xl font-semibold mb-6 text-primary">
+            <h3 className="font-elegant text-primary mb-6 text-2xl font-semibold">
               Responsive Design
             </h3>
             <Card className="islamic-card">
@@ -285,13 +267,13 @@ export default function Home() {
 
           {/* Background Patterns for Content */}
           <div className="mb-16">
-            <h3 className="font-elegant text-2xl font-semibold mb-6 text-primary">
+            <h3 className="font-elegant text-primary mb-6 text-2xl font-semibold">
               Content Background Patterns
             </h3>
             <div className="grid gap-6">
               <Card className="islamic-card">
                 <CardHeader>
-                  <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                  <CardTitle className="font-elegant text-primary text-xl font-semibold">
                     Subtle Vertical Stripes
                   </CardTitle>
                   <CardDescription>
@@ -299,9 +281,10 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-subtle-stripes p-8 rounded-lg min-h-[200px] flex items-center justify-center">
+                  <div className="bg-subtle-stripes flex min-h-[200px] items-center justify-center rounded-lg p-8">
                     <p className="text-foreground/80 text-center">
-                      This area demonstrates the subtle vertical stripes pattern.<br />
+                      This area demonstrates the subtle vertical stripes pattern.
+                      <br />
                       It provides texture without interfering with content readability.
                     </p>
                   </div>
@@ -310,7 +293,7 @@ export default function Home() {
 
               <Card className="islamic-card">
                 <CardHeader>
-                  <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                  <CardTitle className="font-elegant text-primary text-xl font-semibold">
                     Subtle Ribbed Pattern
                   </CardTitle>
                   <CardDescription>
@@ -318,9 +301,10 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-subtle-ribbed p-8 rounded-lg min-h-[200px] flex items-center justify-center">
+                  <div className="bg-subtle-ribbed flex min-h-[200px] items-center justify-center rounded-lg p-8">
                     <p className="text-foreground/80 text-center">
-                      This area shows the ribbed pattern variation.<br />
+                      This area shows the ribbed pattern variation.
+                      <br />
                       Slightly more refined with 1px spacing.
                     </p>
                   </div>
@@ -329,30 +313,30 @@ export default function Home() {
 
               <Card className="islamic-card">
                 <CardHeader>
-                  <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                  <CardTitle className="font-elegant text-primary text-xl font-semibold">
                     Content Area with Pattern
                   </CardTitle>
-                  <CardDescription>
-                    How to use patterns in main content sections
-                  </CardDescription>
+                  <CardDescription>How to use patterns in main content sections</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-subtle-stripes p-6 rounded-lg">
-                    <h4 className="font-elegant text-lg font-semibold text-primary mb-3">
+                  <div className="bg-subtle-stripes rounded-lg p-6">
+                    <h4 className="font-elegant text-primary mb-3 text-lg font-semibold">
                       Main Content Section
                     </h4>
                     <p className="text-foreground/80 mb-3">
-                      This demonstrates how the subtle pattern works with actual content.
-                      The pattern adds visual interest without compromising readability.
+                      This demonstrates how the subtle pattern works with actual content. The
+                      pattern adds visual interest without compromising readability.
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                      <div className="bg-card/50 p-4 rounded-lg">
-                        <h5 className="font-elegant font-semibold text-primary mb-2">Feature 1</h5>
-                        <p className="text-sm text-foreground/70">Content over pattern background</p>
+                    <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                      <div className="bg-card/50 rounded-lg p-4">
+                        <h5 className="font-elegant text-primary mb-2 font-semibold">Feature 1</h5>
+                        <p className="text-foreground/70 text-sm">
+                          Content over pattern background
+                        </p>
                       </div>
-                      <div className="bg-card/50 p-4 rounded-lg">
-                        <h5 className="font-elegant font-semibold text-primary mb-2">Feature 2</h5>
-                        <p className="text-sm text-foreground/70">More content examples</p>
+                      <div className="bg-card/50 rounded-lg p-4">
+                        <h5 className="font-elegant text-primary mb-2 font-semibold">Feature 2</h5>
+                        <p className="text-foreground/70 text-sm">More content examples</p>
                       </div>
                     </div>
                   </div>
@@ -363,38 +347,37 @@ export default function Home() {
 
           {/* Interactive Demo */}
           <div className="mb-16">
-            <h3 className="font-elegant text-2xl font-semibold mb-6 text-primary">
+            <h3 className="font-elegant text-primary mb-6 text-2xl font-semibold">
               Interactive Demo
             </h3>
             <Card className="islamic-card">
               <CardHeader>
-                <CardTitle className="font-elegant text-xl font-semibold text-primary">
+                <CardTitle className="font-elegant text-primary text-xl font-semibold">
                   Prayer Time Calculator
                 </CardTitle>
-                <CardDescription>
-                  Enter your location to get accurate prayer times
-                </CardDescription>
+                <CardDescription>Enter your location to get accurate prayer times</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div>
-                    <label className="block font-elegant font-medium text-foreground mb-2">
+                    <label className="font-elegant text-foreground mb-2 block font-medium">
                       City
                     </label>
                     <Input placeholder="e.g., Mecca, Medina, Istanbul" />
                   </div>
                   <div>
-                    <label className="block font-elegant font-medium text-foreground mb-2">
+                    <label className="font-elegant text-foreground mb-2 block font-medium">
                       Country
                     </label>
                     <Input placeholder="e.g., Saudi Arabia, Turkey" />
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <Button className="btn-primary flex-1">
-                    Calculate Times
-                  </Button>
-                  <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  <Button className="btn-primary flex-1">Calculate Times</Button>
+                  <Button
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  >
                     Reset
                   </Button>
                 </div>
@@ -405,9 +388,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-muted py-12 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h3 className="font-elegant text-2xl font-semibold mb-4 text-gradient-primary">
+      <footer className="bg-muted px-6 py-12">
+        <div className="mx-auto max-w-6xl text-center">
+          <h3 className="font-elegant text-gradient-primary mb-4 text-2xl font-semibold">
             SalatSync
           </h3>
           <p className="text-foreground/80 mb-6">

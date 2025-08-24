@@ -107,7 +107,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // Input field
-<Input 
+<Input
   placeholder="Enter location"
   className="font-elegant"
 />
@@ -132,7 +132,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
     <label className="block font-elegant font-medium text-foreground mb-2">
       Location
     </label>
-    <Input 
+    <Input
       placeholder="Enter your city"
       className="font-elegant"
     />
@@ -250,43 +250,38 @@ import { Button } from "@/components/ui/button";
 ### Enhanced Form Components
 
 ```tsx
-import { Badge } from "@/components/ui/badge";
+import { Badge } from '@/components/ui/badge';
 
 // Form with validation and styling
 <Card className="islamic-card">
   <CardHeader>
-    <CardTitle className="font-elegant text-xl font-semibold text-primary">
+    <CardTitle className="font-elegant text-primary text-xl font-semibold">
       Prayer Time Calculator
     </CardTitle>
-    <CardDescription>
-      Enter your location to get accurate prayer times
-    </CardDescription>
+    <CardDescription>Enter your location to get accurate prayer times</CardDescription>
   </CardHeader>
   <CardContent className="space-y-4">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <label className="block font-elegant font-medium text-foreground mb-2">
-          City
-        </label>
+        <label className="font-elegant text-foreground mb-2 block font-medium">City</label>
         <Input placeholder="e.g., Mecca, Medina, Istanbul" />
       </div>
       <div>
-        <label className="block font-elegant font-medium text-foreground mb-2">
-          Country
-        </label>
+        <label className="font-elegant text-foreground mb-2 block font-medium">Country</label>
         <Input placeholder="e.g., Saudi Arabia, Turkey" />
       </div>
     </div>
     <div className="flex gap-3">
-      <Button className="btn-primary flex-1">
-        Calculate Times
-      </Button>
-      <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+      <Button className="btn-primary flex-1">Calculate Times</Button>
+      <Button
+        variant="outline"
+        className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+      >
         Reset
       </Button>
     </div>
   </CardContent>
-</Card>
+</Card>;
 ```
 
 ## 📱 Responsive Design Patterns
@@ -434,7 +429,7 @@ The design system automatically handles dark mode, and shadcn/ui components inhe
 // Consistent card styling
 <Card className="islamic-card">
   <CardHeader>
-    <CardTitle className="font-elegant text-xl font-semibold text-primary">
+    <CardTitle className="font-elegant text-primary text-xl font-semibold">
       Consistent Title
     </CardTitle>
   </CardHeader>
@@ -451,27 +446,27 @@ The design system automatically handles dark mode, and shadcn/ui components inhe
 ```tsx
 // In your button.tsx component
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-lg font-elegant font-medium transition-all",
+  'inline-flex items-center justify-center rounded-lg font-elegant font-medium transition-all',
   {
     variants: {
       variant: {
-        default: "btn-primary",
-        secondary: "btn-secondary",
-        islamic: "islamic-border bg-gradient-to-r from-primary/10 to-secondary/10",
-        prayer: "prayer-card text-center",
+        default: 'btn-primary',
+        secondary: 'btn-secondary',
+        islamic: 'islamic-border bg-gradient-to-r from-primary/10 to-secondary/10',
+        prayer: 'prayer-card text-center',
       },
       size: {
-        default: "px-6 py-3",
-        sm: "px-4 py-2",
-        lg: "px-8 py-4",
+        default: 'px-6 py-3',
+        sm: 'px-4 py-2',
+        lg: 'px-8 py-4',
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
+      variant: 'default',
+      size: 'default',
     },
   }
-)
+);
 ```
 
 ### Extended Components
@@ -479,25 +474,34 @@ const buttonVariants = cva(
 ```tsx
 // Prayer time display component with shadcn/ui
 const PrayerTime = ({ name, time, isNext }) => (
-  <Card className={`prayer-card ${isNext ? 'ring-2 ring-secondary' : ''}`}>
+  <Card className={`prayer-card ${isNext ? 'ring-secondary ring-2' : ''}`}>
     <CardContent className="pt-6 text-center">
-      <div className="prayer-name font-arabic text-lg mb-1">{name}</div>
+      <div className="prayer-name font-arabic mb-1 text-lg">{name}</div>
       <div className="prayer-time font-elegant text-xl">{time}</div>
       {isNext && (
-        <Badge variant="secondary" className="mt-2">Next Prayer</Badge>
+        <Badge variant="secondary" className="mt-2">
+          Next Prayer
+        </Badge>
       )}
     </CardContent>
   </Card>
 );
 
 // Usage
-<PrayerTime name="الفجر" time="5:30 AM" isNext={true} />
+<PrayerTime name="الفجر" time="5:30 AM" isNext={true} />;
 ```
 
 ### Form Components with Validation
 
 ```tsx
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 
 <Form {...form}>
   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -506,9 +510,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
       name="location"
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="font-elegant font-medium text-primary">
-            Location
-          </FormLabel>
+          <FormLabel className="font-elegant text-primary font-medium">Location</FormLabel>
           <FormControl>
             <Input placeholder="Enter your city" {...field} />
           </FormControl>
@@ -520,29 +522,32 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
       Get Prayer Times
     </Button>
   </form>
-</Form>
+</Form>;
 ```
 
 ## 🚀 Performance Tips
 
 ### 1. Component Optimization
+
 - Use shadcn/ui components for consistent behavior
 - Apply design system classes for styling
 - Leverage Tailwind's JIT compilation
 
 ### 2. Font Loading
+
 - Google Fonts are optimized by Next.js
 - Use font-display: swap for better performance
 - Consider font preloading for critical text
 
 ### 3. CSS Optimization
+
 - Design system uses CSS custom properties
 - Minimal CSS duplication
 - Efficient class combinations
 
 ---
 
-*This showcase demonstrates the powerful combination of shadcn/ui components with the SalatSync Islamic design system. Use these examples to build beautiful, accessible, and culturally appropriate prayer time applications.*
+_This showcase demonstrates the powerful combination of shadcn/ui components with the SalatSync Islamic design system. Use these examples to build beautiful, accessible, and culturally appropriate prayer time applications._
 
 ### Background Patterns
 

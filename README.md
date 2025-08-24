@@ -28,6 +28,7 @@ SalatSync combines the best of both worlds:
 - **Consistent Experience**: Professional functionality with Islamic visual identity
 
 ### **Component Examples**
+
 ```tsx
 // Enhanced shadcn/ui Button with Islamic styling
 <Button className="btn-primary">Get Prayer Times</Button>
@@ -55,18 +56,20 @@ SalatSync combines the best of both worlds:
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/yourusername/salatsync.git
    cd salatsync
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # or
@@ -74,6 +77,7 @@ SalatSync combines the best of both worlds:
    ```
 
 3. **Run the development server**
+
    ```bash
    npm run dev
    # or
@@ -119,17 +123,20 @@ salatsync/
 ## 🎯 Key Design Principles
 
 ### Islamic Aesthetics
+
 - Warm, earthy color palette inspired by Islamic art
 - Geometric patterns and elegant borders
 - Respectful and culturally appropriate design
 
 ### Professional UI with shadcn/ui
+
 - Accessible, semantic components
 - Consistent behavior and interactions
 - Built-in dark mode support
 - Keyboard navigation and screen reader support
 
 ### Developer Experience
+
 - Semantic color tokens and design variables
 - Reusable component classes
 - Comprehensive documentation
@@ -173,7 +180,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // Enhanced form elements
-<Input 
+<Input
   placeholder="Enter location"
   className="font-elegant"
 />
@@ -203,6 +210,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 ## 🌙 Dark Mode
 
 The design system automatically supports dark mode with:
+
 - Automatic theme detection
 - Islamic night color palette
 - Maintained visual hierarchy
@@ -212,6 +220,7 @@ The design system automatically supports dark mode with:
 ## 📱 Responsive Design
 
 Built with a mobile-first approach:
+
 - Responsive typography scales
 - Adaptive component layouts
 - Touch-friendly interactions
@@ -245,17 +254,17 @@ Built with a mobile-first approach:
 ```tsx
 // In your button.tsx component
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-lg font-elegant font-medium transition-all",
+  'inline-flex items-center justify-center rounded-lg font-elegant font-medium transition-all',
   {
     variants: {
       variant: {
-        default: "btn-primary",
-        secondary: "btn-secondary",
-        islamic: "islamic-border bg-gradient-to-r from-primary/10 to-secondary/10",
+        default: 'btn-primary',
+        secondary: 'btn-secondary',
+        islamic: 'islamic-border bg-gradient-to-r from-primary/10 to-secondary/10',
       },
     },
   }
-)
+);
 ```
 
 ## 📚 Documentation
@@ -290,25 +299,31 @@ We welcome contributions! Please see our contributing guidelines:
 This project is licensed under the **MIT License with Attribution Requirement** - see the [LICENSE](LICENSE) file for details.
 
 ### **License Summary**
+
 - **Open Source**: Free to use, modify, and distribute
 - **Attribution Required**: Must give credit to the original author and project
 - **Commercial Use**: Allowed with attribution
 - **Modifications**: Allowed with attribution
 
 ### **Attribution Requirements**
+
 When using this software in any public-facing application, website, or product, you must include visible credit that includes:
+
 - Project name: "SalatSync"
 - Author: "[Your Name]"
 - Link to the original repository (if applicable)
 
 The credit can be displayed in:
+
 - Application's "About" section or credits page
 - Application's footer or header
 - README or documentation
 - Source code comments
 
 ### **Why This License?**
+
 This license ensures that:
+
 - Your work remains open and accessible to the community
 - Users can freely use and build upon your design system
 - You receive proper recognition for your contributions
@@ -326,4 +341,4 @@ This license ensures that:
 
 **Built with ❤️ for the Islamic community**
 
-*SalatSync combines modern web development with traditional Islamic aesthetics, using professional UI components to create a beautiful and functional prayer times application.*
+_SalatSync combines modern web development with traditional Islamic aesthetics, using professional UI components to create a beautiful and functional prayer times application._
