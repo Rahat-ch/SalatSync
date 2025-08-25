@@ -22,8 +22,9 @@ const amiri = Amiri({
 });
 
 export const metadata: Metadata = {
-  title: 'SalatSync - Islamic Prayer Times',
-  description: 'Beautiful Islamic prayer times app with elegant design and accurate timings',
+  title: 'SalatSync - Schedule Your Day Around Prayer Time',
+  description:
+    'Connect your Google Calendar and get automatic prayer time reminders calculated precisely for your location.',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -35,15 +36,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'SalatSync',
-    title: 'SalatSync - Islamic Prayer Times',
+    title: 'SalatSync - Schedule Your Day Around Prayer Time',
     description:
-      'Never miss a prayer time again. Automatic Islamic prayer time tracking with Google Calendar integration.',
+      'Connect your Google Calendar and get automatic prayer time reminders calculated precisely for your location.',
   },
   twitter: {
-    card: 'summary',
-    title: 'SalatSync - Islamic Prayer Times',
+    card: 'summary_large_image',
+    title: 'SalatSync - Schedule Your Day Around Prayer Time',
     description:
-      'Never miss a prayer time again. Automatic Islamic prayer time tracking with Google Calendar integration.',
+      'Connect your Google Calendar and get automatic prayer time reminders calculated precisely for your location.',
   },
 };
 

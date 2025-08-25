@@ -20,6 +20,19 @@ export interface CalendarEvent {
   };
 }
 
+interface GoogleCalendarEventItem {
+  summary?: string;
+  description?: string;
+  start?: {
+    dateTime?: string;
+    timeZone?: string;
+  };
+  end?: {
+    dateTime?: string;
+    timeZone?: string;
+  };
+}
+
 export class GoogleCalendarClient {
   private accessToken: string;
 
@@ -125,7 +138,7 @@ export class GoogleCalendarClient {
 
     // Filter for prayer time events (we'll identify them by title or description)
     return events.filter(
-      (event: any) =>
+      (event: GoogleCalendarEventItem) =>
         event.summary?.includes('Prayer') ||
         event.description?.includes('SalatSync') ||
         ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].some((prayer) =>

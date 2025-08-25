@@ -13,10 +13,10 @@ import PrayerSettingsTab from '@/components/settings/PrayerSettingsTab';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { useAuth } from '@/contexts/AuthContext';
-import { usePreferences } from '@/contexts/PreferencesContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { UserNav } from '@/components/UserNav';
+import { useAuth } from '@/contexts/AuthContext';
+import { usePreferences } from '@/contexts/PreferencesContext';
 
 function DashboardContent() {
   const { user } = useAuth();
