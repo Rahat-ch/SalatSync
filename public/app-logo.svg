@@ -1,0 +1,38 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="60" cy="60" r="60" fill="url(#gradient)" />
+  
+  <!-- Mosque Silhouette -->
+  <path d="M30 85 L30 65 Q30 55 40 55 L50 55 Q60 45 70 55 L80 55 Q90 55 90 65 L90 85 Z" fill="white" opacity="0.9"/>
+  
+  <!-- Main Dome -->
+  <ellipse cx="60" cy="55" rx="15" ry="12" fill="white" opacity="0.9"/>
+  
+  <!-- Minaret -->
+  <rect x="45" y="40" width="4" height="25" fill="white" opacity="0.9"/>
+  <ellipse cx="47" cy="38" rx="3" ry="4" fill="white" opacity="0.9"/>
+  
+  <!-- Minaret 2 -->
+  <rect x="71" y="40" width="4" height="25" fill="white" opacity="0.9"/>
+  <ellipse cx="73" cy="38" rx="3" ry="4" fill="white" opacity="0.9"/>
+  
+  <!-- Crescent Moon -->
+  <path d="M60 25 Q65 20 70 25 Q65 30 60 25" fill="#FCD34D"/>
+  
+  <!-- Calendar Icon Overlay -->
+  <rect x="75" y="70" width="16" height="14" rx="2" fill="white" stroke="#065F46" stroke-width="1"/>
+  <rect x="77" y="72" width="12" height="2" fill="#065F46"/>
+  <circle cx="79" cy="77" r="1" fill="#065F46"/>
+  <circle cx="83" cy="77" r="1" fill="#065F46"/>
+  <circle cx="87" cy="77" r="1" fill="#065F46"/>
+  <circle cx="79" cy="80" r="1" fill="#065F46"/>
+  <circle cx="83" cy="80" r="1" fill="#065F46"/>
+  
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#065F46;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10B981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

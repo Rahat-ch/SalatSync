@@ -25,6 +25,16 @@ export const metadata: Metadata = {
   title: 'SalatSync - Schedule Your Day Around Prayer Time',
   description:
     'Connect your Google Calendar and get automatic prayer time reminders calculated precisely for your location.',
+  applicationName: 'SalatSync',
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+    shortcut: '/logo.png',
+    other: {
+      rel: 'icon',
+      url: '/logo.png',
+    },
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -33,6 +43,7 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: false,
   },
+  manifest: '/manifest.webmanifest',
   openGraph: {
     type: 'website',
     siteName: 'SalatSync',
@@ -60,14 +71,7 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
         />
-        <meta name="theme-color" content="#16a34a" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="SalatSync" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
-        <link rel="shortcut icon" href="/favicon-32x32.png" />
+        <meta name="theme-color" content="#065f46" />
       </head>
       <body
         className={`${playfairDisplay.variable} ${amiri.variable} antialiased`}

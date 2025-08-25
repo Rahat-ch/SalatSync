@@ -79,6 +79,13 @@ function DashboardContent() {
           <div className="mx-auto max-w-6xl px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
+                <img
+                  src="/logo.png"
+                  alt="SalatSync Logo"
+                  width={32}
+                  height={32}
+                  className="rounded-full"
+                />
                 <h1 className="font-elegant text-2xl font-bold">SalatSync</h1>
               </div>
               <div className="flex items-center space-x-4">

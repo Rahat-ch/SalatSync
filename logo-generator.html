@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SalatSync Logo Generator</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: white;
+            font-family: Arial, sans-serif;
+        }
+        .logo-container {
+            text-align: center;
+            padding: 40px;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #065F46 0%, #047857 50%, #10B981 100%);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(6, 95, 70, 0.3);
+        }
+        .mosque {
+            position: absolute;
+            color: white;
+            font-size: 48px;
+        }
+        .crescent {
+            position: absolute;
+            top: 15px;
+            color: #FCD34D;
+            font-size: 20px;
+        }
+        .calendar-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 2px;
+            border: 1px solid #065F46;
+        }
+        .calendar-icon::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            height: 2px;
+            background: #065F46;
+        }
+        .calendar-icon::after {
+            content: '•••';
+            position: absolute;
+            top: 6px;
+            left: 2px;
+            font-size: 6px;
+            color: #065F46;
+            line-height: 1;
+        }
+        .title {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #065F46;
+        }
+        .instructions {
+            margin-top: 20px;
+            color: #666;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo">
+            <div class="crescent">☪</div>
+            <div class="mosque">🕌</div>
+            <div class="calendar-icon"></div>
+        </div>
+        <div class="title">SalatSync</div>
+        <div class="instructions">
+            Right-click on the logo above and "Save image as..." to download the app logo for your OAuth consent screen.
+            Save it as "salatsync-logo.png"
+        </div>
+    </div>
+</body>
+</html>
