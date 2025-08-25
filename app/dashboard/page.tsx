@@ -1,6 +1,7 @@
 'use client';
 
 import { Clock, MapPin, Calendar } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, Suspense } from 'react';
@@ -79,7 +80,7 @@ function DashboardContent() {
           <div className="mx-auto max-w-6xl px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <img
+                <Image
                   src="/logo.png"
                   alt="SalatSync Logo"
                   width={32}
