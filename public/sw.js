@@ -1,4 +1,4 @@
-const CACHE_NAME = 'salatsync-v1';
+const CACHE_NAME = `salatsync-v${Date.now()}`;
 const urlsToCache = [
   '/',
   '/icons/icon-192x192.png',
@@ -45,11 +45,48 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Skip caching for API routes and dynamic content
+  if (event.request.url.includes('/api/') || event.request.url.includes('_next/static/chunks/')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
+        // If we have a cached version, return it but also fetch fresh version in background
+        if (response) {
+          // For static assets, fetch fresh version in background
+          if (event.request.destination === 'script' || 
+              event.request.destination === 'style' || 
+              event.request.destination === 'image') {
+            fetch(event.request).then((freshResponse) => {
+              if (freshResponse.status === 200) {
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(event.request, freshResponse.clone());
+                });
+              }
+            });
+          }
+          return response;
+        }
+        
+        // If no cached version, fetch from network
+        return fetch(event.request).then((response) => {
+          // Don't cache if not a valid response
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+          
+          // Clone the response
+          const responseToCache = response.clone();
+          
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+          
+          return response;
+        });
       })
       .catch(() => {
         // If both cache and network fail, show offline page

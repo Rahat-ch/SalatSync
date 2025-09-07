@@ -3,7 +3,9 @@
 import { MapPin, Calendar } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
+import AboutModal from '@/components/AboutModal';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { UserNav } from '@/components/UserNav';
@@ -13,6 +15,7 @@ import { usePrayerTimes } from '@/contexts/PrayerTimesContext';
 export default function Home() {
   const { user } = useAuth();
   const { nextPrayer } = usePrayerTimes();
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
 
   return (
     <main className="bg-background min-h-screen">
@@ -95,6 +98,7 @@ export default function Home() {
                   size="lg"
                   variant="outline"
                   className="border-white bg-white/10 text-white hover:bg-white/20"
+                  onClick={() => setIsAboutModalOpen(true)}
                 >
                   Learn More
                 </Button>
@@ -327,6 +331,9 @@ export default function Home() {
           <p className="text-sm text-green-100">Built with love for the Ummah</p>
         </div>
       </footer>
+
+      {/* About Modal */}
+      <AboutModal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} />
     </main>
   );
 }
