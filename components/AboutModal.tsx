@@ -65,8 +65,7 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
               <p className="mb-4 text-base leading-relaxed">
                 This tool represents more than just a calendar integration, it&apos;s about helping
                 fellow Muslims in tech and beyond stay connected to their faith through the power of
-                modern technology. Every feature is designed with the Muslim developer experience in
-                mind.
+                modern technology.
               </p>
 
               <div className="rounded-r-lg border-l-4 border-green-500 bg-green-50 p-4">
