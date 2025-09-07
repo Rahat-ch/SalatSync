@@ -1,11 +1,6 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  // Enable experimental features for better caching
-  experimental: {
-    optimizeCss: true,
-  },
-
   // Configure headers for better cache control
   async headers() {
     return [
