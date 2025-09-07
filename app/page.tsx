@@ -321,7 +321,7 @@ export default function Home() {
               href="/privacy"
               className="text-sm text-green-100 transition-colors duration-200 hover:text-white"
             >
-              Privacy
+              Privacy Policy
             </Link>
           </div>
           <p className="text-sm text-green-100">Built with love for the Ummah</p>
