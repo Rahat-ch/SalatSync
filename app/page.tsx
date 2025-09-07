@@ -224,18 +224,18 @@ export default function Home() {
 
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
             {/* Google Calendar Integration */}
-            <Card className="border-0 p-6 text-center shadow-lg">
+            <Card className="flex h-full flex-col border-0 p-6 text-center shadow-lg">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center">
                 <Calendar className="h-10 w-10 text-green-600" />
               </div>
               <h3 className="mb-2 text-lg font-semibold">Google Calendar Integration</h3>
-              <p className="text-sm text-gray-600">
+              <p className="flex-grow text-sm text-gray-600">
                 Seamlessly sync prayer times with your Google Calendar for automatic reminders
               </p>
             </Card>
 
             {/* Mobile Optimized */}
-            <Card className="border-0 p-6 text-center shadow-lg">
+            <Card className="flex h-full flex-col border-0 p-6 text-center shadow-lg">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center">
                 <svg
                   className="h-10 w-10 text-green-600"
@@ -252,13 +252,13 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="mb-2 text-lg font-semibold">Mobile Optimized</h3>
-              <p className="text-sm text-gray-600">
+              <p className="flex-grow text-sm text-gray-600">
                 Access your prayer times anywhere, on any device
               </p>
             </Card>
 
             {/* Built Your Day Around Salat */}
-            <Card className="border-0 p-6 text-center shadow-lg">
+            <Card className="flex h-full flex-col border-0 p-6 text-center shadow-lg">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center">
                 <svg
                   className="h-10 w-10 text-green-600"
@@ -275,33 +275,35 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="mb-2 text-lg font-semibold">Build Your Day Around Salat</h3>
-              <p className="text-sm text-gray-600">
+              <p className="flex-grow text-sm text-gray-600">
                 Structure your daily activities around the five prayer times
               </p>
             </Card>
 
             {/* Privacy First */}
-            <Card className="border-0 p-6 text-center shadow-lg">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center">
-                <svg
-                  className="h-10 w-10 text-green-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-lg font-semibold">Privacy First</h3>
-              <p className="text-sm text-gray-600">
-                Your location and calendar data are kept secure and private
-              </p>
-            </Card>
+            <Link href="/privacy" className="h-full">
+              <Card className="flex h-full cursor-pointer flex-col border-0 p-6 text-center shadow-lg transition-shadow duration-200 hover:shadow-xl">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center">
+                  <svg
+                    className="h-10 w-10 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-lg font-semibold">Privacy First</h3>
+                <p className="flex-grow text-sm text-gray-600">
+                  Your location and calendar data are kept secure and private
+                </p>
+              </Card>
+            </Link>
           </div>
         </div>
       </section>
@@ -314,6 +316,14 @@ export default function Home() {
             Helping Muslims worldwide stay connected to their faith through technology. May Allah
             accept our prayers and guide us on the straight path.
           </p>
+          <div className="mb-4 flex justify-center space-x-6">
+            <Link
+              href="/privacy"
+              className="text-sm text-green-100 transition-colors duration-200 hover:text-white"
+            >
+              Privacy Policy
+            </Link>
+          </div>
           <p className="text-sm text-green-100">Built with love for the Ummah</p>
         </div>
       </footer>
