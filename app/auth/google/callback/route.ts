@@ -9,20 +9,38 @@ export async function GET(request: NextRequest) {
   // Handle OAuth errors
   if (error) {
     console.error('Google OAuth error:', error);
+    const baseUrl =
+      process.env.NEXTAUTH_URL ||
+      process.env.NEXT_PUBLIC_APP_URL ||
+      (process.env.NODE_ENV === 'production'
+        ? 'https://www.salatsync.com'
+        : new URL(request.url).origin);
     return NextResponse.redirect(
-      new URL(`/dashboard?calendar_error=${encodeURIComponent(error)}`, request.url)
+      new URL(`/dashboard?calendar_error=${encodeURIComponent(error)}`, baseUrl)
     );
   }
 
   // Verify state parameter
   if (state !== 'calendar-sync') {
     console.error('Invalid state parameter:', state);
-    return NextResponse.redirect(new URL('/dashboard?calendar_error=invalid_state', request.url));
+    const baseUrl =
+      process.env.NEXTAUTH_URL ||
+      process.env.NEXT_PUBLIC_APP_URL ||
+      (process.env.NODE_ENV === 'production'
+        ? 'https://www.salatsync.com'
+        : new URL(request.url).origin);
+    return NextResponse.redirect(new URL('/dashboard?calendar_error=invalid_state', baseUrl));
   }
 
   if (!code) {
     console.error('No authorization code received');
-    return NextResponse.redirect(new URL('/dashboard?calendar_error=no_code', request.url));
+    const baseUrl =
+      process.env.NEXTAUTH_URL ||
+      process.env.NEXT_PUBLIC_APP_URL ||
+      (process.env.NODE_ENV === 'production'
+        ? 'https://www.salatsync.com'
+        : new URL(request.url).origin);
+    return NextResponse.redirect(new URL('/dashboard?calendar_error=no_code', baseUrl));
   }
 
   try {
@@ -69,7 +87,7 @@ export async function GET(request: NextRequest) {
         redirectUri,
       });
       return NextResponse.redirect(
-        new URL('/dashboard?calendar_error=token_exchange_failed', request.url)
+        new URL('/dashboard?calendar_error=token_exchange_failed', baseUrl)
       );
     }
 
@@ -90,11 +108,9 @@ export async function GET(request: NextRequest) {
     // Encode token data as URL parameter (in production, use secure storage)
     const encodedTokens = encodeURIComponent(JSON.stringify(tokenData));
 
-    return NextResponse.redirect(
-      new URL(`/dashboard?calendar_success=${encodedTokens}`, request.url)
-    );
+    return NextResponse.redirect(new URL(`/dashboard?calendar_success=${encodedTokens}`, baseUrl));
   } catch (error) {
     console.error('Google OAuth callback error:', error);
-    return NextResponse.redirect(new URL('/dashboard?calendar_error=server_error', request.url));
+    return NextResponse.redirect(new URL('/dashboard?calendar_error=server_error', baseUrl));
   }
 }
