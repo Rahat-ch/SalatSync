@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Playfair_Display, Amiri } from 'next/font/google';
 
 import './globals.css';
-import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { CalendarSyncProvider } from '@/contexts/CalendarSyncContext';
 import { LocationProvider } from '@/contexts/LocationContext';
@@ -35,15 +34,9 @@ export const metadata: Metadata = {
       url: '/logo.png',
     },
   },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'default',
-    title: 'SalatSync',
-  },
   formatDetection: {
     telephone: false,
   },
-  manifest: '/manifest.webmanifest',
   openGraph: {
     type: 'website',
     siteName: 'SalatSync',
@@ -77,7 +70,6 @@ export default function RootLayout({
         className={`${playfairDisplay.variable} ${amiri.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <ServiceWorkerRegistration />
         <PreferencesProvider>
           <AuthProvider>
             <LocationProvider>

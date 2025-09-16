@@ -26,6 +26,17 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const redirectUri = `${request.nextUrl.origin}/auth/google/callback`;
+
+    // Log for debugging
+    console.log('Token exchange attempt:', {
+      origin: request.nextUrl.origin,
+      redirectUri,
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID?.slice(0, 20) + '...',
+      hasSecret: !!process.env.GOOGLE_CLIENT_SECRET,
+      code: code?.slice(0, 20) + '...',
+    });
+
     // Exchange authorization code for access token
     const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
@@ -37,13 +48,18 @@ export async function GET(request: NextRequest) {
         client_secret: process.env.GOOGLE_CLIENT_SECRET!,
         code,
         grant_type: 'authorization_code',
-        redirect_uri: `${request.nextUrl.origin}/auth/google/callback`,
+        redirect_uri: redirectUri,
       }),
     });
 
     if (!tokenResponse.ok) {
       const errorData = await tokenResponse.text();
-      console.error('Token exchange failed:', errorData);
+      console.error('Token exchange failed:', {
+        status: tokenResponse.status,
+        statusText: tokenResponse.statusText,
+        error: errorData,
+        redirectUri,
+      });
       return NextResponse.redirect(
         new URL('/dashboard?calendar_error=token_exchange_failed', request.url)
       );
