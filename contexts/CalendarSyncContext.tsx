@@ -114,11 +114,18 @@ export function CalendarSyncProvider({ children }: { children: ReactNode }) {
     setState((prev) => ({ ...prev, isLoading: true, error: null }));
 
     try {
+      // Get the correct base URL for OAuth redirect
+      const baseUrl =
+        process.env.NEXT_PUBLIC_APP_URL ||
+        (process.env.NODE_ENV === 'production'
+          ? 'https://www.salatsync.com'
+          : window.location.origin);
+
       // Redirect to Google OAuth with account selection
       const authUrl =
         `https://accounts.google.com/o/oauth2/v2/auth?` +
         `client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&` +
-        `redirect_uri=${encodeURIComponent(window.location.origin + '/auth/google/callback')}&` +
+        `redirect_uri=${encodeURIComponent(baseUrl + '/auth/google/callback')}&` +
         `response_type=code&` +
         `scope=${encodeURIComponent('https://www.googleapis.com/auth/calendar')}&` +
         `access_type=offline&` +
