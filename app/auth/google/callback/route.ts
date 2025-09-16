@@ -26,11 +26,19 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const redirectUri = `${request.nextUrl.origin}/auth/google/callback`;
+    // Use environment variable for production domain or fallback to request origin
+    const baseUrl =
+      process.env.NEXTAUTH_URL ||
+      process.env.NEXT_PUBLIC_APP_URL ||
+      (process.env.NODE_ENV === 'production'
+        ? 'https://www.salatsync.com'
+        : request.nextUrl.origin);
+    const redirectUri = `${baseUrl}/auth/google/callback`;
 
     // Log for debugging
     console.log('Token exchange attempt:', {
       origin: request.nextUrl.origin,
+      baseUrl,
       redirectUri,
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID?.slice(0, 20) + '...',
       hasSecret: !!process.env.GOOGLE_CLIENT_SECRET,
