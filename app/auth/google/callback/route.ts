@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
+  // Use environment variable for production domain or fallback to request origin
+  const baseUrl =
+    process.env.NEXTAUTH_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    (process.env.NODE_ENV === 'production' ? 'https://www.salatsync.com' : request.nextUrl.origin);
+
   const searchParams = request.nextUrl.searchParams;
   const code = searchParams.get('code');
   const state = searchParams.get('state');
@@ -9,12 +15,6 @@ export async function GET(request: NextRequest) {
   // Handle OAuth errors
   if (error) {
     console.error('Google OAuth error:', error);
-    const baseUrl =
-      process.env.NEXTAUTH_URL ||
-      process.env.NEXT_PUBLIC_APP_URL ||
-      (process.env.NODE_ENV === 'production'
-        ? 'https://www.salatsync.com'
-        : new URL(request.url).origin);
     return NextResponse.redirect(
       new URL(`/dashboard?calendar_error=${encodeURIComponent(error)}`, baseUrl)
     );
@@ -23,34 +23,15 @@ export async function GET(request: NextRequest) {
   // Verify state parameter
   if (state !== 'calendar-sync') {
     console.error('Invalid state parameter:', state);
-    const baseUrl =
-      process.env.NEXTAUTH_URL ||
-      process.env.NEXT_PUBLIC_APP_URL ||
-      (process.env.NODE_ENV === 'production'
-        ? 'https://www.salatsync.com'
-        : new URL(request.url).origin);
     return NextResponse.redirect(new URL('/dashboard?calendar_error=invalid_state', baseUrl));
   }
 
   if (!code) {
     console.error('No authorization code received');
-    const baseUrl =
-      process.env.NEXTAUTH_URL ||
-      process.env.NEXT_PUBLIC_APP_URL ||
-      (process.env.NODE_ENV === 'production'
-        ? 'https://www.salatsync.com'
-        : new URL(request.url).origin);
     return NextResponse.redirect(new URL('/dashboard?calendar_error=no_code', baseUrl));
   }
 
   try {
-    // Use environment variable for production domain or fallback to request origin
-    const baseUrl =
-      process.env.NEXTAUTH_URL ||
-      process.env.NEXT_PUBLIC_APP_URL ||
-      (process.env.NODE_ENV === 'production'
-        ? 'https://www.salatsync.com'
-        : request.nextUrl.origin);
     const redirectUri = `${baseUrl}/auth/google/callback`;
 
     // Log for debugging
